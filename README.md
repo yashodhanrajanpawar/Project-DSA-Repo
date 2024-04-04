@@ -16,98 +16,50 @@
 
 ## 1. Coding Interview
 
-####                                                          
-
 Most of the problem belongs to some category or theme with minor tweaks viz. as Datatype, constraints, conditions,
 names.
-
 Identifying the right category saves time, gives us skeleton and also boost confidence since end to end code is ready.
 
-#### Problem Understanding and Finding Pattern
+**MUST VIEW**
 
-- Understand Problem by asking clarification questions
-- Clarify assumptions
-- Write examples..Don't get coaching..Be self driven
-- Think a loud
-- Objective and to the coord answers.
-- 45 mins time is precious..DONT waste on irrelevant discussions.
+### Coding Interview Tips (Pre Coding Round with DOC)
 
-#### Get Buy in for one of the multiple proposed appraoches
+- ```TIME MANAGEMENT and COMMUNICATION is cruicial within 45 MINS. DONT overcommnicate and over-decorate.```
+- ```-------------------------------------------------------```
+  ```Be Quick, vocal, loud and clear in this phase. Expedite as much as you could```
 
-1. Translate problem into simpler words (remove unncessary confusing context)
-
-2. See if if has close **resemblance with**  any of the **broader level category**  given below
-
-3. Once you confirm the category of the problem, **implement generic outline/template**  with TODOs within **no more
-   than 5 mins**.
-
-#### Why this way ?
-
-1. Avoid unncessary struggle, embarrasement and saves time
-
-2. Sets premise for discussion viz. time complexity.
-
-4. Boost confidence throughout interview due to ready layout.
-
-5. Quickly demonstrates your strong analytical, coding, DSA skills.
-
-6. Makes easier to make incremental changes on top of standard template algo.
-
-#### During Coding Interview (45- 60 mins)
-
-**Time Management**
-
-```
-[5 mins] Intro
-[5 mins] Read
-[10 mins] Discuss, Think Loud, Small Examples
-[5 mins] Suggest approaches, Propose and get consensus on Optimal one
-[15 mins --Google] [30 mins --Others] Implement at lightning speed(CRUICIAL)
-[5 mins] Review, Edge cases, Other suggestions
-[5 mins] Read
-
-```
-
-**DOs**
-
-- Discuss approaches with tradeoff
-- BE CONFIDENT on PROPOSAL and GET BUY IN for OPTIMAL approach.
-- Think on generalizing (e.g. taking K for fixed set of inputs than hardcoding them)
-- Trade offs with time-space complexities. Recurrent relation as applicable.
-- Implement ONLY agreed upon approach. (uniterrupted 10 mins)
-- Dryrun
-- Edge case checks
-- Discuss time and space complexity analysis
-- Scalable and other optimal approaches if any
-
-**Strict DONTs**
-
-- DONT jump to coding WITHOUT consensus
-- DONT Waste time on over-communication
-- DONT add Code Comments, class and other framework( google)
-- DONT choose Long variable names
-- DONT Seek hints
-- DONT Miss Overflows and validation checks
-- DONT do early refactoring ( do it only if you have enough time)
-- DONT assume NO PREPROCESSING such as sorting input.
-    - **IMPLICIT ordering** if that affects the decision
-        - e.g. ORACLE -- Trip-pickup-drop-tip oracle problem.
-        - Its better to preprocess input (Sort by pickup in
-          **TreeMap** ) and then explore it.
-        - Explore next state recursively
-          ```
-            private static long getMaxEarnings(...,i) {
-              for(key in TreeMap) {
-                 if(drop(i) <= pickup(i)) {
-                    // Recurse
-                    getMaxEarnings(...j);
-                 }
-            }
-            ``` 
+- **[5 mins]** Personal Intro ==> Keep in small
+- **[5-10 mins]** Problem Understanding and clarification ==>
+    - Read loud and multiple times.
+    - Discuss often
+    - Clarification questions
+    - Clarify Assumptions
+    - Small example walkthrough. (with some Base cases)
+- **[5 mins]** Tradeoff and Consensus ==>
+    - Suggest multiple appraoches (Brute forte too)
+    - Discuss approaches with tradeoff analysis (time and space complexity) and scalability
+    - Get consensus on final optimal one
+- ```-------------------------------------------------------```
+- **[20 mins]** Implementation AGREED UPON APPROACH ==>
+  ```Dont jump into Implementation without Consensus with interviewer```
+    - First Draft:
+        - Start with Skeleton of core methods. Assume other APIs, Classes (Just keep stubs and implement them if time
+          permits)
+        - ***Implement core method at lightning speed (CRUICIAL).
+        - Avoid over comments and modularity
+        - Dont optimize for space and time quickly
+    - Second Draft:
+        - Generalize, Optimize, bug fix
+    - Thidrd Draft (If asked and time permits)
+        - Scale (If Possible and asked)
+- **[5 mins]** Self and Peer Review, Edge cases, Other suggestions
+- ```-------------------------------------------------------```
+- **[5 mins]** Mention extra areas if improvement and few additions.
+- ```-------------------------------------------------------```
 
 ---
 
-## 1. Theme ==> Dynamic Programming (0-1 Knapsack)
+## 1. Theme ==> _Dynamic_ Programming (0-1 Knapsack)
 
 #### Illustration
 
@@ -116,22 +68,18 @@ Identifying the right category saves time, gives us skeleton and also boost conf
 #### Uniqueness
 
 1. Find **Min , Max** , **Count** (Combinations ...Not permutations) or **exists**  outcome with given constraints
-
 2. Usually **array** or **string** problems
-
 3. Overlapping sub-problems ?
-
 4. Optimal Substructure
 
 #### Time Complexity
 
 1. **Exponential** with O(1) space ==> **O (K^N)**
-
 2. **Linear** or **quadratic** with extra O(N) or O(NxM) space ===> **O(N^K) ** k =1,2
 
 #### Problem Description
 
-Similar problems of **0/1 knapsack** (N, wt [], val[], W)
+Similar problems of **0/1 knapsack** (N, wt [], val[], W) with constraints and objectives
 
 - Inputs, Constraints, Objective
     - Num items: N
@@ -162,14 +110,23 @@ Similar problems of **0/1 knapsack** (N, wt [], val[], W)
 
 #### Examples
 
-| Sr.No | Problem                                                       | Options  | Value (Impact Objective) | Constraints   | Repeat  | Options           | Num Children | Operator              | Base Case return value                |
-| ----- |---------------------------------------------------------------| -------- | ------------------------ | ------------- | ------- | ----------------- | ------------ | --------------------- | ------------------------------------- |
-| 1     | **0-1 Knapsack**                                              | wt[N]    | val[]                    | W max weight  | No      | Yes/No            | 2****        | **MAX**(subproblems)  | val[N-1]                              |
-| 2     | **Minimum number of Coins to get the V**                      | coins[N] | **1**                    | V value       | **Yes** | **FOR** (options) | **N**        | **MIN**(subproblems)  | 1                                     |
-| 3     | **Subset  Sum (If Exist Any subset)**                         | set[N]   | **True/false**           | No Repeations | No      | Yes/No            | 2            | **OR**(subproblems)   | True                                  |
-| 4     | **Subset  Sum (Count All such subsets)**                      | set[N]   | **SUM(counts)**          | No Repeations | No      | Yes/No            | 2            | **SUM (subproblems)** | count of all combinations e.g. 1, 2,3 |
-| 5.    | **Cut Road to get Max profit**                      | rod[N]   | **rod[i]**               | rod[N]        | **Yes** | **FOR** (options) | **N**        | **MAX**(subproblems)  | rod[N-1]                              |
-| 6.    | Palindrome Partitioning- Find MIN num of palindrome partitions |          |                          |               |         |                   |              |                       |                                       |
+**MUST VIEW**
+| Sr.No | Problem | Options | Value (Impact Objective) | Constraints | Repeat | Options | Num Children | Operator | Base
+Case return value |
+| ----- |---------------------------------------------------------------| -------- | ------------------------ |
+------------- | ------- | ----------------- | ------------ | --------------------- |
+------------------------------------- |
+| 1 | **0-1 Knapsack**                                              | wt[N]    | val[]                    | W max weight
+| No | Yes/No | 2****        | **MAX**(subproblems)  | val[N-1]                              |
+| 2 | **Minimum number of Coins to get the V**                      | coins[N] | **1**                    | V value | **
+Yes** | **FOR** (options) | **N**        | **MIN**(subproblems)  | 1 |
+| 3 | **Subset Sum (If Exist Any subset)**                         | set[N]   | **True/false**           | No Repeations
+| No | Yes/No | 2 | **OR**(subproblems)   | True |
+| 4 | **Subset Sum (Count All such subsets)**                      | set[N]   | **SUM(counts)**          | No Repeations
+| No | Yes/No | 2 | **SUM (subproblems)** | count of all combinations e.g. 1, 2,3 |
+| 5. | **Cut Road to get Max profit**                      | rod[N]   | **rod[i]**               | rod[N]        | **
+Yes** | **FOR** (options) | **N**        | **MAX**(subproblems)  | rod[N-1]                              |
+| 6. | Palindrome Partitioning- Find MIN num of palindrome partitions | | | | | | | | |
 
 #### Common Mistakes
 
@@ -233,9 +190,11 @@ Similar problems of **0/1 knapsack** (N, wt [], val[], W)
     - (As applicable) Hesitating to check all visited condition (O(N^2) call) -- We need it we should have it.
 
 - **Trees**
-    - Hesitating to do ```nested``` traversal from any node.
+    - Hesitating to do ```NESTED``` traversal from any node.
 
-#### Implementation
+#### ====Implementation====
+
+**MUST VIEW**
 
 1. Bounded 0/1 Knapsack (without repeatations)
 
@@ -280,7 +239,9 @@ class GFG {
 }
 ```
 
-1. Unbouded 0/1 Knapsack (WITH repeatations) -- Min coins change problem
+**MUST VIEW**
+
+2. Unbouded 0/1 Knapsack (WITH repeatations) -- Min coins change problem
    ```N recursive trees emerging for first FOR loop from first call```
 
 ```java
@@ -310,7 +271,9 @@ class MinCoinsChange {
 }
 ```
 
-2. Min Cuts Palindrome Partitioning (Complex Variant of Knapsack..MUST REMEMBER)
+**MUST VIEW**
+
+3. Min Cuts Palindrome Partitioning (Complex Variant of Knapsack..MUST REMEMBER)
 
 ```java
 class GFG {
@@ -344,16 +307,18 @@ class GFG {
 
 #### Uniqueness
 
-1. Min/Max/Longest/Smallest or count objectives
-2. String/Array as inputs
-3. Index arithmetic with 2/3/4 choices
-4. Simpler than Knapsack BUT corner cases are tricky
+1. Objective ---- Min/Max/Longest/Smallest or count objectives
+2. Dataypes --- Usually String/Array
+3. Choices --- 2/3/4 choices with index arithmetic
+4. Corner cases are tricky than knapsack based DP problems
 
 #### Time Complexity
 
 Same as knapsack.
 
 #### Examples
+
+**MUST VIEW**
 
 1. Longest Increasing SubSequence (2 choice)
     - Match vs NoMatch ```MAX [1+(i+1), (i+1)]```
@@ -373,7 +338,7 @@ Same as knapsack.
     - Match ```0+(i+1, j+1)```
     - NoMatch ```1 + MAX [(i+1, j+1) (i+1, j) (i, j+1)]```
 
-#### Implementation
+#### ====Implementation====
 
 1. Longest Palindrome Sub-STRING (Special)
 
@@ -421,15 +386,13 @@ public class DeleteMe {
         );
     }
 }
-
-
 ```
 
 ---
 
 ## 3. Theme ==> Graphs
 
-#### ----- BFS (directed and undirected) -----
+#### [Category]  BFS for directed and undirected graphs
 
 **Points to Ponder:**
 
@@ -452,7 +415,8 @@ public class DeleteMe {
     - ```LinkedList<Integer>``` as Queue
     - Useful methods: ```isEmtpty``` , ```add``` and ```poll```
 
-**Implementation:**
+**=====Implementation=====**
+**MUST VIEW**
 
 1. Directed and Undirected BFS appraoches
 
@@ -499,7 +463,6 @@ class GFG {
         }
     }
 
-
     /**
      * BFS for any CONNECTED UNDIRECTED graph. (Single component)
      *
@@ -532,9 +495,9 @@ class GFG {
 }
 ```
 
-#### ----- Paths and Connectivity ----
+#### [Category]  Paths and Connectivity
 
-**Implementations:**
+**=====Implementations=====**
 
 1. Transitive Closure: (Adj Matrix way)
 
@@ -564,7 +527,9 @@ class Graph {
 
 ```
 
-2. Find Connected Components/Islands in Undirected Graph
+2. Find Connected Components/Islands in Maze (Special Graph/Special representation)
+
+**MUST VIEW**
 
 ```java
 class GFG {
@@ -591,7 +556,9 @@ class GFG {
 
 ```
 
-3. Detect Cycle in graph
+**MUST VIEW**
+
+3. Detect Cycle in directed graph
 
 ```java
 class GFG {
@@ -648,7 +615,7 @@ class GFG {
 
 ```
 
-#### ----- Topological Sorting (DAG dependency) -----
+#### [Category] Topological Sorting for DAG dependency
 
 - USECASES: Extremely important for compiler, dependency and job sequencing
 - CONDITIONS ==>
@@ -659,6 +626,9 @@ class GFG {
         - In case of tree, ROOT will always be FIRST vertex in output
 
 - Example (DAG forest):
+
+**====Implementation====**
+**MUST VIEW**
 
 ```java
 class GFG {
@@ -708,15 +678,15 @@ class Demo {
 
 ```
 
-#### ----- Flows and Fills -----
+#### [Category]  Flows and Fills
 
-Todo
+TODO
 
-#### ----- Spanning Trees, Connect Multiple, Shortest paths -----
+#### [Category] Spanning Trees, Connect Multiple, Shortest paths
 
-Todo
+TODO
 
-#### ----- Coloring -----
+#### [Category]  Coloring
 
 - Find Minimum Colors (Chromatic Number)
     - This is SIMPLE problem
@@ -732,7 +702,7 @@ Todo
 
 ---
 
-## 4. Theme ==> Algorithms (Backtracking)
+## 4. Theme ==> Algorithms (**Backtracking**)
 
 #### Uniqueness
 
@@ -784,6 +754,8 @@ Todo
     - path.add(root.data())  ===backtrack===> **path.remove(path.size()-1)**
 
 #### Backtracking Pseudocode
+
+**MUST VIEW**
 
 ```java
 class GFG {
@@ -885,6 +857,8 @@ e.g. ```BST_BurnTree```
 
 #### Interesting Problems
 
+**MUST VIEW**
+
 - **kSum Path (How paths are being processed) ==>**
     - PreOrder to add node to path
     - Backtrack and process path **after recursive children** calls. (Same as backtracking algo)
@@ -921,6 +895,8 @@ e.g. ```BST_BurnTree```
 }
 
 ```
+
+**MUST VIEW**
 
 - **Burn Tree (PreOrder traversal and Special processing for node on return path) ==>**
     - Burn Tree ([GFG Link](https://www.geeksforgeeks.org/burn-the-binary-tree-starting-from-the-target-node/amp/))
@@ -1067,6 +1043,10 @@ class TrieNode {
 }
 ```
 
+**====Implementation====**
+
+**MUST VIEW**
+
 - **class Trie**
 
 ```java
@@ -1137,6 +1117,8 @@ class Trie {
 }
 ```
 
+**MUST VIEW**
+
 ##### Popular Problems
 
 - Count words: (INSERT ==> ++ maintain the count on the go)
@@ -1156,26 +1138,116 @@ class Trie {
 
 ## 7. Theme ==> Arrays and Strings
 
-##### Points to ponder
+##### Tips
 
-**Index:**
+**MUST VIEW**
+
+**===== [Catgory] LocalMaxima Minima to reduce O(N^2) to O(N): =====**
+Problem: Stock Buy and Sell (Once and Multiple times) to Maximize profit
+
+```java
+public class LOCAL_MAX_MIN_MaxStockSale {
+    ////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * PROBLEM 1: Buy and Sale just ONCE to maximize profit
+     */
+    static int getMaxProfitForSingleTransaction(int arr[], int arr_size) {
+        int max_diff = arr[1] - arr[0];
+        int min_element = arr[0];
+        int i;
+        // O(N) loop to detect MIN element and MAX Diff
+        for (i = 1; i < arr_size; i++) {
+            if (arr[i] - min_element > max_diff)
+                max_diff = arr[i] - min_element; // Max diff with local Min
+            if (arr[i] < min_element)
+                min_element = arr[i]; // Update local Min
+        }
+        return max_diff;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * PROBLEM 2: Buy and Sale MULTIPLE times maximize profit
+     *
+     * Search for Local MINIMA and then only LOCAL MAXIMA (This is one interval)
+     * Keep on repeating the steps. 
+     *
+     * Solution = Multi Transaction Profit = SUM_ALL(Interval(sale-buy))
+     */
+    static class Interval {
+        int buy, sell;
+    }
+
+    static void getMaxProfitForMultipleTransactions(int price[], int n) {
+        // Prices must be given for at least two days
+        if (n == 1)
+            return;
+
+        int count = 0;
+
+        // Solution array
+        ArrayList<Interval> sol = new ArrayList<>();
+
+        // Traverse through given price array
+        int i = 0;
+        while (i < n - 1) {
+            // ---------1. Find Local Minima (Try visiting each index and get local minima)
+            while ((i < n - 1) && (price[i] > price[i + 1]))
+                i++;
+            // If we reached the end, break as no further solution possible
+            if (i == n - 1)
+                break;
+
+            Interval e = new Interval();
+            // Store the index of minima
+            e.buy = i;
+
+            i++; // Move to next
+
+            //--------- 2. Find Local Maxima.
+            while ((i < n) && (price[i - 1] < price[i]))
+                i++;
+            // Store the index of maxima
+            e.sell = i - 1;
+            sol.add(e);
+        }
+
+        // print solution
+        if (sol.size() == 0)
+            System.out.println(
+                    "There is no day when buying the stock "
+                            + "will make profit");
+        else {
+            for (Interval intv : sol)
+                System.out.println(
+                        "Buy on day: " + intv.buy + " | " + "Sell on day : " + intv.sell);
+
+        }
+    }
+
+    public static void main(String args[]) {
+
+        // stock prices on consecutive days
+        int price[] = {100, 180, 260, 310, 40, 695, 535};
+        int n = price.length;
+        System.out.println("================ Input: " + Arrays.toString(price) + "================");
+        System.out.println("Buy and sell ONCE. ------------------");
+        System.out.println("Max Stock Price:" + getMaxProfitForSingleTransaction(price, n));
+        System.out.println("Buy and sell MULTIPLE times. ------------------");
+        getMaxProfitForMultipleTransactions(price, n);
+    }
+}
+```
+
+**Index Handling:**
 
 - **Loops**: Forget to increment index, index value after full loop
     - BFS loop: ```Check element if visited before before queueing or recursing```
 - **Index arithmetic**:  -- and ++ and bounds
 - **Optimization**: Inputs Index bounds checks before exploring directions
 - **2D index**: We need it in queue, passing across calls, store in list
-    - Have this class handy for maze/matrix/graph problems.
-      ```java
-        static class Point{
-            public Point(int x, int y) {
-                this.x =x;
-                this.y = y;
-            }
-            int x;
-            int y;
-        }
-        ```
 
 **DS/Maze:**
 
@@ -1195,6 +1267,8 @@ class Trie {
 ### Arrays ---------------------------------------------------------------------------------------
 
 ##### DataTypes and nature
+
+**MUST VIEW**
 
 - **-ve numbers** influences certain algorithms in -ve way; check before proceeding
 - Repeated Arithmetic(add/subtract/multiply/divide) could lead to **Overflow/underflow** ; Always use **bigger**
@@ -1226,6 +1300,8 @@ class Trie {
 
 ### String ---------------------------------------------------------------------------------------
 
+**MUST VIEW**
+
 - String Functions to avoid confusion
   ```java
     String str1 = "01234";
@@ -1246,6 +1322,8 @@ class Trie {
 - e.g. ```"aaBBBcc".substring(2, 4+1)``` to get **BBB**
 
 -- **PROBLEM--Decode String**
+
+**MUST VIEW**
 
 ```java
 public class ServiceNow_DecodeString {
@@ -1317,6 +1395,8 @@ public class ServiceNow_DecodeString {
 ```
 
 - **PROBLEM--Decode Bash Command Expansion**
+
+- **MUST VIEW**
 
 ```java
   public class DecodeBashExpansion {
@@ -1406,7 +1486,9 @@ public class ServiceNow_DecodeString {
 }
 ```
 
-- **PROBLEM--Word Break**
+**MUST VIEW**
+
+- **PROBLEM--Word Break (can String be broken into Dict words)**
   ```java
   static boolean wordBreak(List<String> wordList,
                              String word) {
@@ -1430,12 +1512,16 @@ public class ServiceNow_DecodeString {
 
 ### Queue (Java)  ---------------------------------------------------------------------------------------
 
+**MUST VIEW**
+
 - Inbuilt Queue: ```LinkedList<Integer> queue = new LinkedList<>();```
 - Enque/ADD: ```list.add(e);```
 - Deque/POLL: ```int e = list.poll();```
 - PEEK (Gets but DONT removes): ```int e = list.peek(e);```
 
 ### Stack (Java)  ---------------------------------------------------------------------------------------
+
+**MUST VIEW**
 
 ```java
 class Test {
@@ -1472,6 +1558,8 @@ class Demo {
 ```
 
 ### PRIMITIVE TYPES e.g Integer (Java Wrapper Classes) ---------------------------------------------------------------------------------------
+
+**MUST VIEW**
 
 **[API guide for java.lang.Integer](https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/java/lang/Integer.html)**
 

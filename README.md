@@ -20,7 +20,7 @@ Most of the problem belongs to some category or theme with minor tweaks viz. as 
 names.
 Identifying the right category saves time, gives us skeleton and also boost confidence since end to end code is ready.
 
-**<<MustRead>>**
+**@MUST_READ**
 
 ### Coding Interview Tips (Pre Coding Round with DOC)
 
@@ -110,7 +110,7 @@ Similar problems of **0/1 knapsack** (N, wt [], val[], W) with constraints and o
 
 #### Examples
 
-**<<MustRead>>**
+**@MUST_READ**
 | Sr.No | Problem | Options | Value (Impact Objective) | Constraints | Repeat | Options | Num Children | Operator | Base
 Case return value |
 | ----- |---------------------------------------------------------------| -------- | ------------------------ |
@@ -194,7 +194,7 @@ Yes** | **FOR** (options) | **N**        | **MAX**(subproblems)  | rod[N-1]     
 
 #### ====Implementation====
 
-**<<MustRead>>**
+**@MUST_READ**
 
 1. Bounded 0/1 Knapsack (without repeatations)
 
@@ -239,7 +239,7 @@ class GFG {
 }
 ```
 
-**<<MustRead>>**
+**@MUST_READ**
 
 2. Unbouded 0/1 Knapsack (WITH repeatations) -- Min coins change problem
    ```N recursive trees emerging for first FOR loop from first call```
@@ -271,7 +271,7 @@ class MinCoinsChange {
 }
 ```
 
-**<<MustRead>>**
+**@MUST_READ**
 
 3. Min Cuts Palindrome Partitioning (Complex Variant of Knapsack..MUST REMEMBER)
 
@@ -318,7 +318,7 @@ Same as knapsack.
 
 #### Examples
 
-**<<MustRead>>**
+**@MUST_READ**
 
 1. Longest Increasing SubSequence (2 choice)
     - Match vs NoMatch ```MAX [1+(i+1), (i+1)]```
@@ -416,7 +416,7 @@ public class DeleteMe {
     - Useful methods: ```isEmtpty``` , ```add``` and ```poll```
 
 **=====Implementation=====**
-**<<MustRead>>**
+**@MUST_READ**
 
 1. Directed and Undirected BFS appraoches
 
@@ -529,7 +529,7 @@ class Graph {
 
 2. Find Connected Components/Islands in Maze (Special Graph/Special representation)
 
-**<<MustRead>>**
+**@MUST_READ**
 
 ```java
 class GFG {
@@ -556,7 +556,7 @@ class GFG {
 
 ```
 
-**<<MustRead>>**
+**@MUST_READ**
 
 3. Detect Cycle in directed graph
 
@@ -628,7 +628,7 @@ class GFG {
 - Example (DAG forest):
 
 **====Implementation====**
-**<<MustRead>>**
+**@MUST_READ**
 
 ```java
 class GFG {
@@ -755,7 +755,7 @@ TODO
 
 #### Backtracking Pseudocode
 
-**<<MustRead>>**
+**@MUST_READ**
 
 ```java
 class GFG {
@@ -857,7 +857,7 @@ e.g. ```BST_BurnTree```
 
 #### Interesting Problems
 
-**<<MustRead>>**
+**@MUST_READ**
 
 - **kSum Path (How paths are being processed) ==>**
     - PreOrder to add node to path
@@ -896,7 +896,7 @@ e.g. ```BST_BurnTree```
 
 ```
 
-**<<MustRead>>**
+**@MUST_READ**
 
 - **Burn Tree (PreOrder traversal and Special processing for node on return path) ==>**
     - Burn Tree ([GFG Link](https://www.geeksforgeeks.org/burn-the-binary-tree-starting-from-the-target-node/amp/))
@@ -1045,7 +1045,7 @@ class TrieNode {
 
 **====Implementation====**
 
-**<<MustRead>>**
+**@MUST_READ**
 
 - **class Trie**
 
@@ -1117,7 +1117,7 @@ class Trie {
 }
 ```
 
-**<<MustRead>>**
+**@MUST_READ**
 
 ##### Popular Problems
 
@@ -1140,7 +1140,7 @@ class Trie {
 
 ##### Tips
 
-**<<MustRead>>**
+**@MUST_READ**
 
 **===== [Catgory] LocalMaxima Minima to reduce O(N^2) to O(N): =====**
 Problem: Stock Buy and Sell (Once and Multiple times) to Maximize profit
@@ -1268,7 +1268,7 @@ public class LOCAL_MAX_MIN_MaxStockSale {
 
 ##### DataTypes and nature
 
-**<<MustRead>>**
+**@MUST_READ**
 
 - **-ve numbers** influences certain algorithms in -ve way; check before proceeding
 - Repeated Arithmetic(add/subtract/multiply/divide) could lead to **Overflow/underflow** ; Always use **bigger**
@@ -1300,7 +1300,7 @@ public class LOCAL_MAX_MIN_MaxStockSale {
 
 ### String ---------------------------------------------------------------------------------------
 
-**<<MustRead>>**
+**@MUST_READ**
 
 - String Functions to avoid confusion
   ```java
@@ -1323,7 +1323,7 @@ public class LOCAL_MAX_MIN_MaxStockSale {
 
 -- **PROBLEM--Decode String**
 
-**<<MustRead>>**
+**@MUST_READ**
 
 ```java
 public class ServiceNow_DecodeString {
@@ -1396,7 +1396,7 @@ public class ServiceNow_DecodeString {
 
 - **PROBLEM--Decode Bash Command Expansion**
 
-- **<<MustRead>>**
+- **@MUST_READ**
 
 ```java
   public class DecodeBashExpansion {
@@ -1486,7 +1486,7 @@ public class ServiceNow_DecodeString {
 }
 ```
 
-**<<MustRead>>**
+**@MUST_READ**
 
 - **PROBLEM--Word Break (can String be broken into Dict words)**
   ```java
@@ -1512,7 +1512,7 @@ public class ServiceNow_DecodeString {
 
 ### Queue (Java)  ---------------------------------------------------------------------------------------
 
-**<<MustRead>>**
+**@MUST_READ**
 
 - Inbuilt Queue: ```LinkedList<Integer> queue = new LinkedList<>();```
 - Enque/ADD: ```list.add(e);```
@@ -1521,7 +1521,7 @@ public class ServiceNow_DecodeString {
 
 ### Stack (Java)  ---------------------------------------------------------------------------------------
 
-**<<MustRead>>**
+**@MUST_READ**
 
 ```java
 class Test {
@@ -1559,7 +1559,7 @@ class Demo {
 
 ### PRIMITIVE TYPES e.g Integer (Java Wrapper Classes) ---------------------------------------------------------------------------------------
 
-**<<MustRead>>**
+**@MUST_READ**
 
 **[API guide for java.lang.Integer](https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/java/lang/Integer.html)**
 

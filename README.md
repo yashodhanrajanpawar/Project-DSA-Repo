@@ -183,7 +183,7 @@ Similar problems of **0/1 knapsack** (N, wt [], val[], W) with constraints and o
 
 #### ====Implementation====
 
-1. Bounded 0/1 Knapsack (without repeatations)
+**1. Bounded 0/1 Knapsack (without repeatations)**
 
 ```java
 class GFG {
@@ -226,8 +226,8 @@ class GFG {
 }
 ```
 
-2. Unbouded 0/1 Knapsack (WITH repeatations) -- Min coins change problem
-   ```N recursive trees emerging for first FOR loop from first call```
+**2. Unbouded 0/1 Knapsack (WITH repeatations) -- Min coins change problem**
+```N recursive trees emerging for first FOR loop from first call```
 
 ```java
 class MinCoinsChange {
@@ -256,7 +256,7 @@ class MinCoinsChange {
 }
 ```
 
-3. Min Cuts Palindrome Partitioning (Complex Variant of Knapsack..MUST REMEMBER)
+**3. Min Cuts Palindrome Partitioning (Complex Variant of Knapsack..MUST REMEMBER)**
 
 ```java
 class GFG {
@@ -321,12 +321,26 @@ Same as knapsack.
 
 #### ====Implementation====
 
-1. Longest Palindrome Sub-STRING (Special)
+**1. Length of Longest Palindrome Sub-STRING (Special)**
+Alternative:
+
+```
+Note: This could be solved using NON DP way too..Please refer String theme with solves even complex problem--Get actual longest palindrome substring
+```
+
+Complexity:
+
+```
+Time complexity: O(N^2), Where N is the size of the string
+Space complexity: O(N^2)
+```
+
+Code:
 
 ```java
 package com.hiru;
 
-public class DeleteMe {
+public class LPS {
     public static void main(String args[]) {
         String str = "ZZAABAACFRTACA";
         //String str = "DDDAABAACRRRRRCZZ";
@@ -398,7 +412,7 @@ public class DeleteMe {
 
 **=====Implementation=====**
 
-1. Directed and Undirected BFS appraoches
+**1. Directed and Undirected BFS appraoches**
 
 ```java
 class GFG {
@@ -479,7 +493,7 @@ class GFG {
 
 **=====Implementations=====**
 
-1. Transitive Closure: (Adj Matrix way)
+**1. Transitive Closure: (Adj Matrix way)**
 
 ```java
 class Graph {
@@ -507,7 +521,7 @@ class Graph {
 
 ```
 
-2. Find Connected Components/Islands in Maze (Special Graph/Special representation)
+**2. Find Connected Components/Islands in Maze (Special Graph/Special representation)**
 
 ```java
 class GFG {
@@ -534,7 +548,7 @@ class GFG {
 
 ```
 
-3. Detect Cycle in directed graph
+**3. Detect Cycle in directed graph**
 
 ```java
 class GFG {
@@ -604,6 +618,7 @@ class GFG {
 - Example (DAG forest):
 
 **====Implementation====**
+**1. Implement Topological Sort:**
 
 ```java
 class GFG {
@@ -830,7 +845,7 @@ e.g. ```BST_BurnTree```
 
 #### Interesting Problems
 
-- **kSum Path (How paths are being processed) ==>**
+- **Problem: kSum Path (How paths are being processed) ==>**
     - PreOrder to add node to path
     - Backtrack and process path **after recursive children** calls. (Same as backtracking algo)
 
@@ -867,7 +882,7 @@ e.g. ```BST_BurnTree```
 
 ```
 
-- **Burn Tree (PreOrder traversal and Special processing for node on return path) ==>**
+- **Problem: Burn Tree (PreOrder traversal and Special processing for node on return path) ==>**
     - Burn Tree ([GFG Link](https://www.geeksforgeeks.org/burn-the-binary-tree-starting-from-the-target-node/amp/))
     - For a trigger node ==> Burn its tree and return true to let the caller know that burning to be trigerred
     - For any other node higher up (e.g. root), revisit SOME nodes in opossite side of trigger node.
@@ -1014,7 +1029,7 @@ class TrieNode {
 
 **====Implementation====**
 
-- **class Trie**
+- **Problem: Implement Trie**
 
 ```java
 class Trie {
@@ -1106,7 +1121,7 @@ class Trie {
 ##### Tips
 
 **===== [Catgory] LocalMaxima Minima to reduce O(N^2) to O(N): =====**
-Problem: Stock Buy and Sell (Once and Multiple times) to Maximize profit
+**Problem: Stock Buy and Sell (Once and Multiple times) to Maximize profit**
 
 ```java
 public class LOCAL_MAX_MIN_MaxStockSale {
@@ -1279,6 +1294,47 @@ public class LOCAL_MAX_MIN_MaxStockSale {
 - All primitive types including , String are pass BY VALUE. Safe to pass without worring.
 - Substring usage== > **endIndex + 1**  to include endIndex char
 - e.g. ```"aaBBBcc".substring(2, 4+1)``` to get **BBB**
+
+-- **PROBLEM--Print Actual Longest Common Palindrome Substring (Not DP yet same time complexity of Quadratic)**
+
+```java
+package com.hiru.dsa.java.datastructures.string;
+
+public class DP_LongestPalindromeSubString_GetString {
+    public static void main(String[] args) {
+        System.out.println(longestPalindromeString("9912321456"));
+    }
+
+    static public String intermediatePalindrome(String s, int left, int right) {
+        if (left > right) return null;
+        while (left >= 0 && right < s.length()
+                && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return s.substring(left + 1, right);
+    }
+
+    // O(n^2) -- Not Optimal yet effective appraoch with less complex code
+    public static String longestPalindromeString(String s) {
+        if (s == null) return null;
+        String longest = s.substring(0, 1);
+        for (int i = 0; i < s.length() - 1; i++) {
+            //odd cases like 121
+            String palindrome = intermediatePalindrome(s, i, i);
+            if (palindrome.length() > longest.length()) {
+                longest = palindrome;
+            }
+            //even cases like 1221
+            palindrome = intermediatePalindrome(s, i, i + 1);
+            if (palindrome.length() > longest.length()) {
+                longest = palindrome;
+            }
+        }
+        return longest;
+    }
+}
+```
 
 -- **PROBLEM--Decode String**
 

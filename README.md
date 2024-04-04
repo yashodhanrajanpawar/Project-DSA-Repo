@@ -111,22 +111,15 @@ Similar problems of **0/1 knapsack** (N, wt [], val[], W) with constraints and o
 #### Examples
 
 **@MUST_READ**
-| Sr.No | Problem | Options | Value (Impact Objective) | Constraints | Repeat | Options | Num Children | Operator | Base
-Case return value |
-| ----- |---------------------------------------------------------------| -------- | ------------------------ |
-------------- | ------- | ----------------- | ------------ | --------------------- |
-------------------------------------- |
-| 1 | **0-1 Knapsack**                                              | wt[N]    | val[]                    | W max weight
-| No | Yes/No | 2****        | **MAX**(subproblems)  | val[N-1]                              |
-| 2 | **Minimum number of Coins to get the V**                      | coins[N] | **1**                    | V value | **
-Yes** | **FOR** (options) | **N**        | **MIN**(subproblems)  | 1 |
-| 3 | **Subset Sum (If Exist Any subset)**                         | set[N]   | **True/false**           | No Repeations
-| No | Yes/No | 2 | **OR**(subproblems)   | True |
-| 4 | **Subset Sum (Count All such subsets)**                      | set[N]   | **SUM(counts)**          | No Repeations
-| No | Yes/No | 2 | **SUM (subproblems)** | count of all combinations e.g. 1, 2,3 |
-| 5. | **Cut Road to get Max profit**                      | rod[N]   | **rod[i]**               | rod[N]        | **
-Yes** | **FOR** (options) | **N**        | **MAX**(subproblems)  | rod[N-1]                              |
-| 6. | Palindrome Partitioning- Find MIN num of palindrome partitions | | | | | | | | |
+
+| **Sr.No** | **Problem** | **Options** | **Objective** | **Constraints**                           | **Repeat**  | **Options** | **NumChildren** | **Operator** | **BaseCase Return**                   |
+|---------|-----------------------------------------------------------|--------|----------------------|---------------------------------------|---------|-----------------|------------|---------------------|---------------------------------------|
+| 1       | 0-1 Knapsack                                              | wt[N]    | val[]                  | W max weight                          | No      | Yes/No | 2****        | **MAX**(subproblems)  | val[N-1]                              |
+| 2       | Minimum number of Coins to get the V               | coins[N] | **1**                  | V value                               | ** Yes** | **FOR** (options) | **N**        | **MIN**(subproblems)  | 1                                     |
+| 3       | Subset Sum (If Exist Any subset)                      | set[N]   | **True/false**         | No Repeations                         | No | Yes/No | 2 | **OR**(subproblems)   | True                                  |
+| 4       | Subset Sum (Count All such subsets)                   | set[N]   | **SUM(counts)**        | No Repeations                         | No | Yes/No | 2 | **SUM (subproblems)** | count of all combinations e.g. 1, 2,3 |
+| 5.      | Cut Road to get Max profit                      | rod[N]   | **rod[i]**             | rod[N]                                | **Yes** | **FOR** (options) | **N**        | **MAX**(subproblems)  | rod[N-1]                              |
+| 6.      | Palindrome Partitioning- Find MIN num of palindrome partitions | | |                                       |         | | | |                                       |
 
 #### Common Mistakes
 

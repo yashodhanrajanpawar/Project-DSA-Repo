@@ -20,8 +20,6 @@ Most of the problem belongs to some category or theme with minor tweaks viz. as 
 names.
 Identifying the right category saves time, gives us skeleton and also boost confidence since end to end code is ready.
 
-**@MUST_READ**
-
 ### Coding Interview Tips (Pre Coding Round with DOC)
 
 - ```TIME MANAGEMENT and COMMUNICATION is cruicial within 45 MINS. DONT overcommnicate and over-decorate.```
@@ -110,8 +108,6 @@ Similar problems of **0/1 knapsack** (N, wt [], val[], W) with constraints and o
 
 #### Examples
 
-**@MUST_READ**
-
 | **Sr.No** | **Problem** | **Options** | **Objective** | **Constraints**                           | **Repeat**  | **Options** | **NumChildren** | **Operator** | **BaseCase Return**                   |
 |---------|-----------------------------------------------------------|--------|----------------------|---------------------------------------|---------|-----------------|------------|---------------------|---------------------------------------|
 | 1       | 0-1 Knapsack                                              | wt[N]    | val[]                  | W max weight                          | No      | Yes/No | 2****        | **MAX**(subproblems)  | val[N-1]                              |
@@ -187,8 +183,6 @@ Similar problems of **0/1 knapsack** (N, wt [], val[], W) with constraints and o
 
 #### ====Implementation====
 
-**@MUST_READ**
-
 1. Bounded 0/1 Knapsack (without repeatations)
 
 ```java
@@ -232,8 +226,6 @@ class GFG {
 }
 ```
 
-**@MUST_READ**
-
 2. Unbouded 0/1 Knapsack (WITH repeatations) -- Min coins change problem
    ```N recursive trees emerging for first FOR loop from first call```
 
@@ -263,8 +255,6 @@ class MinCoinsChange {
     }
 }
 ```
-
-**@MUST_READ**
 
 3. Min Cuts Palindrome Partitioning (Complex Variant of Knapsack..MUST REMEMBER)
 
@@ -310,8 +300,6 @@ class GFG {
 Same as knapsack.
 
 #### Examples
-
-**@MUST_READ**
 
 1. Longest Increasing SubSequence (2 choice)
     - Match vs NoMatch ```MAX [1+(i+1), (i+1)]```
@@ -409,7 +397,6 @@ public class DeleteMe {
     - Useful methods: ```isEmtpty``` , ```add``` and ```poll```
 
 **=====Implementation=====**
-**@MUST_READ**
 
 1. Directed and Undirected BFS appraoches
 
@@ -522,8 +509,6 @@ class Graph {
 
 2. Find Connected Components/Islands in Maze (Special Graph/Special representation)
 
-**@MUST_READ**
-
 ```java
 class GFG {
     /**
@@ -548,8 +533,6 @@ class GFG {
 }
 
 ```
-
-**@MUST_READ**
 
 3. Detect Cycle in directed graph
 
@@ -621,7 +604,6 @@ class GFG {
 - Example (DAG forest):
 
 **====Implementation====**
-**@MUST_READ**
 
 ```java
 class GFG {
@@ -748,8 +730,6 @@ TODO
 
 #### Backtracking Pseudocode
 
-**@MUST_READ**
-
 ```java
 class GFG {
     void FIND_SOLUTIONS(CURRENT_STATE, IN_OUT_PARAMETERS) {
@@ -850,8 +830,6 @@ e.g. ```BST_BurnTree```
 
 #### Interesting Problems
 
-**@MUST_READ**
-
 - **kSum Path (How paths are being processed) ==>**
     - PreOrder to add node to path
     - Backtrack and process path **after recursive children** calls. (Same as backtracking algo)
@@ -888,8 +866,6 @@ e.g. ```BST_BurnTree```
 }
 
 ```
-
-**@MUST_READ**
 
 - **Burn Tree (PreOrder traversal and Special processing for node on return path) ==>**
     - Burn Tree ([GFG Link](https://www.geeksforgeeks.org/burn-the-binary-tree-starting-from-the-target-node/amp/))
@@ -1038,8 +1014,6 @@ class TrieNode {
 
 **====Implementation====**
 
-**@MUST_READ**
-
 - **class Trie**
 
 ```java
@@ -1110,8 +1084,6 @@ class Trie {
 }
 ```
 
-**@MUST_READ**
-
 ##### Popular Problems
 
 - Count words: (INSERT ==> ++ maintain the count on the go)
@@ -1132,8 +1104,6 @@ class Trie {
 ## 7. Theme ==> Arrays and Strings
 
 ##### Tips
-
-**@MUST_READ**
 
 **===== [Catgory] LocalMaxima Minima to reduce O(N^2) to O(N): =====**
 Problem: Stock Buy and Sell (Once and Multiple times) to Maximize profit
@@ -1261,8 +1231,6 @@ public class LOCAL_MAX_MIN_MaxStockSale {
 
 ##### DataTypes and nature
 
-**@MUST_READ**
-
 - **-ve numbers** influences certain algorithms in -ve way; check before proceeding
 - Repeated Arithmetic(add/subtract/multiply/divide) could lead to **Overflow/underflow** ; Always use **bigger**
   datatypes for results.
@@ -1293,8 +1261,6 @@ public class LOCAL_MAX_MIN_MaxStockSale {
 
 ### String ---------------------------------------------------------------------------------------
 
-**@MUST_READ**
-
 - String Functions to avoid confusion
   ```java
     String str1 = "01234";
@@ -1315,8 +1281,6 @@ public class LOCAL_MAX_MIN_MaxStockSale {
 - e.g. ```"aaBBBcc".substring(2, 4+1)``` to get **BBB**
 
 -- **PROBLEM--Decode String**
-
-**@MUST_READ**
 
 ```java
 public class ServiceNow_DecodeString {
@@ -1389,7 +1353,7 @@ public class ServiceNow_DecodeString {
 
 - **PROBLEM--Decode Bash Command Expansion**
 
-- **@MUST_READ**
+-
 
 ```java
   public class DecodeBashExpansion {
@@ -1479,8 +1443,6 @@ public class ServiceNow_DecodeString {
 }
 ```
 
-**@MUST_READ**
-
 - **PROBLEM--Word Break (can String be broken into Dict words)**
   ```java
   static boolean wordBreak(List<String> wordList,
@@ -1505,16 +1467,12 @@ public class ServiceNow_DecodeString {
 
 ### Queue (Java)  ---------------------------------------------------------------------------------------
 
-**@MUST_READ**
-
 - Inbuilt Queue: ```LinkedList<Integer> queue = new LinkedList<>();```
 - Enque/ADD: ```list.add(e);```
 - Deque/POLL: ```int e = list.poll();```
 - PEEK (Gets but DONT removes): ```int e = list.peek(e);```
 
 ### Stack (Java)  ---------------------------------------------------------------------------------------
-
-**@MUST_READ**
 
 ```java
 class Test {
@@ -1551,8 +1509,6 @@ class Demo {
 ```
 
 ### PRIMITIVE TYPES e.g Integer (Java Wrapper Classes) ---------------------------------------------------------------------------------------
-
-**@MUST_READ**
 
 **[API guide for java.lang.Integer](https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/java/lang/Integer.html)**
 

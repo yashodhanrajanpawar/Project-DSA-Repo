@@ -22,11 +22,11 @@ Identifying the right category saves time, gives us skeleton and also boost conf
 
 ### Coding Interview Tips (Pre Coding Round with DOC)
 
-- ```TIME MANAGEMENT and COMMUNICATION is cruicial within 45 MINS. DONT overcommnicate and over-decorate.```
+- TIME MANAGEMENT and COMMUNICATION is cruicial within 45 MINS. DONT overcommnicate and over-decorate.
+- Be Quick, vocal, loud and clear in this phase. Expedite as much as you could.
 - ```-------------------------------------------------------```
-  ```Be Quick, vocal, loud and clear in this phase. Expedite as much as you could```
-
-- **[5 mins]** Personal Intro ==> Keep in small
+- **[5 mins]** Personal Intro ==> Keep in crisp and small..Avoid digresions.
+- ```-------------------------------------------------------```
 - **[5-10 mins]** Problem Understanding and clarification ==>
     - Read loud and multiple times.
     - Discuss often

@@ -1609,6 +1609,11 @@ TODO--Update this section
 
 ### Resources
 
-- [Google Question Bank](https://www.geeksforgeeks.org/google-interview-preparation/)
+Just go through them before interview to **Refresh your cache**
+
+- [PAID--Algo Monster Coding Patterns Illustrations](https://algo.monster/dashboard)
+- [PAID--GeeksforGeeks--Questions with Answers ALL problems without restrictions](www.geeksforgeeks.com)
+- [How to rock Coding Interview](https://www.freecodecamp.org/news/coding-interviews-for-dummies-5e048933b82b/)
+- [Geekforgeeks--Google Question Bank](https://www.geeksforgeeks.org/google-interview-preparation/)
   </span>
 

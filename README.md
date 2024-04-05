@@ -1,18 +1,75 @@
 <span style="color:brown">
 
 # Table Of Contents
-
-- [THEME 0 ==> Coding Interview Tips](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#1-coding-tips)
-- [THEME 1 ==> Dynamic-programming-0-1-knap](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#1-theme--dynamic-programming-0-1-knapsack)
-- [THEME 2 ==> Dynamic-programmingsubsequence-palindrome-editdist-jumps](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#2-theme--dynamic-programmingsubsequence-palindrome-editdist-jumps)
+- [Coding Interview ](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#1-coding-interview)
+- [Coding Problems Generic Patterns Summary](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#coding-problem-generic-patterns)
+- [THEME 1 ==> Dynamic Programming- 0/1 Knapsack](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#1-theme--dynamic-programming-0-1-knapsack)
+- [THEME 2 ==> Dynamic-programming Subsequence/Palindrome/Editdist/Jumps](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#2-theme--dynamic-programmingsubsequence-palindrome-editdist-jumps)
 - [THEME 3 ==> Graphs](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#3-theme--graphs)
-- [THEME 4 ==> Algorithms-backtracking](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#4-theme--algorithms-backtracking)
-- [THEME 5 ==> Trees-data-structure](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#5-theme--trees-data-structure)
-- [THEME 6 ==> Trie-n-ary-tree-as-pre-processed-dictionary](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#6-theme--trie-n-ary-tree-as-pre-processed-dictionary)
+- [THEME 4 ==> Backtracking](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#4-theme--algorithms-backtracking)
+- [THEME 5 ==> Trees](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#5-theme--trees-data-structure)
+- [THEME 6 ==> Trie ](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#6-theme--trie-n-ary-tree-as-pre-processed-dictionary)
 - [THEME 7 ==> Arrays-and-strings](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#7-theme--arrays-and-strings)
-- [THEME 8 ==> Misc-dsa (String, HashMap, Stacks, Queues, HashSet](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#8-theme--misc-dsa)
+- [THEME 8 ==> Misc DSA (String, HashMap, Stacks, Queues, HashSet](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#8-theme--misc-dsa)
+- [THEME 9 ==> BitMagic](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#9-theme--bitmagic-solve-at-least-10-problems)
+- [THEME 10 ==> Binary Search](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#10-theme--binary-search)
+
 
 ---
+
+
+## 1. Coding Interview
+
+Most of the problem belongs to some category or theme with minor tweaks viz. as Datatype, constraints, conditions,
+names.
+Identifying the right category saves time, gives us skeleton and also boost confidence since end to end code is ready.
+
+**Quote**
+
+```
+Do not worry about things like whether you will get the job, why my friends are doing better than me, etc. 
+Focus on the problem in front of you. Life is a single-player game. 
+You are competing against only yourself. 
+Focus on the game and you will do better.
+```
+
+### Coding Interview Tips (Pre Coding Round with DOC)
+
+- TIME MANAGEMENT and COMMUNICATION is cruicial within 45 MINS. DONT overcommnicate and over-decorate.
+- Be Quick, vocal, loud and clear in this phase. Expedite as much as you could.
+- ```-------------------------------------------------------```
+- **[5 mins]** Personal Intro ==> Keep in crisp and small..Avoid digresions.
+- ```-------------------------------------------------------```
+- **[5-10 mins]** Problem Understanding and clarification ==>
+    - Read loud and multiple times.
+    - Discuss often
+    - Clarification questions
+    - Clarify Assumptions
+    - Small example walkthrough. (with some Base cases)
+- **[5 mins]** Tradeoff and Consensus ==>
+    - Suggest multiple appraoches (Brute forte too)
+    - Discuss approaches with tradeoff analysis (time and space complexity) and scalability
+    - Get consensus on final optimal one
+- ```-------------------------------------------------------```
+- **[20 mins]** Implementation AGREED UPON APPROACH ==>
+  ```Dont jump into Implementation without Consensus with interviewer```
+    - First Draft:
+        - Start with Skeleton of core methods. Assume other APIs, Classes (Just keep stubs and implement them if time
+          permits)
+        - ***Implement core method at lightning speed (CRUICIAL).
+        - Avoid over comments and modularity
+        - Dont optimize for space and time quickly
+    - Second Draft:
+        - Generalize, Optimize, bug fix
+    - Thidrd Draft (If asked and time permits)
+        - Scale (If Possible and asked)
+- **[5 mins]** Self and Peer Review, Edge cases, Other suggestions
+- ```-------------------------------------------------------```
+- **[5 mins]** Mention extra areas if improvement and few additions.
+- ```-------------------------------------------------------```
+
+---
+
 
 ## Coding Problem Generic Patterns
 
@@ -186,57 +243,7 @@ Heap: K closest points
 
 ---
 
-## 1. Coding Interview
 
-Most of the problem belongs to some category or theme with minor tweaks viz. as Datatype, constraints, conditions,
-names.
-Identifying the right category saves time, gives us skeleton and also boost confidence since end to end code is ready.
-
-**Quote**
-
-```
-Do not worry about things like whether you will get the job, why my friends are doing better than me, etc. 
-Focus on the problem in front of you. Life is a single-player game. 
-You are competing against only yourself. 
-Focus on the game and you will do better.
-```
-
-### Coding Interview Tips (Pre Coding Round with DOC)
-
-- TIME MANAGEMENT and COMMUNICATION is cruicial within 45 MINS. DONT overcommnicate and over-decorate.
-- Be Quick, vocal, loud and clear in this phase. Expedite as much as you could.
-- ```-------------------------------------------------------```
-- **[5 mins]** Personal Intro ==> Keep in crisp and small..Avoid digresions.
-- ```-------------------------------------------------------```
-- **[5-10 mins]** Problem Understanding and clarification ==>
-    - Read loud and multiple times.
-    - Discuss often
-    - Clarification questions
-    - Clarify Assumptions
-    - Small example walkthrough. (with some Base cases)
-- **[5 mins]** Tradeoff and Consensus ==>
-    - Suggest multiple appraoches (Brute forte too)
-    - Discuss approaches with tradeoff analysis (time and space complexity) and scalability
-    - Get consensus on final optimal one
-- ```-------------------------------------------------------```
-- **[20 mins]** Implementation AGREED UPON APPROACH ==>
-  ```Dont jump into Implementation without Consensus with interviewer```
-    - First Draft:
-        - Start with Skeleton of core methods. Assume other APIs, Classes (Just keep stubs and implement them if time
-          permits)
-        - ***Implement core method at lightning speed (CRUICIAL).
-        - Avoid over comments and modularity
-        - Dont optimize for space and time quickly
-    - Second Draft:
-        - Generalize, Optimize, bug fix
-    - Thidrd Draft (If asked and time permits)
-        - Scale (If Possible and asked)
-- **[5 mins]** Self and Peer Review, Edge cases, Other suggestions
-- ```-------------------------------------------------------```
-- **[5 mins]** Mention extra areas if improvement and few additions.
-- ```-------------------------------------------------------```
-
----
 
 ## 1. Theme ==> _Dynamic_ Programming (0-1 Knapsack)
 

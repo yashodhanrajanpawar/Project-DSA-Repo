@@ -14,11 +14,192 @@
 
 ---
 
+## Coding Problem Generic Patterns
+
+### Intro
+
+- **Quote:**
+  ```The essence of problem-solving is to draw from familiar challenges when faced with unfamiliar ones.```
+
+- **PTS System**
+    - Patterns: **Master common patterns**. The good news is that there are only a handful of common patterns you need
+      to know.
+    - Templates: Never make coding mistakes again using our **templates** for each pattern
+    - Speedrun: Expanding your knowledge by **going through many problems quickly**
+
+![Patterns](https://algomonster.s3.us-east-2.amazonaws.com/stats.png)
+
+### Worst working choices as per input size  (machine with 2GZ computations which is 2000, 000,000 executions)
+
+| **Input**             | **Worst working algo**        | **Time Complexity** | **Required Computations** |
+|-----------------------|-------------------------------|-----------------|---------------------------|
+| N < 20                | Brute force/Backtracking      | O(2^N) , O(N!)  | 1,000,000                 |
+| N < 3000              | Dynamic Programming           | O(N^2)          | 9,000,000                 |
+| 3000 < N < 10,000,000 | 2Pointer, Greedy, Heap, Sorting | O(N), O(N logN) | 10,000,000                |
+| N > 1000000           | Binary Search, Math           | O(log N) , O(1) | 3,000                     |
+
+### Time Complexity Hints
+
+- Constant ====> O(1)
+    - Hashmap, Stack
+    - math formula
+    - index access
+    - Heap--Get Min
+- Logarithmic ====> O(Log N)
+    - Binary seach /variant
+    - Balanced binary tree lookup
+    - Number's digits processing
+    - Heap insert, Pop ONE element
+- Linear ====> O(N)
+    - Array/List go through
+    - Two pointers
+    - Some greedy
+    - Tree/Graph Traversal (N nodes, N visits)
+    - Stack queue full usage
+- O(K log N)
+    - Heap insert, Pop K elements
+    - K times Binary search
+- O(N Log N)
+    - Sorting
+    - Divide N conquer-- LogN for divide and N for linear operations
+- O(N^2)
+    - Nested Loops
+    - Multiple times brute force solutions
+    - Some DP problems
+- Combinational -- O(K^N)
+    - Combinational problems, arrangements, backtracking
+    - Fullon recursive tree for N depth... ( 2^N+1 - 1) elements)
+- O(N!)
+    - Backtracking problems..Grows rapidly
+    - Brute force recusion
+
+### Keyword to Algorithm Cheatsheet
+
+##### Top k
+
+Heap: K closest points
+
+##### How many ways..
+
+- DFS: Decode ways
+- DP: Robot paths
+
+##### Substring
+
+- Sliding window: Longest substring without repeating characters
+
+##### Palindrome
+
+- two pointers: Valid Palindrome
+- DFS: Palindrome Partitioning
+- DP: Palindrome Partitioning II
+
+##### Tree
+
+- shortest, level-order
+- BFS: Binary Tree Level-Order Traversal
+- else: DFS: Max Depth
+
+##### Parentheses
+
+- Stack: Valid Parentheses
+
+##### Subarray
+
+- Sliding window: Maximum subarray sum
+- Prefix sum: Subarray sum
+- Hashmap: Continuous subarray sum
+- Max subarray
+- Greedy: Kadane's Algorithm
+
+##### X Sum
+
+- Two pointer: Two sum
+
+##### Max/longest sequence
+
+- Dynamic programming, DFS: Longest increasing subsequence
+- mono deque: Sliding window maximum
+
+##### Minimum/Shortest
+
+- Dynamic programming, DFS: Minimal path sum
+- BFS: Shortest path
+
+##### Partition/split ... array/string
+
+- DFS: Decode ways
+
+##### Subsequence
+
+- Dynamic programming, DFS: Longest increasing subsequence
+- Sliding window: Longest increasing subsequence
+
+##### Matrix
+
+- BFS, DFS: Flood fill, Islands
+- Dynamic programming: Maximal square
+
+##### Jump
+
+- Greedy/DP: Jump game
+
+##### Game
+
+- Dynamic programming: Divisor game, Stone game
+
+##### Connected component
+
+##### Cut/remove
+
+##### Regions/groups/connections
+
+- Union Find: Number of connected components, Redundant connections
+- Transitive relationship
+- If the items are related to one another and the relationship is transitive, then chances are we can build a graph and
+- use BFS or Union Find.
+- string converting to another, BFS: Word Ladder
+- string converting to another, BFS, Union Find: Sentence Similarity
+- numbers having divisional relationship, BFS, Union Find: Evaluate Division
+
+##### Word Lookup
+
+- Trie
+
+##### Find all arrangements
+
+- backtracking
+
+##### Range search
+
+- Interval trees
+
+##### Graph-DAG, Dependency first
+
+- Toplogical sorting
+
+##### Binary tree traversal
+
+- Multiple traversals (FIND and PROCESS stages) with trigger and backtrack path
+- Ancestors passon and let them run PROCESS() function recursively.
+-
+
+---
+
 ## 1. Coding Interview
 
 Most of the problem belongs to some category or theme with minor tweaks viz. as Datatype, constraints, conditions,
 names.
 Identifying the right category saves time, gives us skeleton and also boost confidence since end to end code is ready.
+
+**Quote**
+
+```
+Do not worry about things like whether you will get the job, why my friends are doing better than me, etc. 
+Focus on the problem in front of you. Life is a single-player game. 
+You are competing against only yourself. 
+Focus on the game and you will do better.
+```
 
 ### Coding Interview Tips (Pre Coding Round with DOC)
 

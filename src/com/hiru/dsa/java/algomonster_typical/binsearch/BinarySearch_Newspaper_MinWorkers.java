@@ -1,4 +1,4 @@
-package com.hiru.dsa.java.algomonster;
+package com.hiru.dsa.java.algomonster_typical.binsearch;
 
 import com.hiru.dsa.java.util.MyLogger;
 
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Problem: https://algo.monster/problems/newspapers_split
  */
-public class BinarySearch_Newspaper {
+public class BinarySearch_Newspaper_MinWorkers {
     public static int newspapersSplit(List<Integer> newspapersReadTimes, int numCoworkers) {
         MyLogger.info("-------------------Newspaper read time: " + newspapersReadTimes);
 

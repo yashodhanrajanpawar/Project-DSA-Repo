@@ -1780,6 +1780,165 @@ Signopt 0 OctalDigits
 ## 9. Theme ==> BitMagic (solve at least 10 problems)
 
 TODO--Update this section
+
+---
+
+## 10. Theme ==> Binary Search
+
+### Binary Search On Sorted Input =======
+
+##### [1, 1, 2, 2, 3, 4, 4, 5, 5] ----> Find Non-repeating number
+
+Input: [1, 1, 2, 2, 3, 4, 4, 5, 5]
+
+Output: 3
+
+##### [10, 20, 30, 40, 55] ----> Find immediate less arr element than given target number lets say  17 ==> Ans(10)
+
+Input:
+arr = [1, 3, 3, 5, 8, 8, 10]
+target = 2
+
+Output: 1
+
+##### [1, 2, 2, 3, 3, 3, 3, 5, 5] ----> Find First OCCURANCE of repeated element 3
+
+Input:
+arr = [1, 3, 3, 3, 3, 6, 10, 10, 10, 100]
+target = 3
+
+Output: 1
+
+##### Square root estimation (Input N=17, Output=4 )---> Binary search on [1..17] range with (mid*mid == N) check
+
+Input: 16 | Output: 4
+
+Input: 8 | Output: 2
+
+##### Find Minimum element in rotated sorted array
+
+Input: [30, 40, 50, 10, 20]
+
+Output: 3
+
+Hint- Check the side of the rotated part:
+
+- if arr[mid] > arr[right] --> left = mid+1
+- if arr[mid] < arr[right] --> right = mid-1
+
+Also handle edge case carefully using 3 indices i, i-1, i+1
+
+##### Peak of mountain array [1,2,3,40, 35,7,4] ==> Output 40
+
+- Follow same technique as rotated array..
+- Decision to move left and right based on ```increasing/decreasing flow mid index```
+
+### Binary Search On Sorted Generated range to decide direction =======
+
+##### Find Min Hours to read all newspapers by given set of coworkers
+
+You've begun your new job to organize newspapers. Each morning, you are to separate the newspapers into smaller piles
+and assign each pile to a co-worker. This way, your co-workers can read through the newspapers and examine their
+contents simultaneously.
+
+What is the minimum amount of time it would take to have your coworkers go through all the newspapers? That is, if you
+optimize the distribution of newspapers, what is the longest reading time among all piles?
+
+```
+Input: newspapers_read_times = [7,2,5,10,8], num_coworkers = 2
+Output: 18
+
+```
+
+Hint: Find the min and max hours range based on intuition. Optimize it until numWorkers <= num_coworkers
+
+- TRUE-- If we can increase workers and reduce hours without violating num_coworkers limit
+- FALSE-- If we can NOT increase workers and reduce hours without violating num_coworkers limit
+- Return the stored best ealier MID value as ANS
+
+##### Eat banana with with OPTIMAL speed to utilize full hours
+
+Problem Description:
+
+```
+Koko loves to eat bananas. There are n piles of bananas, the **ith pile has piles[i] bananas**. The guards have gone and
+will come back in h hours
+Koko can decide her **bananas-per-hour** eating speed of **k**.
+Each hour, she chooses some pile of bananas and eats k bananas
+from that pile. If the pile has less than k bananas**, she eats **all of them instead** and will **not eat any more
+bananas during this hour.
+Koko likes to eat slowly but still wants to finish eating all the bananas before the guards return.
+Return the minimum integer k (Speed per hour) such that she can eat all the bananas within h hours.
+```
+
+Examples:
+
+```
+Example 1:
+Input: piles = [3,6,7,11], h = 8
+Output: 4
+
+Example 2:
+Input: piles = [30,11,23,4,20], h = 5
+Output: 30
+
+Example 3:
+Input: piles = [30,11,23,4,20], h = 6
+Output: 23
+```
+
+Constraints:
+
+```
+1 <= piles.length <= 104
+piles.length <= h <= 109
+1 <= piles[i] <= 109
+```
+
+Solution:
+
+```
+consider example1.
+Input: piles = [3,6,7,11], h = 8
+Output: 4
+
+K cases =====>
+We know best case would be max pile size and worst case as min pile size.
+
+- (MAX k) Max Pile Size = 11 ---> Num Hours 8 --> hours = 4 (Valid yet too fast..reduce speed , we still have 4 hours)
+- (INVALID-MIN) Min Pile Size = 3 ---> Num Hours 8 --> hours = 11 (Invalid .. watchman came before all bananas eaten)
+- (VALID-MIN k) Expected Balanaced speed k = 4 --> hours = 8 (All finished just before watchman came)
+```
+
+Algorithm:
+
+```
+- Init LEFT=3, RIGHT=11; //Mid will be k
+- LOOP-BinSearch
+    - Keep on calculating MID bin seach until canFinishReturns(piles,h, K=MID) TRUE
+    - ANS=MID
+    - See if we can reduce further k if valid
+    - Exit upon finding no further solution
+- return ANS
+```
+
+Core function:
+
+```java
+class Solution {
+    boolean canFinishEating(List<Integer> pile, int h, int k) {
+        int numBananas = 0;
+        int numHours = 0;
+        // Reduce hours spent for each K
+        // One chunk in one hour
+        for (Integer p : piles) {
+            numHours += Math.ceil(p / k);
+        }
+        return numHours <= h;
+    }
+}
+```
+
 ---
 
 # References

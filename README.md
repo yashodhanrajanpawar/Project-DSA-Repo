@@ -486,22 +486,33 @@ Same as knapsack.
 #### Examples
 
 1. Longest Increasing SubSequence (2 choice)
-    - Match vs NoMatch ```MAX [1+(i+1), (i+1)]```
+
+- Match vs NoMatch ```MAX [1+(i+1), (i+1)]```
+
 2. Longest Common Subsequence (1 vs 2 choices)
-    - Match ```1 +(i+1, j+1)```
-    - NoMatch ```MAX [(i, j+1), (i+1, j)]```
+
+- Match ```1 +(i+1, j+1)```
+- NoMatch ```MAX [(i, j+1), (i+1, j)]```
+
 3. Longest Common STRING (3 vs 2 choices)
-    - Match ```MAX [1 +(i+1, j+1),  (i+1, j),  (i, j+1)]```
-    - NoMatch ```MAX [(i+1, j),  (i, j+1)]```
+
+- Match ```MAX [1 +(i+1, j+1),  (i+1, j),  (i, j+1)]```
+- NoMatch ```MAX [(i+1, j),  (i, j+1)]```
+
 4. Longest Palindrome Subsequence (1 vs 2 choices)
-    - Match ```2 +(i+1, j-1) ```
-    - NoMatch ```MAX [(i+1, j-1),  (i, j-1)]```
+
+- Match ```2 +(i+1, j-1) ```
+- NoMatch ```MAX [(i+1, j-1),  (i, j-1)]```
+
 5. Longest Palindrome SubSTRING (3 vs 2 choices)
-    - Match ```MAX [2 +(i+1, j-1),  (i+1, j-1),  (i, j-1)]```
-    - NoMatch ```MAX [ (i+1, j-1),  (i, j-1)]```
+
+- Match ```MAX [2 +(i+1, j-1),  (i+1, j-1),  (i, j-1)]```
+- NoMatch ```MAX [ (i+1, j-1),  (i, j-1)]```
+
 6. Edit distance ( 1 vs 3 choices)
-    - Match ```0+(i+1, j+1)```
-    - NoMatch ```1 + MAX [(i+1, j+1) (i+1, j) (i, j+1)]```
+
+- Match ```0+(i+1, j+1)```
+- NoMatch ```1 + MAX [(i+1, j+1) (i+1, j) (i, j+1)]```
 
 #### ====Implementation====
 
@@ -1896,7 +1907,6 @@ Output: 40
   objective.
 - We store best possible answer, ```ans = mid``` and return it at the end after trying out full binary search
 
-
 **Code Template**
 
 ```java
@@ -1920,9 +1930,8 @@ class Solution {
             if (canReadWithoutViolatingAvailableWorkers(readTimesOfNewsPapers, availableWorkers)) {
                 ansMinTime = mid;
                 // Shift left to see we can reduce time in time range
-                right = mid-1;
-            }
-            else{
+                right = mid - 1;
+            } else {
                 // shift towards right since current time violates available workers condition (min read time with MORE than available workers is NOT acceptable)
                 left = mid + 1;
             }
@@ -1936,20 +1945,19 @@ class Solution {
         int singleWorkerTime = 0;
         int actuallyUsedWorkers = 0;
         // Keep track of time spent by single worker and update required workers as time exceeds available Time.
-        for(int onePaperReadTime: readTimesOfNewsPapers) {
-            if( singleWorkerTime + onePaperReadTime > timeLimitMid) {
-                singleWorkerTime = 0 ; // Reset for next worker
+        for (int onePaperReadTime : readTimesOfNewsPapers) {
+            if (singleWorkerTime + onePaperReadTime > timeLimitMid) {
+                singleWorkerTime = 0; // Reset for next worker
                 actuallyUsedWorkers++;
             }
-            singleWorkerTime+=  onePaperReadTime;
+            singleWorkerTime += onePaperReadTime;
         }
-        if(singleWorkerTime >=0)
+        if (singleWorkerTime >= 0)
             actuallyUsedWorkers++;
     }
-    return availableWorkers >= actuallyUsedWorkers; // TRUE-- job was performed with given or less number of workers..We can reduce timeLimit further as optimization
+    return availableWorkers >=actuallyUsedWorkers; // TRUE-- job was performed with given or less number of workers..We can reduce timeLimit further as optimization
 }
 ```
-
 
 ### PROBLEM: Find First TRUE in sorted boolean array (Similar to above algo)
 
@@ -2062,6 +2070,88 @@ class Solution {
 ```
 
 ---
+
+## 11. Theme ==> TWO POINTERS, SLIDING WINDOWS
+
+##### Arrays and String Problems
+
+- Sequencial Storage viz. string array
+- Reduces time cmplexity from O(N2) to O(N)
+- Types
+    - BOTH FORWARD: i1 fast and i2 Slow
+    - INC DEC : i1 inc and i2 dec
+    - BOTH BACKWARD: i1 fast dec, i2 slow dec
+
+**Problem: Sliding Window Find N-grams**
+
+```java
+package com.hiru.dsa.java.algomonster_typical.TwoPointers;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class FindAllNGramsOfWordInLargeText {
+
+    public static void main(String args[]) {
+        System.out.println(getNGrams("nabanabannaabbaanana", "banana"));
+        //System.out.println(getNGrams("wubudubuwubuthattrue", "ubutu"));
+
+
+    }
+
+
+    /**
+     * BIG MISTAKES =====================================
+     * 1. Assuming word does not have DUPLICATES :-(
+     * 2. Used hashmap and list and adding logic
+     * 3. Did not pay attension to sliding window template:
+     * ..........1. Process First window and See if valid
+     * ..........2. Start from window_size+1 until text.size
+     * ..........3. Add (curr) char and remove char at (curr-window_size) position
+     * ..........4. Compare the BASELINE Frequencies with the WINDOW frequencies
+     * 4. Classic typos
+     *
+     * LEARNINGS =====================================
+     * 1. Dont assume but if possible; Use int[26] array for storing char specific information. Its simpler than multivalue hashmap/lists etc.
+     * 2. ch-'a' returns 0-25 integer values for a-z characters
+     * 3. Just ++ or -- value at given char position for current TEXT char
+     */
+    public static List<Integer> getNGrams(String text, String word) {
+        List<Integer> ans = new ArrayList<>();
+        if (word != null && word.length() > 0 && text.length() >= word.length()) {
+            // 1. PREPROCESSING----Populate word frequency array
+            int[] BASELINE_FREQ = new int[26];
+
+            // 2. Update BASELINE and first window frequencies (update both baseline and first window)
+            int[] WINDOW_FREQ = new int[26];
+            for (int k = 0; k < word.length(); k++) {
+                BASELINE_FREQ[word.charAt(k) - 'a']++;
+                WINDOW_FREQ[text.charAt(k) - 'a']++;
+            }
+            // 3. Check first success ?
+            if (Arrays.equals(BASELINE_FREQ, WINDOW_FREQ))
+                ans.add(0);
+
+            //4. Iterate OVER all SLIDING WINDOW let say of size THREE:   [0, 1, 2, [[[3, 4, 5]]], 6, 7, 8, 9]
+            // remove frequency of 3 and add frequency of 6
+            // Check valid solution after each sliding window O(K*K*N)
+            for (int iNextCharOutWin = word.length(); iNextCharOutWin < text.length(); iNextCharOutWin++) {
+                // Step1 -- Remove ch1 freq ....ch1[WINDOWS]ch2
+                WINDOW_FREQ[text.charAt(iNextCharOutWin - word.length()) - 'a']--; // SLIDING WIN LOGIC: DEC first char frequency
+                // Step2 -- Add ch2 freq ....ch1[WINDOWS]ch2
+                WINDOW_FREQ[text.charAt(iNextCharOutWin) - 'a']++; // SLIDING WIN LOGIC: INC curr char frequency
+                // Step3 -- Comparison (K*K)
+                if (Arrays.equals(BASELINE_FREQ, WINDOW_FREQ))
+                    ans.add(iNextCharOutWin - word.length() + 1); // ***SUCCESS-- Solution found
+            }
+        }
+        return ans; // Return indices where anagram was found
+    }
+
+
+}
+```
 
 # References
 

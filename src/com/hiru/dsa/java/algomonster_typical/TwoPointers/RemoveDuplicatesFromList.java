@@ -3,7 +3,7 @@ package com.hiru.dsa.java.algomonster_typical.TwoPointers;
 import java.util.ArrayList;
 import java.util.List;
 
-class Solution {
+class RemoveDuplicatesFromList {
     /**
      * Two pointers same direction with second pointer moving till condition.
      * * Second pointer move until condition and halts for time being until reset/bookkeeping is done for current window

@@ -1,6 +1,7 @@
 <span style="color:brown">
 
 # Table Of Contents
+
 - [Coding Interview ](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#1-coding-interview)
 - [Coding Problems Generic Patterns Summary](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#coding-problem-generic-patterns)
 - [THEME 1 ==> Dynamic Programming- 0/1 Knapsack](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#1-theme--dynamic-programming-0-1-knapsack)
@@ -14,9 +15,7 @@
 - [THEME 9 ==> BitMagic](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#9-theme--bitmagic-solve-at-least-10-problems)
 - [THEME 10 ==> Binary Search](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#10-theme--binary-search)
 
-
 ---
-
 
 ## 1. Coding Interview
 
@@ -69,7 +68,6 @@ Focus on the game and you will do better.
 - ```-------------------------------------------------------```
 
 ---
-
 
 ## Coding Problem Generic Patterns
 
@@ -242,8 +240,6 @@ Heap: K closest points
 -
 
 ---
-
-
 
 ## 1. Theme ==> _Dynamic_ Programming (0-1 Knapsack)
 
@@ -1792,37 +1788,67 @@ TODO--Update this section
 
 ## 10. Theme ==> Binary Search
 
-### Binary Search On Sorted Input =======
+### (VARIANT 1) Binary Search On SORTED Input
 
-##### [1, 1, 2, 2, 3, 4, 4, 5, 5] ----> Find Non-repeating number
+================================================
+Template:
+
+```java
+class Solution {
+    // Return index of found element or -1 if not found
+    int isFound(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+        int ans = -1; // Default not found
+
+        // Note: '<=' is important to cover all the edge cases
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == target) {
+                ans = mid;
+                break;
+            }
+            elseif(target < arr[mid]) {
+                // Answer lies on left side, update right
+                right = mid - 1;
+            }
+            else{
+                // Answer lies on right side, update left
+                left = mid + 1;
+            }
+        }
+        return ans;
+    }
+}
+```
+
+##### PROBLEM: Find Non-repeating number
+
+[1, 1, 2, 2, 3, 4, 4, 5, 5] ---->
 
 Input: [1, 1, 2, 2, 3, 4, 4, 5, 5]
 
 Output: 3
 
-##### [10, 20, 30, 40, 55] ----> Find immediate less arr element than given target number lets say  17 ==> Ans(10)
+##### PROBLEM: Find Closest Higher Number than target
 
-Input:
-arr = [1, 3, 3, 5, 8, 8, 10]
-target = 2
+Input: arr = [1, 3, 3, 5, 8, 8, 10]  target = 3
 
-Output: 1
+Output: 5
 
-##### [1, 2, 2, 3, 3, 3, 3, 5, 5] ----> Find First OCCURANCE of repeated element 3
+##### PROBLEM: Find 1st occurance of target
 
-Input:
-arr = [1, 3, 3, 3, 3, 6, 10, 10, 10, 100]
-target = 3
+Input: arr = [1, 3, 3, 3, 3, 6, 10, 10, 10, 100]  target = 3
 
 Output: 1
 
-##### Square root estimation (Input N=17, Output=4 )---> Binary search on [1..17] range with (mid*mid == N) check
+##### PROBLEM: Square root estimation
 
 Input: 16 | Output: 4
 
 Input: 8 | Output: 2
 
-##### Find Minimum element in rotated sorted array
+##### PROBLEM: Find Minimum element in rotated sorted array
 
 Input: [30, 40, 50, 10, 20]
 
@@ -1835,14 +1861,47 @@ Hint- Check the side of the rotated part:
 
 Also handle edge case carefully using 3 indices i, i-1, i+1
 
-##### Peak of mountain array [1,2,3,40, 35,7,4] ==> Output 40
+##### PROBLEM: Search target in rotated sorted array
+
+Input: [30, 40, 50, 10, 20] Target 40
+
+Output: 1
+
+Input: [30, 40, 50, 10, 20] Target 800
+
+Output: -1
+
+##### PROBLEM:Find the Peak of mountain array
+
+Input: [1,2,3,40, 35,7,4]
+Output: 40
 
 - Follow same technique as rotated array..
 - Decision to move left and right based on ```increasing/decreasing flow mid index```
 
-### Binary Search On Sorted Generated range to decide direction =======
+### (VARIANT 2) Binary Search to REFINE possible solution on GENERATED SORTED [MIN,MAX] RANGE
+================================================
+**Algorithm**
 
-##### Find Min Hours to read all newspapers by given set of coworkers
+- Here we dont have any sorted input but intuition is there is some [min, max] range of possible solutions.
+- (In case of **Minimization** problem)
+    - We can get MAX result (Which could be reduced/optimized further), which is **right** of binary search.
+    - We can get MIN result, which is **left** of binary search
+- (In case of **Maximization** problem)
+    - We can get MIN result (Which could be increased/optimized further), which is **left** of binary search.
+    - We can get MAX result, which is **right** of binary search
+- In the process of binary search , we check ```bool canSolve(input1, input2, mid)```
+- If ```canSolve()``` returns true, we take either of left/right update decision depending on Minimize/Maximize
+  objective.
+- We store best possible answer, ```ans = mid``` and return it at the end after trying out full binary search
+
+### PROBLEM: Find First TRUE in sorted boolean array (Similar to above algo)
+
+Input: [false, false, true, true, true]
+
+output: 2
+
+##### PROBLEM: Find MIN HOURS to read all NESPAPERW with FIXED number of WORKERS
 
 You've begun your new job to organize newspapers. Each morning, you are to separate the newspapers into smaller piles
 and assign each pile to a co-worker. This way, your co-workers can read through the newspapers and examine their
@@ -1863,7 +1922,7 @@ Hint: Find the min and max hours range based on intuition. Optimize it until num
 - FALSE-- If we can NOT increase workers and reduce hours without violating num_coworkers limit
 - Return the stored best ealier MID value as ANS
 
-##### Eat banana with with OPTIMAL speed to utilize full hours
+##### PROBLEM: Eat banana with with OPTIMAL speed to utilize FULL AVAILABLE hours
 
 Problem Description:
 

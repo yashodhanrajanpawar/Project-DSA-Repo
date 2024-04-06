@@ -1791,7 +1791,8 @@ TODO--Update this section
 ### (VARIANT 1) Binary Search On SORTED Input
 
 ================================================
-Template:
+
+**Code Template**
 
 ```java
 class Solution {
@@ -1894,6 +1895,61 @@ Output: 40
 - If ```canSolve()``` returns true, we take either of left/right update decision depending on Minimize/Maximize
   objective.
 - We store best possible answer, ```ans = mid``` and return it at the end after trying out full binary search
+
+
+**Code Template**
+
+```java
+class Solution {
+    //////////////////////////////////////////////////////////////////////////////////////////
+    // Return min time required to read all newspapers by given set of workers (without exceeding the available worker limit)
+    int getMinHoursToReadAllNewsPapersWithAvailableWorkers(int[] readTimesOfNewsPapers, int availableWorkers) {
+        // define range
+        int minTime = getMax(readTimesOfNewsPapers); // MIN time by N workers,where 1 worker reading ONE newspaper PARALLELY
+        int maxTime = getSum(readTimesOfNewsPapers); // MAX time by 1 worker1,where 1 worker reading ALL newspaper SEQUENCIALLY
+
+        int left = minTime;
+        int right = maxTime;
+
+        int ansMinTime = maxTime; // Minimization problem
+
+        // Note: '<=' is important to cover all the edge cases
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            // This function validates constraints and helps us refine solution without violating thoe constarints.
+            if (canReadWithoutViolatingAvailableWorkers(readTimesOfNewsPapers, availableWorkers)) {
+                ansMinTime = mid;
+                // Shift left to see we can reduce time in time range
+                right = mid-1;
+            }
+            else{
+                // shift towards right since current time violates available workers condition (min read time with MORE than available workers is NOT acceptable)
+                left = mid + 1;
+            }
+        }
+        // We have got the BEST solution after tyring all the options using binary search over possible time range  
+        return ansMinTime;
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+    boolean canReadWithoutUsingAvailableWorkers(int[] readTimesOfNewsPapers, int availableWorkers, int timeLimitMid) {
+        int singleWorkerTime = 0;
+        int actuallyUsedWorkers = 0;
+        // Keep track of time spent by single worker and update required workers as time exceeds available Time.
+        for(int onePaperReadTime: readTimesOfNewsPapers) {
+            if( singleWorkerTime + onePaperReadTime > timeLimitMid) {
+                singleWorkerTime = 0 ; // Reset for next worker
+                actuallyUsedWorkers++;
+            }
+            singleWorkerTime+=  onePaperReadTime;
+        }
+        if(singleWorkerTime >=0)
+            actuallyUsedWorkers++;
+    }
+    return availableWorkers >= actuallyUsedWorkers; // TRUE-- job was performed with given or less number of workers..We can reduce timeLimit further as optimization
+}
+```
+
 
 ### PROBLEM: Find First TRUE in sorted boolean array (Similar to above algo)
 

@@ -20,19 +20,6 @@
 
 ## 1. Coding Interview
 
-Most of the problem belongs to some category or theme with minor tweaks viz. as Datatype, constraints, conditions,
-names.
-Identifying the right category saves time, gives us skeleton and also boost confidence since end to end code is ready.
-
-**Quote**
-
-```
-Do not worry about things like whether you will get the job, why my friends are doing better than me, etc. 
-Focus on the problem in front of you. Life is a single-player game. 
-You are competing against only yourself. 
-Focus on the game and you will do better.
-```
-
 ### Coding Interview Tips (Pre Coding Round with DOC)
 
 - TIME MANAGEMENT and COMMUNICATION is cruicial within 45 MINS. DONT overcommnicate and over-decorate.
@@ -59,10 +46,17 @@ Focus on the game and you will do better.
         - ***Implement core method at lightning speed (CRUICIAL).
         - Avoid over comments and modularity
         - Dont optimize for space and time quickly
+        - Use following demarkations for better better readability in case of plain white notepad based coding (google)
+            - ```// Understanding Assumptions ====================================================================```
+            - ```// Function (Approach)====================================================================```
+            - ```// Testcases/Dryrun====================================================================```
+            - ```// Code Comment ################```
+
     - Second Draft:
         - Generalize, Optimize, bug fix
     - Thidrd Draft (If asked and time permits)
         - Scale (If Possible and asked)
+
 - **[5 mins]** Self and Peer Review, Edge cases, Other suggestions
 - ```-------------------------------------------------------```
 - **[5 mins]** Mention extra areas if improvement and few additions.
@@ -70,175 +64,75 @@ Focus on the game and you will do better.
 
 ---
 
-## Coding Problem Generic Patterns
+## Coding Problem Patterns
 
-### Intro
-
-- **Quote:**
-  ```The essence of problem-solving is to draw from familiar challenges when faced with unfamiliar ones.```
-
-- **PTS System**
-    - Patterns: **Master common patterns**. The good news is that there are only a handful of common patterns you need
-      to know.
-    - Templates: Never make coding mistakes again using our **templates** for each pattern
-    - Speedrun: Expanding your knowledge by **going through many problems quickly**
-
-![Patterns](https://algomonster.s3.us-east-2.amazonaws.com/stats.png)
-
-### Worst working choices as per input size  (machine with 2GZ computations which is 2000, 000,000 executions)
+- Patterns
+  ![Patterns](https://algomonster.s3.us-east-2.amazonaws.com/stats.png)
+- Worst working choices as per input size  (machine with 2GZ computations which is 2000, 000,000 executions)
 
 | **Input**             | **Worst working algo**        | **Time Complexity** | **Required Computations** |
 |-----------------------|-------------------------------|-----------------|---------------------------|
 | N < 20                | Brute force/Backtracking      | O(2^N) , O(N!)  | 1,000,000                 |
 | N < 3000              | Dynamic Programming           | O(N^2)          | 9,000,000                 |
 | 3000 < N < 10,000,000 | 2Pointer, Greedy, Heap, Sorting | O(N), O(N logN) | 10,000,000                |
-| N > 1000000           | Binary Search, Math           | O(log N) , O(1) | 3,000                     |
+| N > 1,000,000         | Binary Search, Math           | O(log N) , O(1) | 3,000                     |
 
-### Time Complexity Hints
+### Time Complexities Per Categories
 
-- Constant ====> O(1)
+- **Constant ====> O(1)**
     - Hashmap, Stack
     - math formula
     - index access
     - Heap--Get Min
-- Logarithmic ====> O(Log N)
+- **Logarithmic ====> O(Log N)**
     - Binary seach /variant
     - Balanced binary tree lookup
     - Number's digits processing
     - Heap insert, Pop ONE element
-- Linear ====> O(N)
+- **Linear ====> O(N)**
     - Array/List go through
     - Two pointers
     - Some greedy
     - Tree/Graph Traversal (N nodes, N visits)
     - Stack queue full usage
-- O(K log N)
+- **O(K log N)**
     - Heap insert, Pop K elements
     - K times Binary search
-- O(N Log N)
+- **O(N Log N)**
     - Sorting
     - Divide N conquer-- LogN for divide and N for linear operations
-- O(N^2)
+- **O(N^2)**
     - Nested Loops
     - Multiple times brute force solutions
     - Some DP problems
-- Combinational -- O(K^N)
+- **Combinational -- O(K^N)**
     - Combinational problems, arrangements, backtracking
     - Fullon recursive tree for N depth... ( 2^N+1 - 1) elements)
-- O(N!)
+- **O(N!)**
     - Backtracking problems..Grows rapidly
     - Brute force recusion
 
 ### Keyword to Algorithm Cheatsheet
 
-##### Top k
-
-Heap: K closest points
-
-##### How many ways..
-
-- DFS: Decode ways
-- DP: Robot paths
-
-##### Substring
-
-- Sliding window: Longest substring without repeating characters
-
-##### Palindrome
-
-- two pointers: Valid Palindrome
-- DFS: Palindrome Partitioning
-- DP: Palindrome Partitioning II
-
-##### Tree
-
-- shortest, level-order
-- BFS: Binary Tree Level-Order Traversal
-- else: DFS: Max Depth
-
-##### Parentheses
-
-- Stack: Valid Parentheses
-
-##### Subarray
-
-- Sliding window: Maximum subarray sum
-- Prefix sum: Subarray sum
-- Hashmap: Continuous subarray sum
-- Max subarray
-- Greedy: Kadane's Algorithm
-
-##### X Sum
-
-- Two pointer: Two sum
-
-##### Max/longest sequence
-
-- Dynamic programming, DFS: Longest increasing subsequence
-- mono deque: Sliding window maximum
-
-##### Minimum/Shortest
-
-- Dynamic programming, DFS: Minimal path sum
-- BFS: Shortest path
-
-##### Partition/split ... array/string
-
-- DFS: Decode ways
-
-##### Subsequence
-
-- Dynamic programming, DFS: Longest increasing subsequence
-- Sliding window: Longest increasing subsequence
-
-##### Matrix
-
-- BFS, DFS: Flood fill, Islands
-- Dynamic programming: Maximal square
-
-##### Jump
-
-- Greedy/DP: Jump game
-
-##### Game
-
-- Dynamic programming: Divisor game, Stone game
-
-##### Connected component
-
-##### Cut/remove
-
-##### Regions/groups/connections
-
-- Union Find: Number of connected components, Redundant connections
-- Transitive relationship
-- If the items are related to one another and the relationship is transitive, then chances are we can build a graph and
-- use BFS or Union Find.
-- string converting to another, BFS: Word Ladder
-- string converting to another, BFS, Union Find: Sentence Similarity
-- numbers having divisional relationship, BFS, Union Find: Evaluate Division
-
-##### Word Lookup
-
-- Trie
-
-##### Find all arrangements
-
-- backtracking
-
-##### Range search
-
-- Interval trees
-
-##### Graph-DAG, Dependency first
-
-- Toplogical sorting
-
-##### Binary tree traversal
-
-- Multiple traversals (FIND and PROCESS stages) with trigger and backtrack path
-- Ancestors passon and let them run PROCESS() function recursively.
--
+| **KEYWORDS**                                                                               | **PETTERNS**                                                                       | **BEST TIME COMPLEXITY** | **BEST SPACE COMPLEXITY** |
+|--------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|--------------------------|---------------------------|
+| **[Sequences]Sorted / Sorted Rotated / canSolve() Min-Max(Binary Possible Range Filters)** | Binary Search                                                                      | Log(N)                   | 1                         |                ||
+| **[Sequences]Substring / SubArray/ N-gram / Move-zerosToEnd / RemoveDuplicates**           | Two Pointers-Sliding Window , HashMap, Char[26]  , HashSet, ArrayList              | N                        | K                         |
+| **[Sequences]Two Sum sorted arr / Palindrome / Max Dict as SubSequence**                   | Two Pointers (Opposite)                                                            | N                        | 1                         |
+| **[Sequences] Min/Max SubSequence , Palindrome Partitioning**                              | DP                                                                                 | N or N^2                 | N or N^2                  
+| **[Sequences/Maze]Min/Max with overlapping subproblems**                                   | DP                                                                                 | N or N^2                 | N or N^2                  ||
+| **K-min/K-max**                                                                            | Heap (with DFS/ArrayLookup)                                                        | K*LOG(N)                 | N                         | 
+| **[String]Match Parenthesis / Regular Expressions / String Parsing**                       | Stack, Sliding Window, Two Pointer                                                 | N                        | N                         |
+| **[String]Dictionary / Word Lookup / O(K) search**                                         | TRIE, Two Pointer, Sliding Window, Backtracking, Char[26]                          | Trie: K*N                | K*N                       |
+| **[String]Decodings (Bash Expansion, SNow)**                                               | All Strings-- Backtracking, Decode pattern --2 Loops with sliding window and stack |||
+| **Max on sorted Input / Iterative Optimization**                                           | Greedy Algorithm                                                                   |||
+| **Graph, Matrix, Maze, Tree**                                                              | BFS (Explore More paths, DP)  , DFS (Paths, Backtracking)                          | (E+V) or N               | (E+V)                     |
+| **Graph-DAG--Dependency**                                                                  | Topological Sorting                                                                | E+V                      | E+V                       |
+| **[Sequence]Generate All Subsets of max len K using K chars**                              | Bitwise Generator ((2^K+1)-1) elements), Backtracking                              |||
+| **Regions / Groups / Connectivity**                                                        | Union Find, Transitive relationship,                                               |||
+| **[Maze] Chess, SnL game, Sudoku                                                           | Iterative all Cells verify, Backtracking(All possible combinations/valid ans)      | N^2 or K^N               | K                         |
+| **Range Search**                                                                           | Interval Tree, Prefix array(range sum)                                             | Log(N) or 1              | N or K                    |
+| **[Arrays] Local Minima, Maxima, Stock sale/buys**                                         | LocalMinima Maxima Sliding Window, 2 Pointers                                      | N                        | 1                         |
 
 ---
 
@@ -262,34 +156,14 @@ Heap: K closest points
 
 #### Problem Description
 
-Similar problems of **0/1 knapsack** (N, wt [], val[], W) with constraints and objectives
-
-- Inputs, Constraints, Objective
+- **Problem**: 0/1 knapsack (N, wt [], val[], W) with constraints and objectives and similar problems.
+- **Format: Problem(Input, Constraints, Objective) | Choices | States | Stages | Repeatations**
+- **Inputs:**
     - Num items: N
     - Available Options ( wt[N] )
     - **Available Values (val[N])
     - Constraint(s) : W is max weight of knapsack
     - Objective: MAX (profit)
-- Choices
-    - IF NO REPEATATIONS -->  Choose/Dont Choose
-    - IF REPEATATIONS --> FOR(options)
-    - Aggregate ( current state, [subproblem1, subproblem 2...])
-- Variable Arguments
-    - i ++
-    - W - wt[i]
-- States
-    - Initial State: i== 0
-    - Next State: i = i+1
-    - Final State: Valid / Invalid
-- Base Condition
-    - SAD --- If W exceeding after adding i
-    - HAPPY --- W matches after adding i
-    - HAPPY --- No more weights and W is still not filled
-
-#### Time complexity
-
-- **Before DP---Exponential**:  O(2^N)
-- **After Memoization DP----Linear or Quadratic**: O(N) /O(NxM) -- Depending on memo dimentionality
 
 #### Examples
 
@@ -304,71 +178,37 @@ Similar problems of **0/1 knapsack** (N, wt [], val[], W) with constraints and o
 
 #### Common Mistakes
 
-- **Wrong Data Assumptions**
-    - Type-- Dont assume positive int as type.
-    - Arrays-- Assuming implicit ordering
-    - Graphs-- Assuming its fully connected and/or undirected.
-    - Trees-- Assuming its BST or binary tree
-    - Size-- Assuming its fitting in memory ( scale for million ?)
-
-- **Improper Index Handling:**
-    - Avoid overflows wherever you are ++ or -- index
-    - Base conditions for bound checks
-    - FOR OPTIONS EXPLORATION LOOPS: Pay attention to conditions, Start value for ( j= i+1)
-
-- **Initial/Invalid values Usages**
-    - Coin change can not be -ve but account balance could
-    - Choosing Boolean over boolean allow us to use ```null as invalid/uninitialied value```
-    - Count could never be -ve hence choose 0 as initial and -1 as invalid value
-    - Adding up MAX_INT would lead to overflow..Avoid it
-
-- **Causing Overflows:**
-    - Caller can return MAX_VALUE/MIN_VALUE
-    - Discard those in callee to avoid overflows.
-    - Choose long for int+int
-    - MAX-1 value before incrementing it by 1. Or check overflow before it occurs.
-    - Avoid overflow for INVALID state returns.
-
+- **Wrong Data Assumptions** (Type, Size, order, contents)
+- **Improper Index Handling** (Corner Cases, Validations at start, OOB, loop counters, Base conditions)
+- **Initial/Invalid values Usages** (MAX addition, -1 vs 0 vs MIN)
+- **Causing Overflows:** (long over int, -1, INT_MAX+1)
 - **Not Following this DP soln format:**
-    - ```1 (HappyCases, Sad Cases and IndexBounds)``` Sequence chances as per problem
-    - ```2.DelegateToNextState```
-    - ```3. Memo Lookup```
-    - ```4. Recursive Happy```
-    - ```5. Recursive Sad```
-    - ```6. Invalid--Default return if any```
-    - Add other base conditions beyond just bound check - e.g. invalid W in knapsack,
 
-- **Final return**:
-    - Declare what does int return indicates for no solution exists scenario.
-    - e.g. Min coins ( coins[2,5,7] and change 3) ==> Integer.MAX_VALUE here should indicate no solution exist
-
-- **Memo handling -- DP(Memo) :**
-    - Initialize ALL dimentions with EXTRA (+1) dimension.
-    - Pass memo to recursive calls
-    - Choose correct ( -1 if possible) INITIAL VALUE.
-    - Add READ block before recursion. WRITE block inside FOR loop or A/B choices.
-    - Check MAX_VALUE/ MIN_VALUE after read to avoid overflow
-
-- **DP (subsequence vs substring)**
-    - Subsequnce -- C1 or MAX(C2,C3)
-    - Substring -- MAX(C1,C2, C3)
-
-- **Avoid simplification of conditions/base cases:**
-    - Ok to have redudency than missing any case in the process of over-simplification/coolness
-    - OK to add separate if for separate case since return value per IF block could vary
-
-- **Graphs**
-    - Assuming fully connected and hence avoiding multiple DFS/BFSs
-    - Not tracking visited nodes
-    - Visiting node without checking status
-    - (As applicable) Hesitating to check all visited condition (O(N^2) call) -- We need it we should have it.
-
-- **Trees**
-    - Hesitating to do ```NESTED``` traversal from any node.
+    ```java
+    class Solution {
+        int TEMPLATE(inputs..., vars, memo[N+1][N+1]) {
+            //----------- Less costly Part --------------
+            // 1. Index Bounds and other validations (return 0)
+            // 2. Happy Case (return 1)
+            // 3. Sad Case (return 0)
+            // 4. Delegate cases (return TEMPLATE(input++, ...vars, memo)
+            //----------- Optimization (memo-read) --------------
+            // 5. Read if exist
+            //----------- Costly/Complex/Repeated Part --------------
+            // 6. FOR (Choices)
+            // 7. Sol1, SOl2, SOl3...
+            // 8. return MAX(Sol1, Sol2, SOl3)
+            // 9. return 0
+        }
+    }
+    ```
+- **DP(subsequence vs substring)**
+    - Subsequnce--C1 or MAX(C2,C3)
+    - Substring--MAX(C1,C2,C3)
 
 #### ====Implementation====
 
-**1. Bounded 0/1 Knapsack (without repeatations)**
+**PROBLEM 1 : Bounded 0/1Knapsack(without repeatations)**
 
 ```java
 class GFG {
@@ -408,14 +248,18 @@ class GFG {
                 knapsack(prof, wt, size, W, i + 1) // Choice2-- Don't put item
         );
     }
+
 }
+
 ```
 
-**2. Unbouded 0/1 Knapsack (WITH repeatations) -- Min coins change problem**
+**PROBLEM 2: Unbouded 0/1 Knapsack (WITH repeatations) -- Min coins change problem**
 ```N recursive trees emerging for first FOR loop from first call```
 
 ```java
 class MinCoinsChange {
+    // NOTE (UNBOUNDED KNAPSACK) ******** (WE DONT START WITH ANY INDEX LIKE BOUNDED KNAPSACK)
+    // NOTE (UNBOUNDED KNAPSACK) ******** ('change' is the variable which differentiates diff calls)
     static int DP_unboudedKnap_minCoins(int[] coins, int change, int[] memo) {
         if (change == 0) {
             return 0; // No coins could be used
@@ -427,6 +271,8 @@ class MinCoinsChange {
         }
 
         int sol = Integer.MAX_VALUE; // Min calculations 
+
+        // NOTE (UNBOUNDED KNAPSACK) ******** (WE HAVE FOR LOOP HERE)
         for (int i = 0; i < coins.length; i++) {
             // Guardrails for avoiding invalid calls
             if (coins[i] <= change) {
@@ -441,7 +287,7 @@ class MinCoinsChange {
 }
 ```
 
-**3. Min Cuts Palindrome Partitioning (Complex Variant of Knapsack..MUST REMEMBER)**
+**PROBLEM 3: Min Cuts Palindrome Partitioning (Complex Variant of Knapsack..MUST REMEMBER)**
 
 ```java
 class GFG {
@@ -458,11 +304,12 @@ class GFG {
         // Iterate through all possible partitions and find
         // the minimum cuts needed
         for (int k = i; k < j; k++) {
+            // NOTE: 1+ for each cut we make 
             int cuts = minPalPartition(str, i, k)
                     + minPalPartition(str, k + 1, j) + 1;
             minCuts = Math.min(minCuts, cuts);
         }
-
+        // No palindrome and no cuts could be made
         return minCuts;
     }
 }
@@ -479,10 +326,6 @@ class GFG {
 2. Dataypes --- Usually String/Array
 3. Choices --- 2/3/4 choices with index arithmetic
 4. Corner cases are tricky than knapsack based DP problems
-
-#### Time Complexity
-
-Same as knapsack.
 
 #### Examples
 
@@ -517,11 +360,12 @@ Same as knapsack.
 
 #### ====Implementation====
 
-**1. Length of Longest Palindrome Sub-STRING (Special)**
+**PROBLEM 1: Length of Longest Palindrome Sub-STRING (Special--Could be solved optimally using TWO-POINTER technique)**
 Alternative:
 
 ```
-Note: This could be solved using NON DP way too..Please refer String theme with solves even complex problem--Get actual longest palindrome substring
+Note: This could be solved using NON DP way too..Please refer String theme with solves even complex problem.
+Get actual longest palindrome substring
 ```
 
 Complexity:
@@ -531,7 +375,7 @@ Time complexity: O(N^2), Where N is the size of the string
 Space complexity: O(N^2)
 ```
 
-Code:
+Implementation:
 
 ```java
 package com.hiru;
@@ -545,6 +389,7 @@ public class LPS {
         return;
     }
 
+    // Initial state requires to have start and end index (0, size-1)
     static int longestPalindromeString(String str, int s, int e, int[][] memo) {
         if (e < s || s == str.length() || e == -1) {
             return 0; // No palindrome further
@@ -563,6 +408,7 @@ public class LPS {
                 sol1 = memo[s + 1][e - 1] = 2 + longestPalindromeString(str, s + 1, e - 1, memo);
             }
         }
+
         //Option2-3
         if (s + 1 < str.length()) {
             sol2 = memo[s + 1][e] = longestPalindromeString(str, s + 1, e, memo);
@@ -585,42 +431,42 @@ public class LPS {
 
 #### [Category]  BFS for directed and undirected graphs
 
-**Points to Ponder:**
+**Overview:**
 
 - Representation:
-  ```java
+
+```java
   class GFG {
-      int V;
-      List<Integer>[] adj = new LinkedList<Integer>[V];
-      // OR
-      List<Integer>[] adj = new List[V];
-      adj[0] = Arrays.asList(1, 2, 3);
-  }
-  ```
-- For directed Graph:
+    int V;
+    List<Integer>[] adj = new LinkedList<Integer>[V];
+    // OR
+    List<Integer>[] adj = new List[V];
+    adj[0]=Arrays.asList(1,2,3);
+}
+```
+
+- Directed Graph:
     - Unlike tree BFS(which starts from root), Graph BFS does NOT gurantee cover all the vertices.
     - E.g. Starting from sink node with no outdegree will lead to BFS for only just that node
-- For Undirected Graph:
+- Undirected Graph:
     - Start from all the unvisited nodes if there are more than one components (islands)
 - Queue:
-    - ```LinkedList<Integer>``` as Queue
-    - Useful methods: ```isEmtpty``` , ```add``` and ```poll```
+    - ```LinkedList<Integer>``` as Queue.
+    - Useful methods (EMPTY, ENQUE, DEQUE): ```isEmtpty()``` , ```add()``` and ```poll()```
 
-**=====Implementation=====**
-
-**1. Directed and Undirected BFS appraoches**
+**PROBLEM 1: Directed and Undirected BFS appraoches**
 
 ```java
 class GFG {
 
     /**
-     * BFS for any DIRECTED graph..Even Null Graph too.
+     * BFS for any DIRECTED graph. (All types e.g. Null, Connected, Unconnected, Weighted)
      * UTIL method ==> allVisited(visited)) returns -1 if ALL visited or return any unvisited node index.
-     *
+     * .......... You DONT need this method since you keep on exploring all vertices (int) in O(N) fashion and explore only if unvisited
      * @param V Number of Nodes of graph
      * @param adj List<Integer> [] adjacency List of graph
      */
-    static void bfsForDirected(int V, LinkedList<Integer>[] adj) {
+    static void BFS(int V, LinkedList<Integer>[] adj) {
         LinkedList<Integer> queue = new LinkedList<>();
         boolean visited[] = new boolean[V];
 
@@ -630,66 +476,35 @@ class GFG {
         int unvisited = 0;
         // -1 indicates that all nodes visited. Exit Main BFS
         while ((unvisited = allVisited(visited)) != -1) {
-            // STEP: 1 >>>> PIck unvisited Node
+            // STEP: 1 >>>> Pick unvisited Node
             // STEP 2 >>>> BFS for unvisited node
             // STEP 3 >> Visit Node and Start local BFS by queuing it
-            visited[unvisited] = true;
             queue.add(unvisited);
 
-            //STEP 4 >>>> LOCAL BFS  >> Explore Adjacencies and add them to the queue and process all the
+            //STEP 4 >>>> LOCAL BFS (FOR CONNECTED COMPOENENT/GRAPH)  
+            // >> Explore Adjacencies and add them to the queue and process all the
             System.out.println("Local BFS for : " + unvisited);
             while (queue.isEmpty() == false) {
-                int u = queue.poll();
+                //STEP 4.0 >>>> Get the Unvisited Node and MARK as VISITED
+                int u = queue.poll(); // This is unvisted vertex from initial or inner enque() 
+                visited[v] = true; // MARK visited before exploring
                 System.out.println(u);
-                //STEP 4.1 >>>> Loop through adjancent nodes of u
+
+                //STEP 4.1 >>>> Loop through adjancent nodes of u and enque UNVISITED adj
                 for (int v : adj[u]) {
                     //STEP 4.2 >>>> Visit and add unvisited nodes.
                     if (visited[v] == false) {
-                        visited[v] = true;
                         queue.add(v);
                     }
                 }
             }
         }
     }
-
-    /**
-     * BFS for any CONNECTED UNDIRECTED graph. (Single component)
-     *
-     * @param V Number of Nodes of graph
-     * @param adj List<Integer> [] adjacency List of graph
-     */
-    static void bfs(int V, LinkedList<Integer>[] adj) {
-        LinkedList<Integer> queue = new LinkedList<>();
-        boolean visited[] = new boolean[V];
-
-        // Start from ANY vertex since its UNDIRECTED CONNECTED graph.
-        int startVertex = 3;
-        visited[startVertex] = true;
-        queue.add(startVertex);
-
-        // BFS  >> Explore Adjacencies and add them to the queue and process all the
-        while (queue.isEmpty() == false) {
-            int u = queue.poll();
-            System.out.println(u);
-            //STEP 4.1 >>>> Loop through adjancent nodes of u
-            for (int v : adj[u]) {
-                //STEP 4.2 >>>> Visit and add unvisited nodes.
-                if (visited[v] == false) {
-                    visited[v] = true;
-                    queue.add(v);
-                }
-            }
-        }
-    }
-}
 ```
 
 #### [Category]  Paths and Connectivity
 
-**=====Implementations=====**
-
-**1. Transitive Closure: (Adj Matrix way)**
+**PROBLEM 1: Transitive Closure: (Adj Matrix way)**
 
 ```java
 class Graph {
@@ -717,7 +532,7 @@ class Graph {
 
 ```
 
-**2. Find Connected Components/Islands in Maze (Special Graph/Special representation)**
+**PROBLEM 2: Find Connected Components/Islands in Maze (Special Graph/Special representation)**
 
 ```java
 class GFG {
@@ -738,13 +553,13 @@ class GFG {
                 }
             }
         }
-        return numberOfIslands;
+        return numberOfIslands; // This equals number of FULL DFS/BFS calls from any unvisited node(s)
     }
 }
 
 ```
 
-**3. Detect Cycle in directed graph**
+**PROBLEM 3: Detect Cycle in directed graph**
 
 ```java
 class GFG {
@@ -768,7 +583,7 @@ class GFG {
         return false; // STEP 5: Return false if we DID NOT find ANY cycle from ANY node
     }
 
-    //////////////////////////////////////////////////////////////////
+    //==================================================================================
 
     /**
      * Detect cycle from each of the start node recursively
@@ -803,36 +618,56 @@ class GFG {
 
 #### [Category] Topological Sorting for DAG dependency
 
-- USECASES: Extremely important for compiler, dependency and job sequencing
+**Illustration:**
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/20231106112211/1.jpg)
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/20231106112408/2.jpg)
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/20230914164620/Topological-sorting.png)
+
+- USECASES: Extremely important for **compiler, dependency and job sequencing**
 - CONDITIONS ==>
     - Supported Data Structures:  **Directed Acyclic Graph**(including all **Trees** and **DAG forest**)
     - Feature:
-        - The first vertex in topological sorting is always a vertex with an in-degree of 0 (a vertex with no incoming
+        - The **first vertex** in topological sorting is **always** a vertex with an **in-degree of 0** (a vertex with
+          no incoming
           edges).
-        - In case of tree, ROOT will always be FIRST vertex in output
-
+        - In case of **tree**, **ROOT** will always be FIRST vertex in output
 - Example (DAG forest):
+- **Topological** Sorting of **Trees** (More restrictive DAG with **0 (root) or 1(other) indegree**) is **PRE-ORDER**
+  traversal
 
-**====Implementation====**
-**1. Implement Topological Sort:**
+**PROBLEM 1: Implement Topological Sort:**
 
 ```java
 class GFG {
-    /////////////////////// (Driver code)
+    // ======================================(Driver code)
     public void topologicalSort(int V, List<List> adj) {
         // STEP1: Assume unconnected graph hence multiple FOR(DFS)
         boolean[] visited = new boolean[V];
+
         Stack stack = new Stack(); // java.utils.colections
+
         // STEP2: Push the element in PECULIER order (LIFO-DFS) to stack
-        for (int u = 0; u < V; u++) {
-            DFS_topologicalSort_UTIL(V, adj, visited, stack, u);
+        List<Integer> dagRoots = getDAGRoots(V, adj)
+
+        // STEP 3: Check Eligibility
+        if (dagRoots.size() == 0) {
+            return;
+        } else {
+            // STEP4: Start topological Sorting from EACH of DAG roots ( >1 dag roots means unconnected graph)
+            for (Integer u : dagRoots) {
+                DFS_topologicalSort_UTIL(V, adj, visited, stack, u); //Start with given dag Root
+            }
+
+            // STEP5: Print elements from stack in LIFO fashion
         }
-        // STEP3: Print elements of stack, thats it (LIFO-- Deepest child node will get printed first) (Works for islands too)
     }
 
-    ///////////////////////// DFS (Tweaked)
+    //=============================== DFS_TS (Core method)
     public void DFS_topologicalSort_UTIL(int V, List<List> adj, boolean[] visited, Stack stack, int u) {
-        // STEP1: Visit element
+        // STEP1: Visit element (u's initial value is DAG root vertex)
         visited[u] = true;
 
         // STEP2: DFS adj nodes (
@@ -842,26 +677,29 @@ class GFG {
         // STEP3: Push current node to Stack(after adj)
         stack.push(u);
     }
-}
-```
 
-- Example (Binary Tree- N ary):
+    //================================= Find DAGRoots
+    private List<Integer> getDAGRoots(int V, List<Integer>[] adjadj) {
+        // Define empty array for tracking indegrees of all vertices
+        int indegree[ V] =new int[V];
+        Arrays.fill(indegree, 0);
 
-```java
-class Demo {
-    void toplogicalSortBinaryTree(Node node, Stack stack) {
-        if (node == null) {
-            return;
+        // Populate Indegree
+        for (List<Integer> adj : adjadj) {
+            for (Integer i : adj) {
+                indegree[i]++;
+            }
         }
-        // Simpler( No need to keep track of visited elements due to fully connected tree property)
-        toplogicalSortBinaryTree(node.l);
-        toplogicalSortBinaryTree(node.r);
-
-        stack.add(node.data);
+        // Postprocess-- Filter DAG roots (0 indegree)
+        List<Integer> dagRoots = new ArrayList<Integer>();
+        for (int i = 0; i < n; ++i) {
+            if (indegree[i] == 0)
+                dagRoots.add(i);
+        }
+        return dagRoots
     }
-}
-// Then print elements of stack
 
+}
 ```
 
 #### [Category]  Flows and Fills
@@ -874,17 +712,18 @@ TODO
 
 #### [Category]  Coloring
 
-- Find Minimum Colors (Chromatic Number)
-    - This is SIMPLE problem
-    - Iterate through all adj and store outdegrees for each v
-    - Return MAX all the outdegrees +1 as MIN colors
-- M-Coloring ==> Can color using M colors ?
-    - Backtracking DFS is the way forward
-    - Start from s..[Color..Conflict=NO ...Recurse..Backtrack]
-    - Return true if ALL nodes are colored
-    - **** Breadth-First-Search ```DOES NOT WORK``` with ```backtracking```
-- Detect Bipartile Graph?
-    - Use M coloring algo with M=2. See if we found solution ?
+**- Find Minimum Colors (Chromatic Number)**
+
+- This is SIMPLE problem
+- Iterate through all adj and store outdegrees for each v
+- Return MAX all the outdegrees +1 as MIN colors
+  **- M-Coloring ==> Can color using M colors ?**
+- Backtracking DFS is the way forward
+- Start from s..[Color..Conflict=NO ...Recurse..Backtrack]
+- Return true if ALL nodes are colored
+- **** Breadth-First-Search ```DOES NOT WORK``` with ```backtracking```
+  **- Detect Bipartile Graph?**
+- Use M coloring algo with M=2. See if we found solution ?
 
 ---
 
@@ -939,7 +778,7 @@ TODO
     - ArrayList<Integer> path;
     - path.add(root.data())  ===backtrack===> **path.remove(path.size()-1)**
 
-#### Backtracking Pseudocode
+#### Backtracking Template
 
 ```java
 class GFG {
@@ -954,7 +793,8 @@ class GFG {
 
         //---------------- Section == Recursion and backtracking
         ___UPDATE_PARAM(param1); // UPDATE Stage level param
-
+        // Explore choices for NEXT stages( next recursive calls) and see if at least one path leads to solution ? If NO backtrack
+        // For some combinomatrics problems, ALWAYS backtrack after bounding from all sub-paths
         for (SOME_CHOICE in ALL_CHOICES) {
             // Filter out valid choice before recursive call for next state 
             if (VALID(SOME_CHOICE)) {
@@ -984,27 +824,34 @@ class GFG {
 
 Maze:
 
-- Longest Possible Route in a Matrix with Hurdles
-- Rat in maze
-- Chess N Queen
-- Chess Knight tour
-- Suduko
-- Work Break
+```
+- Maze Games-- Longest Possible Route in a Matrix with Hurdles
+- Maze Games--Rat in maze
+- Maze Games--Chess N Queen
+- Maze Games--Chess Knight tour
+- Maze Games--Suduko
+- Maze Games--Work Break
+- Maze Games--Search word in 8 directions
+```
 
 Arrays:
 
-- Partition of a set into K subsets with equal sum
-- Combination Sum
-- Palindrome Partitioning
-- All subsets
-- All permutations of string
-- All permutations of Phone Letter digits
+```
+- Subset-- Partition of a set into K subsets with equal sum
+- Subset-- Combination Sums (DP ??)
+- Subset-- Palindrome Partitioning (DP ??_
+- Subset--All subsets
+- Subset-- All permutations of string
+- Subset-- All permutations of Phone Letter digits
+```
 
 Graph:
 
-- M-coloring problem
-- Find hamilton Cycles (If exist, count and print all)
-- Print all longest common sub-sequences in lexicographical order
+```
+- Possibility Check-- M-coloring problem
+- Possibility Check-- Find hamilton Cycles (If exist, count and print all)
+- Possibility Check-- Print ALL longest common sub-sequences in lexicographical order (DP returns number for SINGLE optimal sol, but backtracking gets mnore than one actual solutions)
+```
 
 ---
 
@@ -1041,9 +888,12 @@ e.g. ```BST_BurnTree```
 
 #### Interesting Problems
 
-- **Problem: kSum Path (How paths are being processed) ==>**
-    - PreOrder to add node to path
-    - Backtrack and process path **after recursive children** calls. (Same as backtracking algo)
+**Problem: kSum Paths (How paths are being processed) ==>**
+
+![](http://hevi.info/wp-content/uploads/2017/03/Ekran-Resmi-2017-03-22-02.57.34.png)
+
+- PreOrder to add node to path
+- Backtrack and process path **after recursive children** calls. (Same as backtracking algo)
 
 ```java
   class KSumPath {
@@ -1078,112 +928,94 @@ e.g. ```BST_BurnTree```
 
 ```
 
-- **Problem: Burn Tree (PreOrder traversal and Special processing for node on return path) ==>**
-    - Burn Tree ([GFG Link](https://www.geeksforgeeks.org/burn-the-binary-tree-starting-from-the-target-node/amp/))
-    - For a trigger node ==> Burn its tree and return true to let the caller know that burning to be trigerred
-    - For any other node higher up (e.g. root), revisit SOME nodes in opossite side of trigger node.
+**Problem: Burn Tree (PreOrder traversal and Special processing for node on return path) ==>**
 
-  ```java
+- Burn Tree ([GFG Link](https://www.geeksforgeeks.org/burn-the-binary-tree-starting-from-the-target-node/amp/))
+- For a trigger node ==> Burn its tree and return true to let the caller know that burning to be trigerred
+- For any other node higher up (e.g. root), revisit SOME nodes in opossite side of trigger node.
+
+```java
   public class BST_BurnTree {
-  
-      public static void main(String args[]) {
-          MyBinarySearchTree bst = new MyBinarySearchTree();
-          bst.insertAll(new int[]{10, 5, 4, 7, 20, 16, 15, 17, 22, 24});
-          burn(bst.root, 16);
-      }
-  
-      /**
-       * 1. Preorder traversal
-       * 2. Special treatment for found node
-       * 3. How to spread to parent (communicate with parent and siblings)
-       * 4. How to spread further (Multiple preOrder VISITS for SOME nodes)
-       * GFG : https://www.geeksforgeeks.org/burn-the-binary-tree-starting-from-the-target-node/amp/
-       * My solution is simpler and space+time efficient than GFG
-       *
-       * @return True(burned) false(did not find hence did not fired tree)
-       */
-  
-      public static boolean burn(MyNode node, int s) {
-          //====== Preorder-- Invalid Case Check ======//
-          if (node == null) {
-              return false;
-          }
-          MyLogger.info("Visit: " + node.getData()); // VISIT TYPE1 -- Node was visited in find operation (FOR ALL)
-          //====== Preorder-- Check and Visit ======//
-          if (node.getData() == s) {
-              // Found the trigger; Burn it and its both subtrees
-              // Part1-- Burn this node and L,R subtrees
-              burnDown(node);
-              // Let immediate caller know that fire has started
-              return true;
-          }
-  
-          //====== Preorder-- LEFT Recurse ======//
-          if (burn(node.getLeft(), s)) {
-              // Fire came from immediate left since it returned true
-              //Burn self
-              MyLogger.info("Burn: " + node.getData());
-              // Burn RIGHT subtree and return true(TRUE means FIRE)
-              burnDown(node.getRight());
-              return true;
-          }
-  
-          //====== Preorder-- RIGHT Recurse ======//
-          if (burn(node.getRight(), s)) {
-              // Fire came from immediate right since it returned true
-              //Burn self
-              MyLogger.info("Burn: " + node.getData());
-              // Burn LEFT subtree and return true(TRUE means FIRE)
-              burnDown(node.getLeft());
-              return true;
-          }
-          // Trigger was not found anywhere; Just return false ( No need to burn this tree)
-          return false;
-      }
-  
-      /**
-       * Another Preorder function for special operation
-       * @param node Subtree root to be processed
-       */
-      private static void burnDown(MyNode node) {
-          if (node == null) {
-              return;
-          }
-          MyLogger.info("Visit(Again): " + node.getData()); // VISIT TYPE2 -- Node was visited AGAIN for burning (FOR FEW)
-          //Preorder (root, left, right)
-          MyLogger.info("Burn: " + node.getData());
-          burnDown(node.getLeft());
-          burnDown(node.getRight());
-      }
-  }
-  
-  ```
 
-#### Binary Search Trees (Sorts-Traversals)
+    public static void main(String args[]) {
+        MyBinarySearchTree bst = new MyBinarySearchTree();
+        bst.insertAll(new int[]{10, 5, 4, 7, 20, 16, 15, 17, 22, 24});
+        burn(bst.root, 16);
+    }
 
-- Use recursion
-- InOrder, PreOrder, PostOrder DFS
-- BFS using queue.
-- Decisions==> based on input and output returned by subtree calls
-- Pass parameters by val/ref to children calls
-- Split problems into parts (e.g. Border traversal)
+    /**
+     * 1. Preorder traversal
+     * 2. Special treatment for found node
+     * 3. How to spread to parent (communicate with parent and siblings)
+     * 4. How to spread further (Multiple preOrder VISITS for SOME nodes)
+     * GFG : https://www.geeksforgeeks.org/burn-the-binary-tree-starting-from-the-target-node/amp/
+     * My solution is simpler and space+time efficient than GFG
+     *
+     * @return True(burned) false(did not find hence did not fired tree)
+     */
 
-#### Binary Trees (Traversal)
+    public static boolean burn(MyNode node, int s) {
+        //====== Preorder-- Invalid Case Check ======//
+        if (node == null) {
+            return false;
+        }
+        MyLogger.info("Visit: " + node.getData()); // VISIT TYPE1 -- Node was visited in find operation (FOR ALL)
+        //====== Preorder-- Check and Visit ======//
+        if (node.getData() == s) {
+            // Found the trigger; Burn it and its both subtrees
+            // Part1-- Burn this node and L,R subtrees
+            burnDown(node);
+            // Let immediate caller know that fire has started
+            return true;
+        }
 
-- Traverse using recursive DFS or queue based BFS.
-- Decisions==> based on input and output returned by subtree calls
-- Pass parameters by val/ref to children calls
-- Split problems into parts (e.g. Border traversal)
+        //====== Preorder-- LEFT Recurse ======//
+        if (burn(node.getLeft(), s)) {
+            // Fire came from immediate left since it returned true
+            //Burn self
+            MyLogger.info("Burn: " + node.getData());
+            // Burn RIGHT subtree and return true(TRUE means FIRE)
+            burnDown(node.getRight());
+            return true;
+        }
+
+        //====== Preorder-- RIGHT Recurse ======//
+        if (burn(node.getRight(), s)) {
+            // Fire came from immediate right since it returned true
+            //Burn self
+            MyLogger.info("Burn: " + node.getData());
+            // Burn LEFT subtree and return true(TRUE means FIRE)
+            burnDown(node.getLeft());
+            return true;
+        }
+        // Trigger was not found anywhere; Just return false ( No need to burn this tree)
+        return false;
+    }
+
+    /**
+     * Another Preorder function for special operation
+     * @param node Subtree root to be processed
+     */
+    private static void burnDown(MyNode node) {
+        if (node == null) {
+            return;
+        }
+        MyLogger.info("Visit(Again): " + node.getData()); // VISIT TYPE2 -- Node was visited AGAIN for burning (FOR FEW)
+        //Preorder (root, left, right)
+        MyLogger.info("Burn: " + node.getData());
+        burnDown(node.getLeft());
+        burnDown(node.getRight());
+    }
+
+}
+
+```
 
 #### Heap (Max-Min-Median)
 
 - Array implementation is common
 - ```iLeftChild = 2*iParent + 1``` and ```iRightChild = 2*iParent*2```
 - ```iParent = floor(iChild/2)```
-- Min-Max heap types
-- Common use cases:
-    - min+max heap for median of infinite stream
-    - Heap for K-largest
 
 ---
 
@@ -1218,14 +1050,13 @@ e.g. ```BST_BurnTree```
 // N-ary Tree
 class TrieNode {
     HashMap<String, MyTrieNode> mapping; // Key with Children Nodes
+    //Character[26]; // (ch-'a') is also another way for Alphabetic only trie(not scalable for other chars/nums)
     boolean isEndOfWord; // Indicates End of word node
     int numOccurances;
 }
 ```
 
-**====Implementation====**
-
-- **Problem: Implement Trie**
+**PROBLEM 1: Implement Trie**
 
 ```java
 class Trie {
@@ -1297,16 +1128,18 @@ class Trie {
 
 ##### Popular Problems
 
-- Count words: (INSERT ==> ++ maintain the count on the go)
-- Count Most Frequent Word: (INSERT ==> ++ maintain the maxCount on the go)
-- Count Kth Frequent Word: (INSERT ==> ++ maintain the HEAP of TrieNodes (with occurance as key param)
-- Search Word/Prefix ==> (SEARCH)
-- Count Words with Prefix ==> (SEARCH -- BFS -- Start BFS from end of prefix)
-- Work Break Problem (String and Dict) ==> Build trie of dict and use DP to solve it
+- **Count** **words**: (INSERT ==> ++ maintain the count on the go)
+- **Count** **Most** **Frequent** Word: (INSERT ==> ++ maintain the maxCount on the go)
+- Count **Kth** **Frequent** Word: (INSERT ==> ++ maintain the HEAP of TrieNodes (with occurance as key param)
+- **Find** **largest** **Dictionary** **word** from **input string subsequences**. (Trie for dict and DP/Pointers for
+  subsequence)
+- Search Word/**Prefix** ==> (SEARCH)
+- Count **Words** with **Prefix** ==> (SEARCH -- BFS -- Start BFS from end of prefix)
+- Work **Break** **Problem** (String and Dict) ==> Build **trie** of **dict** and **use** **DP** to **solve** it
 
 ##### USAGES
 
-- Phone Dictionary, Prefix tree, String lookup
+- Phone **Dictionary**, **Prefix** **tree**, String **lookup**
 
 - [Common Trie Interview questions:](https://www.geeksforgeeks.org/tag/trie/)
 
@@ -2074,6 +1907,27 @@ class Solution {
 
 ## 11. Theme ==> TWO POINTERS, SLIDING WINDOWS
 
+##### Types of problems
+
+- **Same Direction**
+    - find duplicates in sorted array
+    - Middle of linked list
+    - Move zeros to end
+- **Opposite direction**
+    - Two sum sorted
+    - Valid Palindrome
+- **Sliding Window**
+    - Subarray sum
+    - Find all N-grams of word in text
+    - Longest substring without repeating char
+    - Longest subarray with sum <= target
+    - Shortest subarray which sum is at least equals target
+    - Least Number of cards to make pair
+        - ```For example, given cards = [3, 4, 2, 3, 4, 7], then picking up [3, 4, 2, 3] makes a pair of 3s and picking up [4, 2, 3, 4] matches two 4s. We need 4 consecutive cards to match a pair of 3s and 4 consecutive cards to match 4s, so you need to pick up at least 4 cards to make a match.```
+- **Prefix Sum**
+    - Understanding how to manipulate subarrays is key to mastering many algorithms.
+    - Used in **SUBARRAY SUM** problems
+
 ##### Arrays and String Problems
 
 - Sequencial Storage viz. string array
@@ -2195,6 +2049,62 @@ public class LongestSubstringWithoutRepeatingChar {
     }
 }
 
+```
+
+##### Prefix SUM vs Sliding Window Techniques
+
+- Both prefix sum and sliding window are techniques to solve subarray-related problems. The choice between them depends
+  on
+  the nature of the problem:
+- Prefix sum is generally used for problems that ask about the sum of subarrays, as it allows for constant-time range
+  sum
+  queries.
+- The sliding window is typically utilized for problems related to contiguous subarrays of a certain size or condition,
+  e.g., maximum sum of subarrays of size 'k'.
+- Variation -- Suffix Sum
+
+**Problem: Prefix Sum**
+Given an array of integers and an integer target,
+find a (SINGLE) subarray that sums to target and return the start and end
+indices of the subarray.
+
+```java
+/**
+ * Input: 1 3 -3 8 5 7  target: 5
+ * Output: Indexes [2,4) ......values -3 8
+ *
+ * Mathematical Derivation: **** **** **** 
+ * **** SUM(0-N) - SUM(0-M)  = target
+ * **** SUM(0-N) - target = SUM(0-M)
+ * **** currCumSum-target = pastCumSum
+ * **** **** **** **** **** **** **** ****
+ */
+class Solution {
+    public static List<Integer> subarraySum(List<Integer> arr, int target) {
+        HashMap<Integer, Integer> prefixSums = new HashMap<>();
+
+        prefixSums.put(0, 0);
+        int curSum = 0;
+        //1---------- Calculate prefix sum ON THE FLY
+        for (int i = 0; i < arr.size(); i++) {
+            //2.1---------- Caculate Current CUMULATIVE Sum
+            curSum += arr.get(i);
+            //2.2---------- Get compliment of cum sum with target
+            int complement = curSum - target;
+            // LOGIC: complement is prefix sum for some PAST index
+            // After adding target to that sum we get curr cumSum
+            // Which means we have got range [iPastPrfixSum, i+1)
+            //2.3---------- Check if compliment exist in pre-populated prefix sums so far
+            if (prefixSums.containsKey(complement)) {
+                //2.4---------- TRICKY: Return mapping of <index_of_compliment, i+1>
+                return List.of(prefixSums.get(complement), i + 1);
+            }
+            //3---------- Update Prefix Sum (Sum to index mapping)
+            prefixSums.put(curSum, i + 1);
+        }
+        return null;
+    }
+}
 ```
 
 # References

@@ -1324,7 +1324,7 @@ public class LOCAL_MAX_MIN_MaxStockSale {
 - Substring usage== > **endIndex + 1**  to include endIndex char
 - e.g. ```"aaBBBcc".substring(2, 4+1)``` to get **BBB**
 
--- **PROBLEM--Print Actual Longest Common Palindrome Substring (Not DP yet same time complexity of Quadratic)**
+-- **PROBLEM--Print LONGEST PALINDROME SUBSTRING CONTENTS (Not DP yet same time complexity of Quadratic)**
 
 ```java
 package com.hiru.dsa.java.datastructures.string;

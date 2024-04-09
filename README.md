@@ -1489,104 +1489,88 @@ public class ServiceNow_DecodeString {
 -
 
 ```java
-  public class DecodeBashExpansion {
-    //////////////////////////////////////////////////////////////////////////////
-    String getExpandedString(String input, int size) {
-        // STEP 1 ====> Validity Check using stack.
-        // Push { and pop it for each } ignore other characters.
-        // At the end both string and stack should be empty
-        if (isValid(input, size)) {
-            // STEP 2 ====> Divide and process parts to results list of lists
-            // Expand each pair of brackets separately
-            // At the end both string and stack should be empty'
-            ArrayList<ArrayList<String>> parts = new ArrayList<ArrayList<String>>();
-            int i = 0;
-            String result;
-            while (true) {
-                String ch = input.substring(i, i + 1);
-                if (ch != "{") {
-                    // Process continuous string of non special part
-                    String part = input.substring(i, input.indexOf('{'));//TODO--safeguard
-                    parts.add(Collections.singletonList(part));
-                    i += input.indexOf('{'); // Change index
-                } else {
-                    // Special part(range)
-                    input = input.substring(i, input.length()); // reduce string
-                    int i1 = input.indexOf('{');
-                    int i2 = input.indexOf('}');
-                    String range = input.substring(i1 + 1, i2); // Without { and }
-                    results.add(expand(range));
-                    i = i2 + 1; // Advance to next character to "}"
-                }
-                if (i >= size)
-                    break;
+/**
+ * Solved -- However string validity check is still pending
+ * // Validations=============
+ * 1. Trim
+ * 2. Other characters than (char'a', 'b',......, ',', '{', '}'] ...O(N) ----FAIL
+ * 2. Invalid Patterns: {{ ---- }} ---- ,, -----  ,} -----  }, ----  ,{ -----  {, -----OTHER special Chars
+ * 3. Two pointer: p1={  && IndexOf({) < IndexOf(}) ==> FAIL
+ */
+public class TWO_POINTER_BashCommandExpansion {
 
-            }
-
-            // Step3 ===> Generate final string
-            ArrayList<String> result1 = results.get(0);
-            List<String> result2 = results.get(1);
-            String solution = ""; //########## THIS IS OUTPUT
-            for (int ss = 2; ss < results.size(); ss++) {
-                ArrayList<String> result1 = new ArrayList<String>();
-                ArrayList<String> result2 = new ArrayList<String>();
-                result1 = results.get(ss);
-
-                if (ss + 1 < size)
-                    result2 = results.get(ss + 1);
-                // Merge 2 lists along with previously processed prefix
-                solution = merge(solution, prevString, currentString);
-            }
-            return solution;
-        }
+    public static void main(String args[]) {
+        List<String> solution = SOLUTION("echo{1,2,3}{x,y}{P,Q,R,S}");
+        System.out.println("Solution Size(24) | " + solution.size());
+        System.out.println(solution);
     }
 
-    //////////////////////////////////////////////////////////////////////////////
-    ArrayList<String> expand(String range) {
-        ArrayList<String> res = new ArrayList<String>();
+    static List<String> SOLUTION(String cmd) {
+        List<String> global = new ArrayList<>();
 
-        if (range == "a--z") {
-            for (int i = 0; i < 26; i++) {
-                res.add("" + ('a' + i));
-            }
 
-        } else if (range == "a--z") {
-            res.add("" + ('A' + i));
+        //#### Step1: Trim all whitespaces
+        //cmd = cmd.removeAll(' ');
 
-        } else if (range == "1,2,3") {
-            res.add("1");
-            res.add("2");
-            res.add("3");
+        int i1 = 0;
+        int i2 = 1;
 
-        } else {
-            res = decodeSpecialX(range); // SCOPE for future expansion in same framework
+        //##### Step2-- Preprocess--Parse (Assume)
+        if (false /**! isValid(cmd)*/)
+            return global;
+
+
+        //#####step3-- first processing
+        String first = cmd.substring(0, cmd.indexOf('{'));
+        global.add(first);
+
+        //##### Step4-- Subset processing in loop
+        i1 = cmd.indexOf('{') + 1;
+        i2 = i1;
+        while (i2 < cmd.length()) {
+            //### Process
+            i2 = cmd.indexOf('}');
+            String setStr = cmd.substring(i1, i2);
+            List<String> local = Arrays.asList(setStr.split(","));
+            //### Update remaining string
+
+            //### Multiply with global and define new global
+            global = combine(local, global);
+
+            //### Reset (i1 and i2 to process next set)
+            cmd = cmd.substring(i2 + 1);
+            i1 = 1;
+            i2 = i1;
         }
-        return res;
+        return global;
     }
 
-    //////////////////////////////////////////////////////////////////////////////
-    String merge(String prefix, ArrayList<String> list1, ArrayList<String> list1) {
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < list2.size(); j++) {
-                prefix += list1.get(i) + list2.get(j);
+    static List<String> combine(List<String> local, List<String> global) {
+        List<String> globalNew = new ArrayList<>();
+        for (String s1 : global) {
+            for (String s2 : local) {
+                globalNew.add(s1 + s2);
             }
         }
-        return prefix;
+        return globalNew;
     }
 }
+
 ```
 
 - **PROBLEM--Word Break (can String be broken into Dict words)**
-  ```java
-  static boolean wordBreak(List<String> wordList,
+
+```java
+public class Solution {
+    static boolean wordBreak(List<String> wordList,
                              String word) {
         // If the word is empty, it can be broken down into an empty list of words
         if (word.isEmpty()) {
             return true;
         }
-  
+
         int wordLen = word.length();
-  
+
         // Check if the word can be broken down into words from the wordList
         for (int i = 1; i <= wordLen; ++i) {
             String prefix = word.substring(0, i);
@@ -1596,7 +1580,10 @@ public class ServiceNow_DecodeString {
         }
         return false; //No luck
     }
-  ```
+}
+
+
+```
 
 ### Queue (Java)  ---------------------------------------------------------------------------------------
 

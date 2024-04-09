@@ -708,7 +708,55 @@ TODO
 
 #### [Category] Spanning Trees, Connect Multiple, Shortest paths
 
-TODO
+**PROBLEM: Shortest path in unweighted graph (BFS way is simple)**
+
+Since its unweighted graph, each edge carries same weight. Hence shortest path == LEVEL from source to target.
+You can imagine shortest path of ROOT to its LEAF as NUM_LEVELS.. Thats similar to graph except extra visited node
+tracking.
+
+```Note: Weighted graph shortest path problem CAN NOT be solved using BFS , you need to ise Dijkra algo.```
+
+```java
+class BFSShortestPathUnweighted {
+    int getShortestPathUnweightedGraph_BFS(List<List<Integer>> graph, int source, int target) {
+        //----1. Add source
+        queue.add(source);
+        visited.add(source);
+        int level = 0;
+        //----2. Start BFS
+        while (queue.isEmpty() == false) {
+            //---- 3. (MILD VARIATION) Process all N elements at level Pick elements at level l in reverse order 
+            int N = queue.size();
+            // CURR LEVEL: Guarantees Level-By-Level processing (single level==1 length path)
+            for (int j = 0; j < N; j++) {
+                int curLevelNode = queue.remove(); // Important LIFO-- Process from last to last-N ( DONT USE remove())
+                //---- 4. Found Target
+                if (currLevelNode == target) {
+                    return level;
+                }
+
+                //---- 5. BFS enqueue next level().
+                // Append adjacencies for next level processing
+                for (int nextLevel : getNeighbors(currLevelNode)) {
+                    if (visited.contains(nextLevelNode) == false) {
+                        visited.add(nextLevelNode);
+                        queue.add(nextLevelNode);
+                    }
+                }
+            }
+            //----6. Increment level and process batch of next N2 elements for level L2
+            level++;
+        }
+        //----7. Return result(level == distance...Inf == MAX_VALUE)
+        if (level == 0) {
+            return Integer.MAX_VALUE; //No path/Infinite path
+        } else {
+            return level;
+        }
+    }
+}
+
+```
 
 #### [Category]  Coloring
 

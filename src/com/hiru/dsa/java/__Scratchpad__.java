@@ -4,6 +4,7 @@ import com.hiru.dsa.java.util.MyLogger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,15 +20,27 @@ import java.util.List;
 public class __Scratchpad__ {
 
     public static void main(String[] args) {
-        //System.out.println("Enter Main----------------------");
-        // Test here
-        int sum = 0;
-        for (int i : new int[]{Integer.MAX_VALUE, 3}) {
-            sum += i;
-        }
-        System.out.println(sum);
+        LinkedList<Integer> list = new LinkedList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
 
-//        System.out.println("Exit Main----------------------");
+        System.out.println(list + " | " + " QUEUE_ENQUE::add(): " + list.add(5) + " | " + list);
+        System.out.println(list + " | " + " QUEUE_DEQUE::remove(): " + list.remove() + " | " + list);
+        System.out.println(list + " | " + " QUEUE_PEEK::peek(): " + list.peek() + " | " + list);
+
+        System.out.println("-------------------------------------------------");
+        list = new LinkedList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        System.out.println(list + " | " + " STACK_PUSH::add(): " + list.add(5) + " | " + list);
+        System.out.println(list + " | " + " STACK_POP::removeLast(): " + list.removeLast() + " | " + list);
+        System.out.println(list + " | " + " STACK_PEEK_TOP::peekLast(): " + list.peekLast() + " | " + list);
+
 
     }
 

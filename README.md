@@ -1375,7 +1375,7 @@ public class LOCAL_MAX_MIN_MaxStockSale {
 -- **PROBLEM--Print LONGEST PALINDROME SUBSTRING CONTENTS (Not DP yet same time complexity of Quadratic)**
 
 ```java
-package com.hiru.dsa.java.datastructures.string;
+package com.hiru.dsa.java.PRACTICE.string;
 
 public class DP_LongestPalindromeSubString_GetString {
     public static void main(String[] args) {
@@ -1988,7 +1988,7 @@ class Solution {
 **Problem: Sliding Window Find N-grams**
 
 ```java
-package com.hiru.dsa.java.algomonster_typical.TwoPointers;
+package com.hiru.dsa.java.PRACTICE._mixed.TwoPointers;
 
 import java.util.ArrayList;
 import java.util.Arrays;

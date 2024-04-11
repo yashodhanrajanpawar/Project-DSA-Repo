@@ -1,4 +1,22 @@
-## Technical and AWS questions =============================
+# Format
+
+- 3 Technical (System Design, DSA, Coding, AWS)
+- 2 Managerial Rounds ()
+
+-------------------------------------------------------------------------------------------
+
+# ******** Interviews ********
+
+## 1/5 First Managerial Resume Round (45 mins)
+
+Good discussions with transparent replies and similar profile as JD.
+Discussion on Pune, Break, Data job similarity etc.
+
+--------------------------------------------------------------------------------------------
+
+## 2/5 Technical AWS and DSA Round (45 mins)
+
+**Technical and AWS questions**
 
 - Tell me about yourself ?
 - Services you own etc. etc. Explain the use case ?
@@ -7,7 +25,9 @@
 - What is VPC** ? How do you use it ?
 - DB tradeoff -- NO SQL vs RDBMS
 
-## Coding Question (Collabedit Based) =============================
+**Coding Question (Collabedit Based)**
+
+Sliding Window O(N) question
 
 ```
 Given an integer array nums, remove the duplicates in-place such that each unique element appears only once. The
@@ -25,6 +45,7 @@ Output: k=2, nums = [1,2, 2,1,2]
 ```
 
 ```
+Rough Work====
 /**
 
 * State: Array is not sorted -- Contains duplicate --
@@ -43,9 +64,10 @@ Output: k=2, nums = [1,2, 2,1,2]
 1 2 1(p1) 1 1 1 2 3(p2)
 ```
 
-My Solution:
+**Implementation**
 
 ```java
+// Code ====
 class Solution {
     int getNumDistinct(int[] nums) {
         // Base case

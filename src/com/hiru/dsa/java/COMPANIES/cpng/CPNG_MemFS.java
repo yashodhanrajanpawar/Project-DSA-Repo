@@ -17,10 +17,13 @@ public class CPNG_MemFS {
     public static void main(String args[]) {
         CPNG_MemFS fs = new CPNG_MemFS();
         fs.mkdir("ROOT/dir1");
+        fs.mkdir("ROOT/dir1/dir5");
+        fs.mkdir("ROOT/dir1/dir4");
+        fs.mkdir("ROOT/dir1/dir3");
         fs.mkdir("ROOT/dir1/dir2");
 
-        fs.ls("ROOT/dir1");
-        fs.ls("ROOT/dir1/dir2");
+        System.out.println(fs.ls("ROOT/dir1"));
+        //System.out.println(fs.ls("ROOT/dir1/dir2"));
 
     }
 

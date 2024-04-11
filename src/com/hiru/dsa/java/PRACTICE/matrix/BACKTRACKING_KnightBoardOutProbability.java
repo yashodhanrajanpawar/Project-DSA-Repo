@@ -35,7 +35,8 @@ public class BACKTRACKING_KnightBoardOutProbability {
         Counts count = new Counts();
         board[3][3] = 1;
         knightOffProbability(board, N, 15, 0, 3, 3, count);
-        System.out.println("k=15, i,j=3,3 " + (float) count.fff / (count.fff + count.sss));
+        //System.out.println("k=15, i,j=3,3 " + (float) count.fff / (count.fff + count.sss));
+        System.out.println("k=1, i,j=3,3 " + (float) count.fff / (count.fff + count.sss));
 
 
     }

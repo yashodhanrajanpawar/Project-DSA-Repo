@@ -18,6 +18,38 @@ import java.util.List;
  * https://www.geeksforgeeks.org/find-subarray-with-given-um/amp/
  */
 public class __Scratchpad__ {
+    static class Coordinate {
+        int r = -1;
+        int c = -1;
+
+        public Coordinate(int x, int y) {
+            r = x;
+            c = y;
+        }
+    }
+
+    //---------------- Maze Coordinates (Neighbors for BFS/DFS graph problems)
+    private static List<Coordinate> getNeighbors(Coordinate cell, int numRows, int numCols) {
+        List<Coordinate> neighbors = new ArrayList<>(); //OUTPUT-- (list of Neighbor coordinates)
+
+        //DELTAS---- This is helpful for creating any combinations e.g. (Knight, 8 directions, 3 directions so on..)
+        int[] DELTA_ROW = {-1, 0, 1, 0};
+        int[] DELTA_COL = {0, 1, 0, -1};
+
+        //--VALIDATIONS and Additions
+        for (int i = 0; i < DELTA_ROW.length; i++) {
+            int neighborRow = cell.r + DELTA_ROW[i]; // Match
+            int neighborCol = cell.c + DELTA_COL[i];
+            if (0 <= neighborRow
+                    && neighborRow < numRows
+                    && 0 <= neighborCol
+                    && neighborCol < numCols) {
+                neighbors.add(new Coordinate(neighborRow, neighborCol));
+            }
+        }
+        //--RETURN list
+        return neighbors;
+    }
 
     public static void main(String[] args) {
         LinkedList<Integer> list = new LinkedList<>();
@@ -26,20 +58,30 @@ public class __Scratchpad__ {
         list.add(3);
         list.add(4);
 
+        System.out.println("------------------QUEUE--------------------------");
         System.out.println(list + " | " + " QUEUE_ENQUE::add(): " + list.add(5) + " | " + list);
         System.out.println(list + " | " + " QUEUE_DEQUE::remove(): " + list.remove() + " | " + list);
         System.out.println(list + " | " + " QUEUE_PEEK::peek(): " + list.peek() + " | " + list);
 
-        System.out.println("-------------------------------------------------");
+
         list = new LinkedList<>();
         list.add(1);
         list.add(2);
         list.add(3);
         list.add(4);
 
+        System.out.println("------------------STACK--------------------------");
         System.out.println(list + " | " + " STACK_PUSH::add(): " + list.add(5) + " | " + list);
         System.out.println(list + " | " + " STACK_POP::removeLast(): " + list.removeLast() + " | " + list);
         System.out.println(list + " | " + " STACK_PEEK_TOP::peekLast(): " + list.peekLast() + " | " + list);
+
+        System.out.println("------------------ADD-FIRST--------------------------");
+        list = new LinkedList<>();
+        list.addFirst(1);
+        list.addFirst(2);
+        list.addFirst(3);
+        list.addFirst(4);
+        System.out.println(list + " ---------- 1,2,3,4 added using addFirst()");
 
 
     }

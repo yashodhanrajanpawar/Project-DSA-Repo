@@ -1668,7 +1668,7 @@ TODO--Update this section
 
 ## 10. Theme ==> Binary Search
 
-### (VARIANT 1) Binary Search On SORTED Input
+### TYPE1 == Sorted Input
 
 ================================================
 
@@ -1752,7 +1752,7 @@ Input: [30, 40, 50, 10, 20] Target 800
 
 Output: -1
 
-##### PROBLEM:Find the Peak of mountain array
+##### PROBLEM: Find the Peak of mountain array
 
 Input: [1,2,3,40, 35,7,4]
 Output: 40
@@ -1760,7 +1760,7 @@ Output: 40
 - Follow same technique as rotated array..
 - Decision to move left and right based on ```increasing/decreasing flow mid index```
 
-### (VARIANT 2) Binary Search to REFINE possible solution on GENERATED SORTED [MIN,MAX] RANGE
+### TYPE2 == Binary Search on Answer (Find possible answer range min--max and do bin search)
 ================================================
 **Algorithm**
 
@@ -1962,6 +1962,41 @@ class Solution {
 - **Prefix Sum**
     - Understanding how to manipulate subarrays is key to mastering many algorithms.
     - Used in **SUBARRAY SUM** problems
+
+##### Templates
+
+**Fixed Size Window (e.g. min, max, distinct , MEX, SUM)**
+
+```java
+class FixedSizeWindow {
+    public static void solution(int[] arr, int WIN_SIZE) {
+        int start = 0, end = 0;
+        TreeSet<Integer> window; // Get (min/Max/Distinct/All)
+        // STEP1 ----- FIRST Window Processing
+        for (end = start; end < start + WIN_SIZE; end++) {
+            window.add(arr[end]);
+            // Do something additional per window here e.g. min, max track
+        }
+
+        // STEP2.1----- FIRST Window Result
+        ProcessWindowAndPrintStats(window.first(), window.last(), windows.size()); // Min, max, count
+
+        // STEP2.2-----Increment only start pointer
+        start++;
+
+        // STEP3----- NEXT Sliding window(S)
+        while (end < arr.length) {
+            // STEP3.1 ---- Remove start-1 effect
+            window.remove(arr[start - 1]); // Make sure to remove start-1 
+            // STEP3.2 ---- Add start-1 Effect
+            window.add(arr[end]);
+            // STEP3.3 ---- Window Stat
+            ProcessWindowAndPrintStats(window.first(), window.last(), windows.size()); // Min, max, count
+        }
+        // STEP4: ------ Return something if applicable
+    }
+}
+```
 
 ##### Arrays and String Problems
 

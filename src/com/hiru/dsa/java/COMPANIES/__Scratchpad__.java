@@ -28,6 +28,7 @@ public class __Scratchpad__ {
         }
     }
 
+
     //---------------- Maze Coordinates (Neighbors for BFS/DFS graph problems)
     private static List<Coordinate> getNeighbors(Coordinate cell, int numRows, int numCols) {
         List<Coordinate> neighbors = new ArrayList<>(); //OUTPUT-- (list of Neighbor coordinates)

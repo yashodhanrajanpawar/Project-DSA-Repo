@@ -12,6 +12,7 @@ String suit;
 }
 
 ASSUMPTIOn -- Parse the list and update the Card(s) and populate the Input in desired format.
+```
 //========================================================
 {"2C", "3C", "4C"}
 {"2C", "3C", "4H"}
@@ -25,10 +26,12 @@ TreeMap<Integer, String> ..Keys will be sorted..Iterate over the keys .. SET
 
 i2--3C
 i1--2C
+```
 //=====//=====//=====//=====//=====//=====//=====//=====//=====
 //=====//=====//=====//=====//=====//=====//=====//=====//=====
 
 //========
+```
 boolean isValid(List<Card> set) {
 
 List<Integer> values = new ArrayList<>();
@@ -67,7 +70,7 @@ int v2 = set.get(i2).getVal();
 return(sameVal || isPureSeq);
 
 }
-
+```
 //===========
 {"1C", "2C", "3C", "3S", "3H"}
 
@@ -76,9 +79,10 @@ return(sameVal || isPureSeq);
 
 Returnt he possible valid Sets using the input LIST ?
 Its Sorted by Rank
-
+```
 1,2,3,3,3,3... (Two pointers to determine if we have 3 same values )
 
 Slding window based apparoach
 
 SECONC CONSTRAINT
+```

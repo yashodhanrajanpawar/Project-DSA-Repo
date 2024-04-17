@@ -579,12 +579,11 @@ class Graph {
 - Representation:
 
 ```java
-  class GFG {
-    int V;
-    List<Integer>[] adj = new LinkedList<Integer>[V];
-    // OR
-    List<Integer>[] adj = new List[V];
-    adj[0]=Arrays.asList(1,2,3);
+  import java.util.ArrayList;
+
+class GraphRepresentations {
+    ArrayList<ArrayList<Integer>> graphImplicitNodeID; // One representation (assume node Id as 0, 1,2,3...)
+    HashMap<String, List<String>> graphExplicitNodeID; // Another representation for Explicit Node ID as String
 }
 ```
 
@@ -624,6 +623,46 @@ class GFG {
     }
 }
 
+```
+
+#### [Category] Detect Cycle
+
+```Differentiate between VISITING(To Visit) vs VISITED```
+If we use the normal DFS logic and reject when a node in the visited state is revisited,
+we would have determined some graphs as cyclic.
+However, Node 3 is visited twice but the graph does not contain a cycle.
+
+In a directed graph, **a path is only a cycle if a node on the path points to an existing node on the same path**.
+If we only have two states, we wouldn't be able to distinguish this.
+The **VISITING** **state** gives us a **way to represent the "current path"**.
+
+```java
+class GraphCycleDetect {
+    private static boolean is_ACYCLIC_DFS(int start, State[] states, Map<Integer, List<Integer>> graph) {
+        // mark self as visiting
+        states[start] = State.VISITING;
+
+        if (graph.get(start) != null) {
+            // Adjacencies
+            for (Integer nextVertex : graph.get(start)) {
+                // ignore visited nodes
+                if (states[nextVertex] == State.VISITED) continue;
+
+                // revisiting a visiting node, CYCLE!
+                if (states[nextVertex] == State.VISITING) return false;
+
+                // recursively visit neighbours
+                // if a neighbour found a cycle, we return false right away
+                if (!is_ACYCLIC_DFS(nextVertex, states, graph)) return false;
+            }
+        }
+
+        // mark self as visited
+        states[start] = State.VISITED;
+        // if we have gotten this far, our neighbours haven't found any cycle, return true
+        return true;
+    }
+}
 ```
 
 #### [Category] Topological Sorting for DAG dependency

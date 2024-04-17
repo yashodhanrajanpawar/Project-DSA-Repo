@@ -1,4 +1,4 @@
-package com.hiru.dsa.java.PRACTICE._mixed.TwoPointers;
+package com.hiru.dsa.java.ROUGHWORK.TwoPointers;
 
 import java.util.Arrays;
 

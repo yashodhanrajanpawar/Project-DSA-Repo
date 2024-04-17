@@ -287,35 +287,6 @@ class MinCoinsChange {
 }
 ```
 
-**PROBLEM 3: Min Cuts Palindrome Partitioning (Complex Variant of Knapsack..MUST REMEMBER)**
-
-```java
-class GFG {
-    // Function to find the minimum number of cuts needed
-    // for palindrome partitioning
-    static int minPalPartition(String str, int i, int j) {
-        // Base case: If the substring is empty or a
-        // palindrome, no cuts needed
-        if (i >= j || isPalindrome(str, i, j))
-            return 0;
-
-        int minCuts = Integer.MAX_VALUE;
-
-        // Iterate through all possible partitions and find
-        // the minimum cuts needed
-        for (int k = i; k < j; k++) {
-            // NOTE: 1+ for each cut we make 
-            int cuts = minPalPartition(str, i, k)
-                    + minPalPartition(str, k + 1, j) + 1;
-            minCuts = Math.min(minCuts, cuts);
-        }
-        // No palindrome and no cuts could be made
-        return minCuts;
-    }
-}
-
-```
-
 ---
 
 ## 2. Theme ==> Dynamic Programming(SubSequence, Palindrome, EditDist, Jumps)
@@ -429,7 +400,75 @@ public class LPS {
 
 ## 3. Theme ==> Graphs
 
-#### [Category]  BFS for directed and undirected graphs
+- **Graph DFS and BFS is same as tree with the only difference of NEED of VISITED NODES tracking**
+- DFS is better at: finding nodes far away from the root
+- BFS is better for: finding nodes close/closest to the root
+
+#### [Category]  BFS
+
+```java
+import java.util.*;
+
+class Graph {
+
+    //--------------Plain BFS ------------------------------------------------------------------------------------------
+    public void bfs(Node root) {
+        LinkedList<Node> queue = new LinkedList<>();
+        //STEP1:  Start with Root Node (Can have multiple roots in disconnected graph)
+        queue.add(root);
+        //STEP1.1:  Set for tracking visited (better than bool array)
+        Set<Node> visited = new HashSet<>();
+        visited.add(root); //STEP2:  mark visited
+        //STEP3: BFS look until queue is empty 
+        while (queue.size() > 0) {
+            //STEP3.1: Deque in FIFO way 
+            Node node = queue.remove();
+            //STEP3.2: Explore eighbors and mark unvisited as visited
+            for (Node neighbor : getNeighbors(node)) {
+                if (visited.contains(neighbor)) {
+                    continue;
+                }
+                queue.add(neighbor);
+                visited.add(neighbor); //Important (Mark as soon as you see it)
+            }
+        }
+    }
+
+    //--------------BFS for Level Tracking/Distance Calc in Unweighted graph (weight=1) ------
+    public int bfs_variant(Node root) {
+        //######## level/dist
+        int level = 0;
+        LinkedList<Node> queue = new LinkedList<>();
+        //STEP1:  Start with Root Node (Can have multiple roots in disconnected graph)
+        queue.add(root);
+        //STEP1.1:  Set for tracking visited (better than bool array)
+        Set<Node> visited = new HashSet<>();
+        visited.add(root); //STEP2:  mark visited
+        //STEP3: BFS look until queue is empty 
+        while (queue.size() > 0) {
+            //###########################
+            // *** Process Last Level Enqueued
+            for (int i = 0; i < queue.size(); i++) {
+                //STEP3.1: Deque in FIFO way 
+                Node node = queue.remove();
+                //STEP3.2: Explore eighbors and mark unvisited as visited
+                for (Node neighbor : getNeighbors(node)) {
+                    if (visited.contains(neighbor)) {
+                        continue;
+                    }
+                    queue.add(neighbor);
+                    visited.add(neighbor); //Important (Mark as soon as you see it)
+                    // **** (Another variant) Shortest path: Start with SOURCE and Check if you find TARGET (return level) 
+                }
+            }
+            //########################### 
+            level++;
+        }
+        return level;
+    }
+}
+
+```
 
 **Overview:**
 
@@ -454,85 +493,9 @@ public class LPS {
     - ```LinkedList<Integer>``` as Queue.
     - Useful methods (EMPTY, ENQUE, DEQUE): ```isEmtpty()``` , ```add()``` and ```poll()```
 
-**PROBLEM 1: Directed and Undirected BFS appraoches**
-
-```java
-class GFG {
-
-    /**
-     * BFS for any DIRECTED graph. (All types e.g. Null, Connected, Unconnected, Weighted)
-     * UTIL method ==> allVisited(visited)) returns -1 if ALL visited or return any unvisited node index.
-     * .......... You DONT need this method since you keep on exploring all vertices (int) in O(N) fashion and explore only if unvisited
-     * @param V Number of Nodes of graph
-     * @param adj List<Integer> [] adjacency List of graph
-     */
-    static void BFS(int V, LinkedList<Integer>[] adj) {
-        LinkedList<Integer> queue = new LinkedList<>();
-        boolean visited[] = new boolean[V];
-
-        // Unlike tree BFS(which starts from root), Graph BFS does NOT gurantee cover all the vertices.
-        // E.g. Starting from sink node with no outdegree will lead to BFS for only just that node
-        // Hence its extremely important to visit ALL the nodes BFS way UNTIL ALL are VISITED.
-        int unvisited = 0;
-        // -1 indicates that all nodes visited. Exit Main BFS
-        while ((unvisited = allVisited(visited)) != -1) {
-            // STEP: 1 >>>> Pick unvisited Node
-            // STEP 2 >>>> BFS for unvisited node
-            // STEP 3 >> Visit Node and Start local BFS by queuing it
-            queue.add(unvisited);
-
-            //STEP 4 >>>> LOCAL BFS (FOR CONNECTED COMPOENENT/GRAPH)  
-            // >> Explore Adjacencies and add them to the queue and process all the
-            System.out.println("Local BFS for : " + unvisited);
-            while (queue.isEmpty() == false) {
-                //STEP 4.0 >>>> Get the Unvisited Node and MARK as VISITED
-                int u = queue.poll(); // This is unvisted vertex from initial or inner enque() 
-                visited[v] = true; // MARK visited before exploring
-                System.out.println(u);
-
-                //STEP 4.1 >>>> Loop through adjancent nodes of u and enque UNVISITED adj
-                for (int v : adj[u]) {
-                    //STEP 4.2 >>>> Visit and add unvisited nodes.
-                    if (visited[v] == false) {
-                        queue.add(v);
-                    }
-                }
-            }
-        }
-    }
-```
-
 #### [Category]  Paths and Connectivity
 
-**PROBLEM 1: Transitive Closure: (Adj Matrix way)**
-
-```java
-class Graph {
-    /**
-     * Time complexity -- O(N3) 
-     */
-    int[][] transitiveClosure() {
-        int reach[][] = new int[V][V]; // STEP1: Additional output data structure (reach[][] = Path exist=1, path no exist=0)
-        // STEP2: O(N^3) combinations of 3 vertices hence 3 for loops
-        for (int i = 0; i < V; i++) {
-            for (int j = 0; j < V; j++) {
-                for (int k = 0; k < V; k++) {
-                    // STEP3: Update Transitive connectivity/Path from i to j
-                    // If {i,j} path exist OR {i,k} and {k,j} path exists ? ==> update {i,j} = 1 (Some path exist from i to j) 
-                    reach[i][j] =
-                            (reach[i][j] != 0) ||
-                                    ((reach[i][k] != 0) && (reach[k][j] != 0)) ? 1 : 0;
-                }
-            }
-        }
-        // STEP4: Return the output
-        return reach; // return transitive closure
-    }
-}
-
-```
-
-**PROBLEM 2: Find Connected Components/Islands in Maze (Special Graph/Special representation)**
+**PROBLEM 1: Find Connected Components/Islands in Maze (Special Graph/Special representation)**
 
 ```java
 class GFG {
@@ -554,63 +517,6 @@ class GFG {
             }
         }
         return numberOfIslands; // This equals number of FULL DFS/BFS calls from any unvisited node(s)
-    }
-}
-
-```
-
-**PROBLEM 3: Detect Cycle in directed graph**
-
-```java
-class GFG {
-    /**
-     * Check cycles originating from ALL nodes DFS way
-     * @return
-     */
-    boolean isCyclic() {
-        // STEP 1 >>> Intialize Boolean OBJECT array for visited node tracking
-        Boolean visited[] = new Boolean[V]; // Pass by reference
-        for (int i = 0; i < V; i++)
-            visited[i] = false;
-
-        // STEP 2 >>> Call the recursive helper function to detect cycle in different DFS trees
-        for (int u = 0; u < V; u++) {
-            // STEP 3 >>> Don't recur for u if already visited
-            if (!visited[u])
-                if (BFS_isCyclicUtil(u, visited, -1))
-                    return true; // STEP 4 >>> Return true if we find cycle in this subtree 
-        }
-        return false; // STEP 5: Return false if we DID NOT find ANY cycle from ANY node
-    }
-
-    //==================================================================================
-
-    /**
-     * Detect cycle from each of the start node recursively
-     */
-    boolean BFS_isCyclicUtil(int u, Boolean visited[],
-                             int parent) {
-        // Mark the current node as visited
-        visited[u] = true;
-        Integer i;
-        // Recur for all the vertices adjacent to this vertex
-        Iterator<Integer> it = adj[u].iterator();
-        while (it.hasNext()) {
-            i = it.next();
-            // NON VISITED ADJ --> Recur 
-            if (!visited[i]) {
-                if (BFS_isCyclicUtil(i, visited, u))
-                    return true;
-            }
-            // VISITED ADJ -->  
-            else {
-                // If an adjacent is visited and not parent of current vertex, 
-                // then there is a cycle.
-                if (i != parent)
-                    return true;
-            }
-        }
-        return false;
     }
 }
 
@@ -650,7 +556,7 @@ class GFG {
         Stack stack = new Stack(); // java.utils.colections
 
         // STEP2: Push the element in PECULIER order (LIFO-DFS) to stack
-        List<Integer> dagRoots = getDAGRoots(V, adj)
+        List<Integer> dagRoots = getDAGRoots(V, adj);
 
         // STEP 3: Check Eligibility
         if (dagRoots.size() == 0) {
@@ -681,7 +587,7 @@ class GFG {
     //================================= Find DAGRoots
     private List<Integer> getDAGRoots(int V, List<Integer>[] adjadj) {
         // Define empty array for tracking indegrees of all vertices
-        int indegree[ V] =new int[V];
+        int[] indegree = new int[V];
         Arrays.fill(indegree, 0);
 
         // Populate Indegree
@@ -704,62 +610,15 @@ class GFG {
 
 #### [Category]  Flows and Fills
 
-TODO
+Refer Algo.monster
 
 #### [Category] Spanning Trees, Connect Multiple, Shortest paths
 
-**PROBLEM: Shortest path in unweighted graph (BFS way is simple)**
-
-Since its unweighted graph, each edge carries same weight. Hence shortest path == LEVEL from source to target.
-You can imagine shortest path of ROOT to its LEAF as NUM_LEVELS.. Thats similar to graph except extra visited node
-tracking.
-
-```Note: Weighted graph shortest path problem CAN NOT be solved using BFS , you need to ise Dijkra algo.```
-
-```java
-class BFSShortestPathUnweighted {
-    int getShortestPathUnweightedGraph_BFS(List<List<Integer>> graph, int source, int target) {
-        //----1. Add source
-        queue.add(source);
-        visited.add(source);
-        int level = 0;
-        //----2. Start BFS
-        while (queue.isEmpty() == false) {
-            //---- 3. (MILD VARIATION) Process all N elements at level Pick elements at level l in reverse order 
-            int N = queue.size();
-            // CURR LEVEL: Guarantees Level-By-Level processing (single level==1 length path)
-            for (int j = 0; j < N; j++) {
-                int curLevelNode = queue.remove(); // Important LIFO-- Process from last to last-N ( DONT USE remove())
-                //---- 4. Found Target
-                if (currLevelNode == target) {
-                    return level;
-                }
-
-                //---- 5. BFS enqueue next level().
-                // Append adjacencies for next level processing
-                for (int nextLevel : getNeighbors(currLevelNode)) {
-                    if (visited.contains(nextLevelNode) == false) {
-                        visited.add(nextLevelNode);
-                        queue.add(nextLevelNode);
-                    }
-                }
-            }
-            //----6. Increment level and process batch of next N2 elements for level L2
-            level++;
-        }
-        //----7. Return result(level == distance...Inf == MAX_VALUE)
-        if (level == 0) {
-            return Integer.MAX_VALUE; //No path/Infinite path
-        } else {
-            return level;
-        }
-    }
-}
-
-```
+Refer Algo.monster
 
 #### [Category]  Coloring
 
+Refer Solved Problems.
 **- Find Minimum Colors (Chromatic Number)**
 
 - This is SIMPLE problem
@@ -866,6 +725,37 @@ class GFG {
         ___BACKTRACK_PARAM(param1); // BACKTRACK Stage level param
     }
 }
+```
+
+Template for Maze coodinates :
+```This can be extended to 8 direction choices, even for Knight moves```
+
+```java
+class MazeProblem {
+    ///////////////////////////////////////////////////////////////////
+    // 4 Direction offsets
+    static final int ROW_OFFSETS = new int[]{0, 1, 0, -1};
+    static final int COL_OFFSETS = new int[]{1, 0, -1, 0};
+
+    // 8 Direction offsets (last 4 offset additions)
+    static final int ROW_OFFSETS_EIGHT_CHOICES = new int[]{0, 1, 0, -1, -1, -1, 1, 1};
+    static final int COL_OFFSETS_EIGHT_CHOICES = new int[]{1, 0, -1, 0, -1, 1, -1, 1};
+
+    ////////////////////////////////////////////////////////////////////
+    ArrayList<Coord> getValidChoices(int[][] maze, int rrr, int ccc, int r, int c) {
+        // Choices (coord) to be returned
+        ArrayList<Coord> choices = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            int x = r + ROW_OFFSET[i]; // ith Index for ROW offset
+            int y = c + COL_OFFSET[i]; // ith Index for COL offset
+            // Single validation check for position
+            if (x > -0 && x < rrr && y >= 0 && y < ccc)
+                choices.add(new Coord(x, y)); // Add to valid choice
+        }
+        return choices; // return choices
+    }
+}
+
 ```
 
 #### Known Problems (Remember list)
@@ -1061,6 +951,8 @@ e.g. ```BST_BurnTree```
 
 #### Heap (Max-Min-Median)
 
+Refer algo.monster
+
 - Array implementation is common
 - ```iLeftChild = 2*iParent + 1``` and ```iRightChild = 2*iParent*2```
 - ```iParent = floor(iChild/2)```
@@ -1068,6 +960,8 @@ e.g. ```BST_BurnTree```
 ---
 
 ## 6. Theme ==> Trie (N-ary tree as PRE-processed dictionary)
+
+Refer algo.moster for additional trie problems.
 
 ![](https://media.geeksforgeeks.org/wp-content/uploads/20220828232752/Triedatastructure1.png)
 
@@ -1108,7 +1002,7 @@ class TrieNode {
 
 ```java
 class Trie {
-    ///////////////// Insert //////////////
+    ///////////////// Insert(keep track of node visits to know the prefix count //////////////
     public void insert(String str) {
         // Start from root and add key at all levels
         if (str != null) {
@@ -1188,7 +1082,6 @@ class Trie {
 ##### USAGES
 
 - Phone **Dictionary**, **Prefix** **tree**, String **lookup**
-
 - [Common Trie Interview questions:](https://www.geeksforgeeks.org/tag/trie/)
 
 ---
@@ -1354,64 +1247,32 @@ public class LOCAL_MAX_MIN_MaxStockSale {
 ### String ---------------------------------------------------------------------------------------
 
 - String Functions to avoid confusion
-  ```java
-    String str1 = "01234";
-    str1.charAt(1) == '1' ;
-    str1.charAt(3) == '3' ;
-    StringUtils.equals(str1.substring(3, 4), "3") ; // Extract Single character at i by s.substring(i,i+1); 
-    StringUtils.equals(str1.substring(4, 5), "4") ; // Extract Single character at i by s.substring(i,i+1); 
-    StringUtils.equals(str1.substring(0, 2), "01") ; // Extract k character at i by s.substring(i,i+k+1) ==> s.substring(0,0+1+1) ==> s.substring(0,2) ==> "01"
-    StringUtils.equals(str1.substring(2, 4), "23") ; // Same as above
-    StringUtils.equals(str1.substring(0, str1.length()), str1) ; // Dont worry about index out of bound for referring s.length() index as endIndex
 
-    String str2 = "1[[22]]33"; // Input String
-    str2.indexOf('[') == 1 ; // Returns first char occurance index (use for pranthesis matching--open paranthesis)
-    str2.lastIndexOf(']') == 6; //Returns last char occurance index (use for pranthesis matching--close paranthesis)
-  ```
+```java
+  class Solution {
+    private static void stringUtils() {
+        String str1 = "01234";
+        // CHAR AT
+        str1.charAt(1) == '1';
+        str1.charAt(3) == '3';
+        // SUBSTRING
+        StringUtils.equals(str1.substring(3, 4), "3"); // Extract Single character at i by s.substring(i,i+1); 
+        StringUtils.equals(str1.substring(4, 5), "4"); // Extract Single character at i by s.substring(i,i+1); 
+        StringUtils.equals(str1.substring(0, 2), "01"); // Extract k character at i by s.substring(i,i+k+1) ==> s.substring(0,0+1+1) ==> s.substring(0,2) ==> "01"
+        StringUtils.equals(str1.substring(2, 4), "23"); // Same as above
+        StringUtils.equals(str1.substring(0, str1.length()), str1); // Dont worry about index out of bound for referring s.length() index as endIndex
+        //INDEX OF and LAST INDEX OF
+        String str2 = "1[[22]]33"; // Input String
+        str2.indexOf('[') == 1; // Returns first char occurance index (use for pranthesis matching--open paranthesis)
+        str2.lastIndexOf(']') == 6; //Returns last char occurance index (use for pranthesis matching--close paranthesis)
+    }
+}
+
+```
+
 - All primitive types including , String are pass BY VALUE. Safe to pass without worring.
 - Substring usage== > **endIndex + 1**  to include endIndex char
 - e.g. ```"aaBBBcc".substring(2, 4+1)``` to get **BBB**
-
--- **PROBLEM--Print LONGEST PALINDROME SUBSTRING CONTENTS (Not DP yet same time complexity of Quadratic)**
-
-```java
-package com.hiru.dsa.java.PRACTICE.string;
-
-public class DP_LongestPalindromeSubString_GetString {
-    public static void main(String[] args) {
-        System.out.println(longestPalindromeString("9912321456"));
-    }
-
-    static public String intermediatePalindrome(String s, int left, int right) {
-        if (left > right) return null;
-        while (left >= 0 && right < s.length()
-                && s.charAt(left) == s.charAt(right)) {
-            left--;
-            right++;
-        }
-        return s.substring(left + 1, right);
-    }
-
-    // O(n^2) -- Not Optimal yet effective appraoch with less complex code
-    public static String longestPalindromeString(String s) {
-        if (s == null) return null;
-        String longest = s.substring(0, 1);
-        for (int i = 0; i < s.length() - 1; i++) {
-            //odd cases like 121
-            String palindrome = intermediatePalindrome(s, i, i);
-            if (palindrome.length() > longest.length()) {
-                longest = palindrome;
-            }
-            //even cases like 1221
-            palindrome = intermediatePalindrome(s, i, i + 1);
-            if (palindrome.length() > longest.length()) {
-                longest = palindrome;
-            }
-        }
-        return longest;
-    }
-}
-```
 
 -- **PROBLEM--Decode String**
 
@@ -1484,81 +1345,8 @@ public class ServiceNow_DecodeString {
 }
 ```
 
-- **PROBLEM--Decode Bash Command Expansion**
-
--
-
-```java
-/**
- * Solved -- However string validity check is still pending
- * // Validations=============
- * 1. Trim
- * 2. Other characters than (char'a', 'b',......, ',', '{', '}'] ...O(N) ----FAIL
- * 2. Invalid Patterns: {{ ---- }} ---- ,, -----  ,} -----  }, ----  ,{ -----  {, -----OTHER special Chars
- * 3. Two pointer: p1={  && IndexOf({) < IndexOf(}) ==> FAIL
- */
-public class TWO_POINTER_BashCommandExpansion {
-
-    public static void main(String args[]) {
-        List<String> solution = SOLUTION("echo{1,2,3}{x,y}{P,Q,R,S}");
-        System.out.println("Solution Size(24) | " + solution.size());
-        System.out.println(solution);
-    }
-
-    static List<String> SOLUTION(String cmd) {
-        List<String> global = new ArrayList<>();
-
-
-        //#### Step1: Trim all whitespaces
-        //cmd = cmd.removeAll(' ');
-
-        int i1 = 0;
-        int i2 = 1;
-
-        //##### Step2-- Preprocess--Parse (Assume)
-        if (false /**! isValid(cmd)*/)
-            return global;
-
-
-        //#####step3-- first processing
-        String first = cmd.substring(0, cmd.indexOf('{'));
-        global.add(first);
-
-        //##### Step4-- Subset processing in loop
-        i1 = cmd.indexOf('{') + 1;
-        i2 = i1;
-        while (i2 < cmd.length()) {
-            //### Process
-            i2 = cmd.indexOf('}');
-            String setStr = cmd.substring(i1, i2);
-            List<String> local = Arrays.asList(setStr.split(","));
-            //### Update remaining string
-
-            //### Multiply with global and define new global
-            global = combine(local, global);
-
-            //### Reset (i1 and i2 to process next set)
-            cmd = cmd.substring(i2 + 1);
-            i1 = 1;
-            i2 = i1;
-        }
-        return global;
-    }
-
-    static List<String> combine(List<String> local, List<String> global) {
-        List<String> globalNew = new ArrayList<>();
-        for (String s1 : global) {
-            for (String s2 : local) {
-                globalNew.add(s1 + s2);
-            }
-        }
-        return globalNew;
-    }
-}
-
-```
-
 - **PROBLEM--Word Break (can String be broken into Dict words)**
+  More like a DP problem. If all TRUE then return TRUE.
 
 ```java
 public class Solution {
@@ -1585,47 +1373,21 @@ public class Solution {
 
 ```
 
-### Queue (Java)  ---------------------------------------------------------------------------------------
+### Stack and Queue using LinkedList(Java)  ---------------------------------------------------------------------------------------
 
-- Inbuilt Queue: ```LinkedList<Integer> queue = new LinkedList<>();```
-- Enque/ADD: ```list.add(e);```
-- Deque/POLL: ```int e = list.poll();```
-- PEEK (Gets but DONT removes): ```int e = list.peek(e);```
-
-### Stack (Java)  ---------------------------------------------------------------------------------------
-
-```java
-class Test {
-    // Pushing element on the top of the stack
-    static void stackUsage() {
-        java.util.Stack<Integer> stack; // Inbuilt stack for use
-        stack.push(10); // Push
-        int peekedElement = stack.peek(); //Peek 
-        int poppedElement = stack.pop(); // pop
-    }
-}
 ```
+[1, 2, 3, 4] |  STACK_PUSH/QUEUE_ENQUE::  add(): true | [1, 2, 3, 4, 5]
 
-### HashSet (Java) ---------------------------------------------------------------------------------------
+------------------QUEUE (Remove [FRONT|||||||REAR] Add)--------------------------
+[1, 2, 3, 4, 5] |  QUEUE_DEQUE::remove(): 1 | [2, 3, 4, 5]
+[2, 3, 4, 5] |  QUEUE_PEEK::peek(): 2 | [2, 3, 4, 5]
 
-- Use as cache for ```unsorted``` past seen element lookup
-- ```Matching pair sum problem``` for ```unsorted``` array could be solved using that in O(N) time. like below
+------------------STACK( [|||||||REAR] Add/Remove)--------------------------
+[1, 2, 3, 4, 5] |  STACK_POP::removeLast(): 5 | [1, 2, 3, 4]
+[1, 2, 3, 4] |  STACK_PEEK_TOP::peekLast(): 4 | [1, 2, 3, 4]
 
- ```java
-class Demo {
-    public static boolean findPair(List<Integer> arr, int sum) {
-        HashSet<Integer> cache = new HashSet<>(); // You dont need hashmap since you dont have any value to be stored
-        for (int i = 0; i < arr.size(); i++) {
-            if (!cache.contains(arr.get(i))) {
-                cache.add(arr.get(i));
-            }
-            if (cache.contains(sum - arr.get(i))) {
-                return true;
-            }
-        }
-        return false;
-    }
-}
+------------------Add in reverse order..Insertion sort type------------------------
+[4, 3, 2, 1] ---------- 1,2,3,4 added using addFirst()
 ```
 
 ### PRIMITIVE TYPES e.g Integer (Java Wrapper Classes) ---------------------------------------------------------------------------------------
@@ -1635,34 +1397,20 @@ class Demo {
 - **Binary String of Int**
 
 ```java
-    String binString=Integer.toBinaryString(i);
-```
-
-- **String to Int**
-
-```java
-Integer i=Integer.parseInt(strInt);
-```
-
-- **Decode** (Decodes any type of string and return Integer)
-
-```
-public static Integer decode(String nm);
-
-DecodableString:
-Signopt DecimalNumeral
-Signopt 0x HexDigits
-Signopt 0X HexDigits
-Signopt # HexDigits
-Signopt 0 OctalDigits
-
+class Solution {
+    public static void IntegerUtils() {
+        String binString = Integer.toBinaryString(i);
+        Integer i = Integer.parseInt(str);
+        Integer i = Integer.decode(str); // Decode any string bin, hex, etc.
+    }
+}
 ```
 
 --- 
 
 ## 9. Theme ==> BitMagic (solve at least 10 problems)
 
-TODO--Update this section
+refer algo.monster
 
 ---
 
@@ -1817,15 +1565,18 @@ class Solution {
         for (int onePaperReadTime : readTimesOfNewsPapers) {
             if (singleWorkerTime + onePaperReadTime > timeLimitMid) {
                 singleWorkerTime = 0; // Reset for next worker
-                actuallyUsedWorkers++;
+                actuallyUsedWorkers++; // Update utilized capacity
             }
             singleWorkerTime += onePaperReadTime;
         }
+        // Corner case
         if (singleWorkerTime >= 0)
             actuallyUsedWorkers++;
+        // Utilized capacity is less than max capacity then utilize more in BinSearch
+        return availableWorkers >= actuallyUsedWorkers; // TRUE-- job was performed with given or less number of workers..We can reduce timeLimit further as optimization
     }
-    return availableWorkers >=actuallyUsedWorkers; // TRUE-- job was performed with given or less number of workers..We can reduce timeLimit further as optimization
 }
+
 ```
 
 ### PROBLEM: Find First TRUE in sorted boolean array (Similar to above algo)
@@ -2010,7 +1761,7 @@ class FixedSizeWindow {
 **Problem: Sliding Window Find N-grams**
 
 ```java
-package com.hiru.dsa.java.PRACTICE._mixed.TwoPointers;
+package com.hiru.dsa.java.ROUGHWORK.TwoPointers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -2076,49 +1827,6 @@ public class FindAllNGramsOfWordInLargeText {
 
 
 }
-```
-
-**Problem: Variable Sliding Window to find substring without repeating chars**
-
-```java
-public class LongestSubstringWithoutRepeatingChar {
-    public static void main(String args[]) {
-        //System.out.println("3|" + getLenOfLongestSubString("abccaba"));
-        //System.out.println("1|" + getLenOfLongestSubString("aa"));
-        System.out.println("1|" + getLenOfLongestSubString("A"));
-    }
-
-    private static int getLenOfLongestSubString(String s) {
-        int max = 0;
-        HashSet<Character> window = new HashSet<>();
-        int p1 = 0;
-
-        for (int p2 = 0; p2 < s.length(); p2++) {
-            Character ch = s.charAt(p2);
-            // Contains vs Not contain
-            if (window.contains(ch)) {
-                max = Math.max(max, window.size());
-
-                // Slide Window P1 pointer and point to next index after old occurance of ch
-                for (int k = p1; k < p2; k++) {
-                    Character chOld = s.charAt(k);
-                    window.remove(chOld);
-                    if (ch == s.charAt(k)) {
-                        p1 = k + 1;
-                        break;
-                    }
-                }
-                window.add(ch); // Redundant if we remove window.remove() call
-                // ..Just added for visibility
-            } else {
-                window.add(ch);
-            }
-        }
-        max = Math.max(max, window.size());
-        return max;
-    }
-}
-
 ```
 
 ##### Prefix SUM vs Sliding Window Techniques

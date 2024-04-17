@@ -13,10 +13,10 @@ public class BINARY_SEARCH_LeetCode_ShipWeightMinCapacity {
     public static void main(String args[]) {
         int[] weights = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int days = 5;
-        System.out.println(shipWithinDays(weights, days));
+        System.out.println(getMinShipCapacity(weights, days));
     }
 
-    public static int shipWithinDays(int[] weights, int days) {
+    public static int getMinShipCapacity(int[] weights, int days) {
         int maxWeight = 0;
         int sum = 0;
         for (int i = 0; i < weights.length; i++) {

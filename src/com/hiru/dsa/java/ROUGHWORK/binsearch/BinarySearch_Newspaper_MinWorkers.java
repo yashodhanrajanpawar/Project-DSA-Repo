@@ -1,4 +1,4 @@
-package com.hiru.dsa.java.PRACTICE._mixed.binsearch;
+package com.hiru.dsa.java.ROUGHWORK.binsearch;
 
 import com.hiru.dsa.java.PRACTICE._commonUtils.MyLogger;
 

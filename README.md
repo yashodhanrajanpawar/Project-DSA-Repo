@@ -114,25 +114,25 @@
 
 ### Keyword to Algorithm Cheatsheet
 
-| **KEYWORDS**                                                                               | **PETTERNS**                                                                       | **BEST TIME COMPLEXITY** | **BEST SPACE COMPLEXITY** |
-|--------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|--------------------------|---------------------------|
-| **[Sequences]Sorted / Sorted Rotated / canSolve() Min-Max(Binary Possible Range Filters)** | Binary Search                                                                      | Log(N)                   | 1                         |                ||
-| **[Sequences]Substring / SubArray/ N-gram / Move-zerosToEnd / RemoveDuplicates**           | Two Pointers-Sliding Window , HashMap, Char[26]  , HashSet, ArrayList              | N                        | K                         |
-| **[Sequences]Two Sum sorted arr / Palindrome / Max Dict as SubSequence**                   | Two Pointers (Opposite)                                                            | N                        | 1                         |
-| **[Sequences] Min/Max SubSequence , Palindrome Partitioning**                              | DP                                                                                 | N or N^2                 | N or N^2                  
-| **[Sequences/Maze]Min/Max with overlapping subproblems**                                   | DP                                                                                 | N or N^2                 | N or N^2                  ||
-| **K-min/K-max**                                                                            | Heap (with DFS/ArrayLookup)                                                        | K*LOG(N)                 | N                         | 
-| **[String]Match Parenthesis / Regular Expressions / String Parsing**                       | Stack, Sliding Window, Two Pointer                                                 | N                        | N                         |
-| **[String]Dictionary / Word Lookup / O(K) search**                                         | TRIE, Two Pointer, Sliding Window, Backtracking, Char[26]                          | Trie: K*N                | K*N                       |
-| **[String]Decodings (Bash Expansion, SNow)**                                               | All Strings-- Backtracking, Decode pattern --2 Loops with sliding window and stack |||
-| **Max on sorted Input / Iterative Optimization**                                           | Greedy Algorithm                                                                   |||
-| **Graph, Matrix, Maze, Tree**                                                              | BFS (Explore More paths, DP)  , DFS (Paths, Backtracking)                          | (E+V) or N               | (E+V)                     |
-| **Graph-DAG--Dependency**                                                                  | Topological Sorting                                                                | E+V                      | E+V                       |
-| **[Sequence]Generate All Subsets of max len K using K chars**                              | Bitwise Generator ((2^K+1)-1) elements), Backtracking                              |||
-| **Regions / Groups / Connectivity**                                                        | Union Find, Transitive relationship,                                               |||
-| **[Maze] Chess, SnL game, Sudoku                                                           | Iterative all Cells verify, Backtracking(All possible combinations/valid ans)      | N^2 or K^N               | K                         |
-| **Range Search**                                                                           | Interval Tree, Prefix array(range sum)                                             | Log(N) or 1              | N or K                    |
-| **[Arrays] Local Minima, Maxima, Stock sale/buys**                                         | LocalMinima Maxima Sliding Window, 2 Pointers                                      | N                        | 1                         |
+| **KEYWORDS**                                                                               | **PETTERNS**                                                                                                                                                                    | **BEST TIME COMPLEXITY** | **BEST SPACE COMPLEXITY** |
+|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|---------------------------|
+| **[Sequences]Sorted / Sorted Rotated / canSolve() Min-Max(Binary Possible Range Filters)** | Binary Search                                                                                                                                                                   | Log(N)                   | 1                         |                ||
+| **[Sequences]Substring / SubArray/ N-gram / Move-zerosToEnd / RemoveDuplicates**           | Two Pointers-Sliding Window , HashMap, Char[26]  , HashSet, ArrayList                                                                                                           | N                        | K                         |
+| **[Sequences]Two Sum sorted arr / Palindrome / Max Dict as SubSequence**                   | Two Pointers (Opposite)                                                                                                                                                         | N                        | 1                         |
+| **[Sequences] Min/Max SubSequence , Palindrome Partitioning**                              | DP                                                                                                                                                                              | N or N^2                 | N or N^2                  
+| **[Sequences/Maze]Min/Max with overlapping subproblems**                                   | DP                                                                                                                                                                              | N or N^2                 | N or N^2                  ||
+| **K-min/K-max**                                                                            | Heap (with DFS/ArrayLookup)                                                                                                                                                     | K*LOG(N)                 | N                         | 
+| **[String]Match Parenthesis / Regular Expressions / String Parsing**                       | Stack, Sliding Window, Two Pointer                                                                                                                                              | N                        | N                         |
+| **[String]Dictionary / Word Lookup / O(K) search**                                         | TRIE, Two Pointer, Sliding Window, Backtracking, Char[26]                                                                                                                       | Trie: K*N                | K*N                       |
+| **[String]Decodings (Bash Expansion, SNow)**                                               | All Strings-- Backtracking, Decode pattern --2 Loops with sliding window and stack                                                                                              |||
+| **Max on sorted Input / Iterative Optimization**                                           | Greedy Algorithm                                                                                                                                                                |||
+| **Graph, Matrix, Maze, Tree**                                                              | BFS (Explore More paths, DP)  , DFS (Paths, Backtracking)                                                                                                                       | (E+V) or N               | (E+V)                     |
+| **Graph-DAG--Dependency** , Order of tasks, Uniqueness of order of tasks (Assume DAG)      | Topological Sorting    (Use DFS way--> **generate** **graph**, **generate** **indegrees**, **run** **topo(init and Util)**, if>0 DAG root **then not unique**, match with order | E+V                      | E+V                       |
+| **[Sequence]Generate All Subsets of max len K using K chars**                              | Bitwise Generator ((2^K+1)-1) elements), Backtracking                                                                                                                           |||
+| **Regions / Groups / Connectivity**                                                        | Union Find, Transitive relationship,                                                                                                                                            |||
+| **[Maze] Chess, SnL game, Sudoku                                                           | Iterative all Cells verify, Backtracking(All possible combinations/valid ans)                                                                                                   | N^2 or K^N               | K                         |
+| **Range Search**                                                                           | Interval Tree, Prefix array(range sum)                                                                                                                                          | Log(N) or 1              | N or K                    |
+| **[Arrays] Local Minima, Maxima, Stock sale/buys**                                         | LocalMinima Maxima Sliding Window, 2 Pointers                                                                                                                                   | N                        | 1                         |
 
 ---
 
@@ -401,15 +401,119 @@ public class LPS {
 ## 3. Theme ==> Graphs
 
 - **Graph DFS and BFS is same as tree with the only difference of NEED of VISITED NODES tracking**
-- DFS is better at: finding nodes far away from the root
-- BFS is better for: finding nodes close/closest to the root
+- **====BFS / DFS =====**
+    - **BFS** is better at:
+        - finding the **shortest distance** between two vertices
+        - graph of **unknown size**, e.g. word ladder, or even infinite size, e.g. knight shortest path
+
+    - **DFS** is better at:
+        - Uses less memory than BFS for **wide graphs** (that is, graphs with **large breadth** factors), since BFS has
+          to
+          keep all the nodes in the queue, and for wide graphs, this can be quite large.
+        - **finding** nodes **far away from the root**, **e.g**., looking for an **exit in a maze**.
 
 #### [Category]  BFS
+
+**## Unconventional BFS problems (Implicit Graphs) ##**
+
+- ```In each of these problems, you are given input with multiple FIXED size STRINGS. There is relation among them in terms of DIFF char(s) .. THATS the graph relationship```
+-
+    - Node is string.
+- ```Number of neighbors: Next digit for each of the position e.g. 1234 --> [2234, 1334, 1244, 1235]```
+
+**## Word ladder puzzle ##**
+
+```java
+class WordLadder {
+    public static final char[] ALPHABETS = new char[26];
+
+    static {
+        // ascii representation of english alphabets a - z are numbers 97 - 122
+        for (int i = 0; i < 26; i++) {
+            ALPHABETS[i] = (char) (i + 'a');
+        }
+    }
+
+    //=================  ONE EDIT distance neighbors
+    public static List<String> getNeighbors(String word) {
+        List<String> unvisitedNeighbors = new ArrayList<>(); // Adjacency
+        // PATTERN: ALL string char positions
+        for (int j = 0; j < word.length(); j++) {
+            // PATTERN: All possible chars to be replaced and generate the new word
+            for (char c : ALPHABETS) {
+                StringBuilder wordBuilder = new StringBuilder(word.length());
+                wordBuilder.append(word.substring(0, j));
+                wordBuilder.append(c);
+                wordBuilder.append(word.substring(j + 1));
+                String nextWord = wordBuilder.toString();
+                // PATTERN: Check if NEW word(aka Neighbor) contains in DICT before considering it as neighbors
+                if (unvisitedWords.contains(nextWord)) {
+                    unvisitedNeighbors.add(nextWord);
+                    unvisitedWords.remove(nextWord);
+                }
+            }
+        }
+        // Return Neighbors
+        return unvisitedNeighbors;
+    }
+}
+```
+
+**## Lock/Unlock with 4 wheel patterns ##**
+
+```java
+class CombinationLockFourWheels {
+    // Preprocessing to have simpler code
+    public static Map<Character, Character> nextDigit = Map.of(
+            '0', '1',
+            '1', '2',
+            '2', '3',
+            '3', '4',
+            '4', '5',
+            '5', '6',
+            '6', '7',
+            '7', '8',
+            '8', '9',
+            '9', '0'
+    );
+
+    //=================  ONE EDIT distance neighbors
+    // Single move of any wheel means single attemp hence 
+    // neighboars in graph are away from ONE move (any wheel0
+    public static List<String> getNeighbors(String combo) {
+        List<String> neighbors = new ArrayList<>(); // Adjacency
+        // PATTERN: Attempt rotating EACH of the 4 whees lead to 4 next combinations
+        for (int j = 0; j < 4; j++) {
+            String newCombo = top.substring(0, i)
+                    .concat(String.valueOf(nextDigit.get(top.charAt(i)))) // position being replaced
+                    .concat(top.substring(i + 1));
+            neighbors.add(newCombo);
+        }
+        // Return Neighbors
+        return neighbors;
+    }
+}
+
+```
+
+## 2D Sliding Block Puzzle [[5,2,4],[1,3,0]] ##
+
+- Tips: Serialize and deserialize method and use serialized version for BFS
+    - SERIALIZE ==>  int[][] [[5,2,4],[1,3,0]] ==> Integer 524130
+    - DESERIALIZE ==>  Integer 524130 ==> int[][] [[5,2,4],[1,3,0]]
+- Use deserialized version for neighbor checking and constraints validations
+
+**BFS Templates**
 
 ```java
 import java.util.*;
 
 class Graph {
+    // Simplest Implementation ever
+    List<List<Integer>> graph;
+    // Get adj for Node i ===> graph.get(i)
+    // Count nodes===> graph.size()
+    // Count neighbors of node i  ===> graph.get(i).size();
 
     //--------------Plain BFS ------------------------------------------------------------------------------------------
     public void bfs(Node root) {
@@ -543,6 +647,86 @@ class GFG {
 - Example (DAG forest):
 - **Topological** Sorting of **Trees** (More restrictive DAG with **0 (root) or 1(other) indegree**) is **PRE-ORDER**
   traversal
+- **UNIQUENESS**
+  ```If a topological sort has the property that all pairs of consecutive vertices in the sorted order are connected by edges, then these edges form a directed Hamiltonian path in the DAG. If a Hamiltonian path exists, the topological sort order is unique; no other order respects the edges of the path. Conversely, if a topological sort does not form a Hamiltonian path, the DAG will have two or more valid topological orderings, for in this case it is always possible to form a second valid ordering by swapping two consecutive vertices that are not connected by an edge to each other. Therefore, it is possible to test in linear time whether a unique ordering exists, and whether a Hamiltonian path exists, despite the NP-hardness of the Hamiltonian path problem for more general directed graphs (i.e., cyclic directed graphs)```
+
+**PROBLEM 0: Task Scheduling**
+
+```java
+import java.util.LinkedList;
+import java.util.Stack;
+
+/**
+ * For this problem, given a list of tasks and a list of requirements, compute a sequence of tasks that can be performed, such that we complete every task once while satisfying all the requirements.
+ Each requirement will be in the form of a list [a, b], where task a needs to be completed first before task b can be completed,
+ There is guaranteed to be a solution.
+
+ tasks = ["a", "b", "c", "d"]
+ requirements = [["a", "b"], ["c", "b"], ["b", "d"]]
+ Output: ["a", "c", "b", "d"]
+
+ */
+class TaskScheduling {
+
+    //Part1=================Generate Graph ========================================
+    List<List<Integer>> generateGraph(int[] tasks, HashMap<String, String> requirements) {
+        // Generate Node list (all nodes)
+        HashMap<String, ArrayList<String>> graph = new HashMap<String, ArrayList<String>>();
+        // We have Empty adj lists for all nodes 
+        for (int i : tasks) {
+            graph.put(i, new ArrayList<>());
+        }
+        // Populate Adjacencies (using requirements map)
+        for (Integer req : requirements.keySet()) {
+            graph.get(req).add(requirements.get(req)); // Append Adjacencies
+        }
+    }
+
+    //Part2=================Get DAG roots (Assume acyclic) ========================================
+    HashSet<String, Integer> getDagRoots(HashMap<String, ArrayList<String>> graph) {
+        // Initialize 
+        HashSet<String, Integer> indegree = new HashSet<String, Integer>(); // Implicit ordering with node
+        Arrays.fill(indegree, 0);
+        graph.keySet().forEach(node -> {
+            inDegree.put(node, 0);
+        });
+
+        // Update indegrees
+        graph.entrySet().forEach(entry -> {
+            // Adjacencies iterate
+            for (T neighbor : entry.getValue()) {
+                inDegree.put(neighbor, inDegree.get(neighbor) + 1);
+            }
+        });
+        return inDegree;
+    }
+
+    //Part3=================Implement topological sorting (USING DFS..Init method and UTil method technique=====
+    // A->B means..... B <DEPENDS> on A ...( not either way round)
+    public void depthFirstSearch_TOPOSORT(HashMap<String, ArrayList<String>> graph,
+                                          HashSet<String, Integer> indegree,
+                                          ) {
+        HashSet<String> visited = new HashSet<>();
+        LinkedList<String> stack = new LinkedList<>();
+        // ----- Init with indegree 0 nodes and 
+        //depthFirstSearch_TOPOSORT_UTIL(node1);
+        //depthFirstSearch_TOPOSORT_UTIL(node2);
+
+        // Print from top to bottom
+
+    }
+
+    //Part3=================Implement topological sorting DFS UTIL for current Node
+    private void depthFirstSearch_TOPOSORT_UTIL(HashMap<String, ArrayList<String>> graph,
+                                                HashSet<String> visited,
+                                                LinkedList<String> stack,
+                                                String node) {
+
+    }
+
+}
+
+```
 
 **PROBLEM 1: Implement Topological Sort:**
 
@@ -576,7 +760,7 @@ class GFG {
         // STEP1: Visit element (u's initial value is DAG root vertex)
         visited[u] = true;
 
-        // STEP2: DFS adj nodes (
+        // STEP2: DFS adj nodes
         for (int v = 0; v < adj.size(); v++) {
             DFS_topologicalSort_UTIL(V, adj, visited, stack, v);
         }

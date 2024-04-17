@@ -636,6 +636,7 @@ class GFG {
 
 ![](https://media.geeksforgeeks.org/wp-content/uploads/20230914164620/Topological-sorting.png)
 
+- **OLD --> NEW**  indicates  **NEW Depend on OLD**.. Arrow indicates the FUTURE direction
 - USECASES: Extremely important for **compiler, dependency and job sequencing**
 - CONDITIONS ==>
     - Supported Data Structures:  **Directed Acyclic Graph**(including all **Trees** and **DAG forest**)
@@ -649,6 +650,53 @@ class GFG {
   traversal
 - **UNIQUENESS**
   ```If a topological sort has the property that all pairs of consecutive vertices in the sorted order are connected by edges, then these edges form a directed Hamiltonian path in the DAG. If a Hamiltonian path exists, the topological sort order is unique; no other order respects the edges of the path. Conversely, if a topological sort does not form a Hamiltonian path, the DAG will have two or more valid topological orderings, for in this case it is always possible to form a second valid ordering by swapping two consecutive vertices that are not connected by an edge to each other. Therefore, it is possible to test in linear time whether a unique ordering exists, and whether a Hamiltonian path exists, despite the NP-hardness of the Hamiltonian path problem for more general directed graphs (i.e., cyclic directed graphs)```
+- NEW BFS implementation:
+
+```java
+class BFSTopoSortWithUniqueCheck {
+    //======================================================
+    List<Integer> topologicalSort(List<List<Integer>> graph) {
+        // GET INDEGREES
+        LinkedList<Integer> queue = new LinkedList<>();
+        int[] indegrees = getIndegrees(graph); // assume
+
+        // Initialize
+        for (int indegree : Indegrees) {
+            PUSH(indegree_0);
+        }
+
+        // Start the BFS
+        boolean uniqueOnly = true; // Determine if THERE is ONLY ONE topological sort for given problem (Extra info)
+        List<Integer> result = new ArrayList<>(); // Topological Sort output
+
+        // BFS
+        while (q.isEmpty() == false) {
+            // At any Stage, queue containing MORE THAN ONE elements indicate that THERE are MORE THAN ONE topological sorts
+            if (q.size() > 1) { // if there's > 1 node in the queue, the reconstruction is not unique
+                uniqueOnly = false;
+            }
+
+            // Get Node
+            int node = queue.remove();
+
+            // Add ONLY ZERO indegree node to result
+            result.add(node);
+
+            //2. Explore adjacencies and reduce their indegree counts by 1
+            List<Integer> neighboars = graph.get(node);
+
+            for (Integer nn : neighboars) {
+                indegree[nn]--; // Reduce indegree upon each INCIDENT edge to this nn node
+                if (indegree[nn] == 0)
+                    q.add(nn); // Add to queue only if indegree become ZERO
+            }
+        }
+
+        // return result(aka Topo Sort ordering) ONLY if graph and result size matches 
+        graph.size() == result.size() ? res : null;
+    }
+}
+```
 
 **PROBLEM 0: Task Scheduling**
 

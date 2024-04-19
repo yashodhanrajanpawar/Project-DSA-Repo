@@ -1066,21 +1066,217 @@ Graph:
 
 ## 5. Theme ==> Trees (Data Structure)
 
+**=====Types (Binary Tree)======**
+
+- **Binary Tree(Non-BST)**
+    - **Full** :  Binary tree with 0/2 children
+    - **Complete**: Full tree, All levels FILLED fully except last level (e.g. Heap)
+    - **Balanced**:Height diff for all nodes is <=1
+    - **Perfect**: Complete Tree with 2 ^(H+1) Nodes. No LHS and RHS height diff.
+
+- ```BST tree has same types with additional condition lChild < curr < rChild```
+
 #### Mode of Communication:
 
 1. Return value from the child
 2. Passed value from parent and older ancestors
 3. IN/OUT parameter to keep track of node's path and state
 
-#### Traversal (Choose it wisely):
+#### Traversal( Pre-Order / DFS):
 
-1. **PreOrder (Backtracking DNA)** (mostly for path+backtracking problems): If you want to do Something "FIRST" before
-   trying out left and
-   right
-   subtree
-2. Inorder: For sorting and L--R traversal
-3. Reverse Inorder -- For K largest Element
-4. PostOrder: If you want to explore LEFT and RIGHT and take decision for ROOT
+**Template**
+
+```
+Think like a node ========> Drawing the tree and interateraction FLOW itself gives idea.. e.g. Burn Tree
+1) Process base
+2) At ROOT
+3) At LEFT...Recurse
+4) At RIGHT... Recurse
+5) Do something on FWD path ( check target, update target, check return value, update return value)
+6) Do something on RETURN path ( check target, update target, check return value, update return value)
+7) Do something SPECIAL for MATCH
+8) FWD/RET on SPECIAL condition
+9) RETURN Choices ==> eg. Math.MAX(ROOT.data, ROOT->LEFT->data, ROOT->RIGHT->data)
+```
+
+**Example: Visibile node in Binary tree**
+
+```java
+/**
+ * PROBLEM ==>
+ * In a binary tree, a node is labeled as "visible" if, on the path from the root to that node, 
+ * there isn't any node with a value higher than this node's value.
+ *
+ * POINTS TO PONDER ==>
+ * Following solution uses multiple value updates (height and imbalancednodes)
+ * it also uses return value decision based on children values
+ * It also adds some information to callers e.g. height+1
+ */
+class BinaryTreeProblems {
+    //==========================================================================================
+    //======================================= ISBalanced ? =====================================
+    //==========================================================================================
+    public static boolean isBalanced(Node<Integer> tree) {
+        //Ignore return value(height of tree) ..we aer interested in IN/OUT param isBalanced which
+        // gets updated deep inside
+        List<Integer> imbalanceNodes = new ArrayList<>();
+        isBalancedUTIL(tree, 0, imbalanceNodes);
+        //DEBUG
+        // System.out.println(imbalanceNodes);
+        return imbalanceNodes.isEmpty();
+    }
+
+    /**
+     Balanced tree HAS ALL node balanced.....Its not balanced if EVEN any SINGLE node is IMBALANCED 
+     Increment height for each VALID node
+     Return the subtree heing using MAX(leftH, rightH)
+     Update IN/OUT param boolean isBalanced UPON finding AT LEAST ONE imbalanced node
+     */
+    private static int isBalancedUTIL(Node<Integer> root, int height, List<Integer> imbalanceNodes) {
+        if (root == null)
+            return height - 1;
+
+        if (root.left == null && root.right == null)
+            return height;
+
+        // Preorder (recurse children)== Get left and right height 
+        int leftHeight = isBalancedUTIL(root.left, 1 + height, imbalanceNodes);
+        int rightHeight = isBalancedUTIL(root.right, 1 + height, imbalanceNodes);
+
+        // ***** Part1--Update current node height for returning to parent
+        height = Math.max(leftHeight, rightHeight);
+
+        // ***** Part2--Detect IMBALANCED node and add to the collection
+        if (Math.abs(leftHeight - rightHeight) > 1)
+            imbalanceNodes.add(root.val); // Additional information(keep track of ALL imbalanced nodes)
+
+        return height; //Part1: Extension-Just return height for isBalacned calculation within parent/callers
+        // This value is NOT going to be used in MAIN function. Its just needed for internal calls
+    }
+
+    //================================================================================================
+    //======================================= FIND VISIBLE NODES =====================================
+    //================================================================================================
+    // Max is call by value so is being used in EACH DFS call-frame to check if current
+    // frame node/root is greater than HERD leader/max
+    public static int visibleTreeNode(Node<Integer> root, int max) {
+        // FWD/RET path (base)============================================   
+        if (root == null)
+            return 0;
+
+        // FWD path(preorder)=======================================================      
+        int totalVisible = 0;
+        // Redefine max(Unordered fwd path node's HERD leader)  and update count      
+        if (root.val >= max)
+            totalVisible++;
+        max = Math.max(root.val, max); // Udpate HERD leader before going Down
+        // Update count in ret path (LEFT subtree)
+        totalVisible += visibleTreeNode(root.left, max);
+        // Update count in ret path (RIGHT subtree)
+        totalVisible += visibleTreeNode(root.right, max);
+
+        // RET path(Output Processing)========================================================
+        return totalVisible; // Return total count to parent by AGGREGATING curr and children values
+    }
+}
+```
+
+#### Traversal(BFS):
+
+```java
+
+class TreeBFS {
+    static class Node {
+        int data;
+        Node left;
+        Node right;
+    }
+
+    //========================================================================
+    void zigZagBFS(Node root) {
+        int level = 0;
+        // Initial State
+        LinkedList<Integer> queue = new LinkedList();
+        queue.add(root.data);
+
+        //BFS 
+        while (queue.isEmpty() == false) {
+            System.out.println("### Level: " + level);
+            // Level LOOP start
+            for (int i = 0; i < queue.size(); i++) {
+                // --- Deque flip logic (zig-zag)
+                if (level % 2 == 1)
+                    Node curr = queue.remove(); //Zig zag--- deque last level queued nodes in FIFO manner
+                else
+                    Node curr = queue.removeLast();//Zig zag--- deque last level queued nodes in LIFO manner
+                // --- Visit/Print/process node
+                System.out.println(curr.data);
+                // --- Add Known(L-R) neighbours 
+                if (curr.left != null)
+                    queue.add(curr.left);
+                if (curr.right != null)
+                    queue.add(curr.right);
+            }
+            // Level LOOP end
+            level++; //Increment Level
+        }
+    }
+}
+```
+
+### Serialize and Deserialize using Preorder + List<String>
+
+```java
+class TreeSerializer {
+
+    /**
+     * ===========================================================
+     * [PRE-ORDER] Serialize as List of String with "-" 
+     * String representation  for NULL children
+     * ===========================================================
+     */
+    static void serialize(MyNode root, List<String> encoded) {
+        // ---BASE: null/Leaf node
+        if (root == null) {
+            encoded.add("-");
+            return;
+        }
+        // ---PREORDER: null/Leaf node
+        encoded.add(root.data + ""); // Add root
+        serialize(root.left, encoded); // Recurse left**
+        serialize(root.right, encoded); // Recurse right**
+
+    }
+
+    /**
+     * ===========================================================
+     * [PRE-ORDER] Deserialize Above tree from List of String to bst 
+     * and return root
+     * ===========================================================
+     */
+    public static MyNode deserialize(Iterator<String> iter) {
+        // Dont do anything special for iter, just pass it to preorder flow.
+
+        // ---BASE1: null/Leaf node
+        if (iter.hasNext() == false) {
+            return null;
+        } else {
+            //---BASE2: null / Leaf node
+            String dataStr = iter.next();
+            if (dataStr == "-") {
+                return null;
+            }
+            //---PREORDER: null/Leaf node
+            else {
+                MyNode root = new MyNode(Integer.parseInt(dataStr)); // Prepare root
+                root.left = deserialize(iter); // Set left (recurse and set)
+                root.right = deserialize(iter); //Set right (recurse and set)
+                return root; //Return ready root
+            }
+        }
+    }
+}
+```
 
 #### Useful DataStructures:
 

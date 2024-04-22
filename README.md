@@ -3,7 +3,7 @@
 # Table Of Contents
 
 - [Coding Interview ](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#1-coding-interview)
-- [Coding Problems Generic Patterns Summary](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#coding-problem-generic-patterns)
+- [Coding Problems Patterns](https://github.com/yash-hiru/Project-DSA-Repo/blob/main/README.md#coding-problem-patterns)
 - [THEME 1 ==> Dynamic Programming- 0/1 Knapsack](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#1-theme--dynamic-programming-0-1-knapsack)
 - [THEME 2 ==> Dynamic-programming Subsequence/Palindrome/Editdist/Jumps](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#2-theme--dynamic-programmingsubsequence-palindrome-editdist-jumps)
 - [THEME 3 ==> Graphs](https://github.com/yash-hiru/Project-DSA-Repo?tab=readme-ov-file#3-theme--graphs)

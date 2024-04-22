@@ -103,9 +103,149 @@ class Solution {
 }
 ```
 
- 
+--------------------------------------------------------------------------------------------------------------
 
+## 3/5 Technical Design(FS/DistributedFS) and DSA Round-DP (60 mins)
 
+//================================ Requirements
 
+1. Design file System
+2. Hierarchical structure
+3. Directories within dir
+4. Thousands of files as single Dir entries (INodes)
 
+Constraints =====
 
+1. Unique names within the same dir
+
+Assumptions =====
+
+1. Single Node Design ? == Single Node (Start)
+2. Contents of file could be just text ?
+
+Required Functionality/Fuctional Requirements ====
+
+1. mkdir(), createFile(), readFile(), writeFile() ls() isDir() getArrtributes() sort()
+2. Support 1000+ files
+
+//===================================================================================
+
+//=====FILE/DIR stuct ======
+
+class INode {
+String name;
+String parentDir;
+HashMap<String, String> attributes; // Directory Attributes/File Attributes
+boolean isDir;
+String contents; // If Dir == This will be null for DIR
+TreeMap<String, INode> children; // This will be null for FILE
+
+}
+
+// =====Path (
+/dir1/dir22/file1 //**** Path ls
+/dir2/dir33/file1
+/ff
+ROOT ==> [dir1, dir2, ff] dir1 (TRUE)
+DIR1 ==>
+DIR1-INORE (FNAME--Dir22) ==> TRUE
+DIR1-INORE (FNAME--Dir22) ==> TRUE
+
+```java
+class FileSystem {
+    INode root;
+}
+
+    //------------------------------------
+    List<String> ls(String path) {
+// Split path by '/'
+        String[] parts = path.split('/');
+        INode node = root;
+
+        int size = parts.size();
+        int i = 0;
+        for (String part : parts) {
+            // Non Lead node
+            if (i++ < size) {
+                if (node.containsKey(part)) {
+                    if (node.isDir()) {
+                        node = node.children.get(part);
+                    }
+                } else {
+                    return null;
+                }
+                size++;
+            }
+
+        }
+        // We have last part to be processed
+        // Second last Node in hierarchy
+        if (node.children.contains(parts[size - 1])) {
+            node = node.children.get(part);
+            if (node.isDir) {
+                return getList(node.children.keySet()); // Sorted list of all the children 
+            } else {
+                return new SingletonList(path); //File 
+            }
+        }
+    }
+```
+
+//====================================================================
+NODE1 ==
+NODE2 ==
+NODE3 ==
+
+//=============================================================================================================
+// Coding Solution
+//=============================================================================================================
+
+```java
+public class Test {
+
+    public static void main(String args[]) {
+        int[] arr = new int[]{1, 4, 2, 3}; //Expected 7
+        int size = arr.length;
+
+        //Choose max out of 2
+        int MAX_SUM = 10;
+        int[][] memo = new int[size + 1][MAX_SUM + 1];
+        for (int kk = 0; kk < memo.length; kk++) {
+            Arrays.fill(memo[kk], -1);
+        }
+
+        System.out.println(maxSum(arr, size, 0, 0, memo));
+        System.out.println(maxSum(arr, size, 1, 0, memo));
+
+    }
+
+    // Memoize to reduce time compelxity from exponenstil to O(n2)
+    // Space compelity O(N2)
+    static int maxSum(int[] arr, int size, int i, int sum, int[][] memo) {
+        // Base cases (Exit/UnhappY)
+        if (i >= size) {
+            return 0;
+        }
+
+        // Base case (happy)
+        if (i == size - 1) {
+            return arr[i];
+        }
+
+        // MEMOIZE: read memo[i][sum]
+        if (memo[i][sum] != -1)
+            return memo[i][sum];
+
+        sum += arr[i]; // Consider ith element and update the sum for current choice/call
+
+        // Explore valid choices for next elements
+        int max = Integer.MIN_VALUE;
+        for (int k = i + 2; k < size; k++) {
+            memo[k][sum] = maxSum(arr, size, k, sum, memo);
+            max = Math.max(max, memo[k][sum]); //Recuse (memoize WRITE memo[i][sum])
+        }
+        //REVISIT here
+        return Math.max(sum, max + sum);
+    }
+}
+```

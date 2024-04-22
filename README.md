@@ -414,95 +414,6 @@ public class LPS {
 
 #### [Category]  BFS
 
-**## Unconventional BFS problems (Implicit Graphs) ##**
-
-- ```In each of these problems, you are given input with multiple FIXED size STRINGS. There is relation among them in terms of DIFF char(s) .. THATS the graph relationship```
--
-    - Node is string.
-- ```Number of neighbors: Next digit for each of the position e.g. 1234 --> [2234, 1334, 1244, 1235]```
-
-**## Word ladder puzzle ##**
-
-```java
-class WordLadder {
-    public static final char[] ALPHABETS = new char[26];
-
-    static {
-        // ascii representation of english alphabets a - z are numbers 97 - 122
-        for (int i = 0; i < 26; i++) {
-            ALPHABETS[i] = (char) (i + 'a');
-        }
-    }
-
-    //=================  ONE EDIT distance neighbors
-    public static List<String> getNeighbors(String word) {
-        List<String> unvisitedNeighbors = new ArrayList<>(); // Adjacency
-        // PATTERN: ALL string char positions
-        for (int j = 0; j < word.length(); j++) {
-            // PATTERN: All possible chars to be replaced and generate the new word
-            for (char c : ALPHABETS) {
-                StringBuilder wordBuilder = new StringBuilder(word.length());
-                wordBuilder.append(word.substring(0, j));
-                wordBuilder.append(c);
-                wordBuilder.append(word.substring(j + 1));
-                String nextWord = wordBuilder.toString();
-                // PATTERN: Check if NEW word(aka Neighbor) contains in DICT before considering it as neighbors
-                if (unvisitedWords.contains(nextWord)) {
-                    unvisitedNeighbors.add(nextWord);
-                    unvisitedWords.remove(nextWord);
-                }
-            }
-        }
-        // Return Neighbors
-        return unvisitedNeighbors;
-    }
-}
-```
-
-**## Lock/Unlock with 4 wheel patterns ##**
-
-```java
-class CombinationLockFourWheels {
-    // Preprocessing to have simpler code
-    public static Map<Character, Character> nextDigit = Map.of(
-            '0', '1',
-            '1', '2',
-            '2', '3',
-            '3', '4',
-            '4', '5',
-            '5', '6',
-            '6', '7',
-            '7', '8',
-            '8', '9',
-            '9', '0'
-    );
-
-    //=================  ONE EDIT distance neighbors
-    // Single move of any wheel means single attemp hence 
-    // neighboars in graph are away from ONE move (any wheel0
-    public static List<String> getNeighbors(String combo) {
-        List<String> neighbors = new ArrayList<>(); // Adjacency
-        // PATTERN: Attempt rotating EACH of the 4 whees lead to 4 next combinations
-        for (int j = 0; j < 4; j++) {
-            String newCombo = top.substring(0, i)
-                    .concat(String.valueOf(nextDigit.get(top.charAt(i)))) // position being replaced
-                    .concat(top.substring(i + 1));
-            neighbors.add(newCombo);
-        }
-        // Return Neighbors
-        return neighbors;
-    }
-}
-
-```
-
-## 2D Sliding Block Puzzle [[5,2,4],[1,3,0]] ##
-
-- Tips: Serialize and deserialize method and use serialized version for BFS
-    - SERIALIZE ==>  int[][] [[5,2,4],[1,3,0]] ==> Integer 524130
-    - DESERIALIZE ==>  Integer 524130 ==> int[][] [[5,2,4],[1,3,0]]
-- Use deserialized version for neighbor checking and constraints validations
-
 **BFS Templates**
 
 ```java
@@ -878,6 +789,97 @@ class GFG {
 
 }
 ```
+
+
+#### [Category] IMPLCITT GRAPHS: Hidden Graphs
+- Node ==> **FIXED** size string
+- Neighbor ==> **Another** **FIXED** size string with **EDIT-REPLACE distance of 1**
+- Graph Representation ==> ```HashMap<String, List<String>>```
+- Source ==> Initial string e.g. 0000, WORD, HAHA
+- Destination ==> Desired String e.g. 4444, HEHE
+- Blocked Path ==> Where BFS stops (DONT add these nodes to queue)
+
+**PROBLEM: Word ladder puzzle**
+
+```java
+class WordLadder {
+    public static final char[] ALPHABETS = new char[26];
+
+    static {
+        // ascii representation of english alphabets a - z are numbers 97 - 122
+        for (int i = 0; i < 26; i++) {
+            ALPHABETS[i] = (char) (i + 'a');
+        }
+    }
+
+    //=================  ONE EDIT distance neighbors
+    public static List<String> getNeighbors(String word) {
+        List<String> unvisitedNeighbors = new ArrayList<>(); // Adjacency
+        // PATTERN: ALL string char positions
+        for (int j = 0; j < word.length(); j++) {
+            // PATTERN: All possible chars to be replaced and generate the new word
+            for (char c : ALPHABETS) {
+                StringBuilder wordBuilder = new StringBuilder(word.length());
+                wordBuilder.append(word.substring(0, j));
+                wordBuilder.append(c);
+                wordBuilder.append(word.substring(j + 1));
+                String nextWord = wordBuilder.toString();
+                // PATTERN: Check if NEW word(aka Neighbor) contains in DICT before considering it as neighbors
+                if (unvisitedWords.contains(nextWord)) {
+                    unvisitedNeighbors.add(nextWord);
+                    unvisitedWords.remove(nextWord);
+                }
+            }
+        }
+        // Return Neighbors
+        return unvisitedNeighbors;
+    }
+}
+```
+
+**PROBLEM: Pattern Lock with 4 wheels (0-9 digit)**
+
+```java
+class CombinationLockFourWheels {
+    // Preprocessing to have simpler code
+    public static Map<Character, Character> nextDigit = Map.of(
+            '0', '1',
+            '1', '2',
+            '2', '3',
+            '3', '4',
+            '4', '5',
+            '5', '6',
+            '6', '7',
+            '7', '8',
+            '8', '9',
+            '9', '0'
+    );
+
+    //=================  ONE EDIT distance neighbors
+    // Single move of any wheel means single attemp hence 
+    // neighboars in graph are away from ONE move (any wheel0
+    public static List<String> getNeighbors(String combo) {
+        List<String> neighbors = new ArrayList<>(); // Adjacency
+        // PATTERN: Attempt rotating EACH of the 4 whees lead to 4 next combinations
+        for (int j = 0; j < 4; j++) {
+            String newCombo = top.substring(0, i)
+                    .concat(String.valueOf(nextDigit.get(top.charAt(i)))) // position being replaced
+                    .concat(top.substring(i + 1));
+            neighbors.add(newCombo);
+        }
+        // Return Neighbors
+        return neighbors;
+    }
+}
+
+```
+
+**PROBLEM: Sliding Block Puzzle(Additional processing- Serialize/Deserialize 2D to 1D)**
+
+- Tips: Serialize and deserialize method and use serialized version for BFS
+    - SERIALIZE ==>  int[][] [[5,2,4],[1,3,0]] ==> Integer 524130
+    - DESERIALIZE ==>  Integer 524130 ==> int[][] [[5,2,4],[1,3,0]]
+- Use deserialized version for neighbor checking and constraints validations
 
 #### [Category]  Flows and Fills
 
